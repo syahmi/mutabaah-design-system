@@ -1,14 +1,15 @@
 # Mutabaah Amal — Design System
 
-A single-file HTML design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. It documents all visual tokens, components, and interaction patterns used across the product.
+A design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. It documents all visual tokens, components, and interaction patterns used across the product.
 
 ## Overview
 
-The design system is self-contained in `index.html` — no build step or dependencies required. Open it directly in a browser to browse the living style guide.
+The design system requires no build step or dependencies. Open `index.html` directly in a browser to browse the living style guide.
 
 ```
 mutabaah-design-system/
 ├── index.html          # Design system documentation
+├── styles.css          # All styles and design tokens
 ├── favicon-16x16.png
 └── favicon-32x32.png
 ```
@@ -85,4 +86,9 @@ No installation, build tools, or package manager required.
 
 ## Contributing
 
-To update the design system, edit `index.html` directly. All styles are in a single `<style>` block using CSS custom properties, making token changes straightforward.
+| File | Purpose |
+|------|---------|
+| `index.html` | Structure and content of the style guide |
+| `styles.css` | All styles and CSS custom property tokens |
+
+To update design tokens, edit the `:root` block at the top of `styles.css`. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`.
