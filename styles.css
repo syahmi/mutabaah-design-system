@@ -130,7 +130,12 @@ section:last-child { border-bottom: none; }
 .swatch-split-top { position: absolute; top: 0; left: 0; right: 0; bottom: 32px; }
 .swatch-split-btm { position: absolute; bottom: 0; left: 0; right: 0; height: 32px; }
 .swatch-name { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-1); }
-.swatch-hex { font-size: 12px; color: var(--text-2); font-family: 'JetBrains Mono', monospace; margin-top: 1px; }
+.swatch-hex {
+  font-size: 12px; color: var(--text-2); font-family: 'JetBrains Mono', monospace; margin-top: 1px;
+  cursor: pointer; user-select: none; transition: color 0.15s;
+}
+.swatch-hex:hover { color: var(--primary); }
+.swatch-hex--copied { color: var(--success) !important; }
 .swatch-desc { font-size: 11px; color: var(--text-3); margin-top: 1px; }
 
 .dark-mode-note {
