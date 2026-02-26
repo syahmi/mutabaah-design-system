@@ -379,6 +379,31 @@ section:last-child { border-bottom: none; }
 .tone-text { font-size: 13px; color: var(--text-2); line-height: 1.55; }
 .tone-text.crossed { text-decoration: line-through; color: var(--text-3); }
 
+/* ── Iconography ── */
+.icon-meta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+.icon-meta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+.icon-meta-value { font-family: 'Google Sans Flex', sans-serif; font-size: 20px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; }
+.icon-meta-version { font-size: 13px; font-weight: 400; color: var(--text-3); margin-left: 4px; }
+.icon-meta-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+.icon-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
+.icon-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 16px 14px; display: flex; flex-direction: column; align-items: center;
+  gap: 10px; width: 96px; transition: border-color 0.15s, background 0.15s;
+}
+.icon-card:hover { border-color: var(--primary); background: var(--surface-alt); }
+.icon-card-preview { color: var(--text-1); display: flex; align-items: center; justify-content: center; }
+.icon-card-preview svg { width: 24px; height: 24px; }
+.icon-card-name { font-size: 10px; color: var(--text-3); text-align: center; line-height: 1.4; word-break: break-all; }
+
+@media (max-width: 900px) {
+  .icon-meta-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .icon-card { width: calc(25% - 9px); padding: 16px 8px 10px; }
+}
+
 /* ── Footer ── */
 footer {
   padding: 32px 0; border-top: 1px solid var(--border);

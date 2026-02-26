@@ -1,3 +1,8 @@
+// ── Lucide icons ──
+window.addEventListener('load', () => {
+  if (window.lucide) lucide.createIcons();
+});
+
 // ── Sticky nav: highlight active section ──
 const navLinks = document.querySelectorAll('.nav-link');
 

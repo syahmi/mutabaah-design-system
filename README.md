@@ -10,6 +10,7 @@ The design system requires no build step or dependencies. Open `index.html` dire
 mutabaah-design-system/
 ├── index.html          # Design system documentation
 ├── styles.css          # All styles and design tokens
+├── script.js           # Copy-to-clipboard, sticky nav highlighting, icon init
 ├── favicon-16x16.png
 └── favicon-32x32.png
 ```
@@ -18,14 +19,14 @@ mutabaah-design-system/
 
 | # | Section | What it covers |
 |---|---------|----------------|
-| 1 | **Colors** | Core palette (background, surface, primary, sage, gold) and category colors (Worship, Quran, Charity, Personal) |
-| 2 | **Typography** | Inter Tight (display), Inter (body), JetBrains Mono (code) — full type scale |
-| 3 | **Spacing** | Base spacing scale (4–80px) plus component and layout rhythm tables |
-| 4 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
-| 5 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 6 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
-| 7 | **Motion** | Transition durations, easing curves, and animation principles |
-| 8 | **Tone** | Copy guidelines — what to say and what to avoid |
+| 01 | **Colors** | Core palette (background, surface, primary, sage, gold) and category colors (Worship, Quran, Charity, Personal) |
+| 02 | **Typography** | Inter Tight (display), Inter (body), JetBrains Mono (code) — full type scale |
+| 03 | **Spacing** | Base spacing scale (4–80px) plus component and layout rhythm tables |
+| 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
+| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
+| 06 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
+| 07 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
+| 08 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
 
@@ -57,11 +58,27 @@ mutabaah-design-system/
 
 | Font | Use |
 |------|-----|
-| **Inter Tight** | Display headings, numbers, brand name |
-| **Inter** | Body text, labels, UI text |
-| **JetBrains Mono** | Hex values, code snippets |
+| **Google Sans Flex** | All text — display, headings, body, labels, captions |
+| **Inter Tight** | Documented in the Typography section as the original typeface reference |
+| **Inter** | Documented in the Typography section as the original body typeface reference |
 
 All fonts are loaded from Google Fonts.
+
+### Icons
+
+| Library | Version | Method |
+|---------|---------|--------|
+| [Lucide](https://lucide.dev) | 0.460.0 | `<i data-lucide="icon-name"></i>` via CDN |
+
+Icons are initialised automatically on page load via `lucide.createIcons()` in `script.js`.
+
+## Interactive Features
+
+| Feature | File | Notes |
+|---------|------|-------|
+| Copy hex to clipboard | `script.js` | Click any hex value in the Colors section; falls back to `execCommand` on HTTP |
+| Sticky nav highlighting | `script.js` | Active section is highlighted in the nav as you scroll |
+| Icon rendering | `script.js` | Lucide icons are initialised after the CDN script loads |
 
 ## Usage
 
@@ -90,5 +107,6 @@ No installation, build tools, or package manager required.
 |------|---------|
 | `index.html` | Structure and content of the style guide |
 | `styles.css` | All styles and CSS custom property tokens |
+| `script.js` | Interactive behaviour — clipboard, nav highlighting, icon init |
 
 To update design tokens, edit the `:root` block at the top of `styles.css`. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`.
