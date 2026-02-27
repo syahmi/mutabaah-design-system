@@ -11,7 +11,10 @@ const observer = new IntersectionObserver(entries => {
     if (entry.isIntersecting) {
       navLinks.forEach(link => link.classList.remove('active'));
       const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
+      if (active) {
+        active.classList.add('active');
+        active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+      }
     }
   });
 }, { rootMargin: '-20% 0px -75% 0px' });

@@ -64,10 +64,13 @@ section:last-child { border-bottom: none; }
 }
 .nav-logo svg { width: 28px; height: 28px; display: block; }
 .nav-title { font-family: 'Google Sans Flex', sans-serif; font-size: 13px; font-weight: 700; color: var(--text-1); }
+.nav-links {
+  display: flex; align-items: center; gap: 8px;
+}
 .nav-link {
   font-family: 'Google Sans Flex', sans-serif; font-size: 12px; font-weight: 500;
   color: var(--text-2); text-decoration: none; padding: 5px 12px;
-  border-radius: 100px; transition: background 0.15s, color 0.15s;
+  border-radius: 100px; transition: background 0.15s, color 0.15s; white-space: nowrap;
 }
 .nav-link:hover { background: var(--surface-alt); color: var(--text-1); }
 .nav-link.active { background: var(--surface-alt); color: var(--text-1); font-weight: 600; }
@@ -443,8 +446,14 @@ footer {
 /* ── Responsive — Mobile (≤640px) ── */
 @media (max-width: 640px) {
   .page { padding: 0 16px; }
-  .sticky-nav-inner { padding: 10px 16px; }
-  .nav-link { display: none; }
+  .sticky-nav-inner { padding: 10px 16px 0; flex-wrap: wrap; gap: 0; }
+  .nav-brand { margin-bottom: 8px; }
+  .nav-links {
+    width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px; gap: 4px;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
   section { padding: 44px 0; }
   #hero { padding: 40px 0 36px; }
   .section-title { font-size: 24px; margin-bottom: 28px; }
