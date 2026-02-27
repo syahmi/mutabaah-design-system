@@ -29,7 +29,8 @@ mutabaah-design-system/
 | 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
 | 06 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
 | 07 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
-| 08 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
+| 08 | **Empty States** | Three variants (no tasks, no search results, no analytics data) with illustration and copy guidelines |
+| 09 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
 
@@ -97,7 +98,7 @@ When deploying, replace the relative `og-image.png` path with an absolute URL so
 | Feature | File | Notes |
 |---------|------|-------|
 | Copy hex to clipboard | `script.js` | Click any hex value in the Colors section; falls back to `execCommand` on HTTP |
-| Sticky nav highlighting | `script.js` | Active section is highlighted in the nav as you scroll |
+| Sticky nav highlighting | `script.js` | Active section is highlighted in the nav as you scroll; active link scrolls into view on mobile |
 | Icon rendering | `script.js` | Lucide icons are initialised after the CDN script loads |
 
 ## Usage
@@ -118,7 +119,7 @@ No installation, build tools, or package manager required.
 |------------|-------|---------|
 | Desktop | > 900px | Full layout, 6-column color grid |
 | Tablet | ≤ 900px | Reduced padding, single-column font cards |
-| Mobile | ≤ 640px | Compact layout, nav links hidden |
+| Mobile | ≤ 640px | Compact layout, nav links collapse into a horizontally scrollable strip |
 | Small phones | ≤ 380px | Smaller hero type |
 
 ## Contributing

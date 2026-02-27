@@ -47,6 +47,7 @@
       <a href="#components" class="nav-link">Components</a>
       <a href="#tasks" class="nav-link">Tasks</a>
       <a href="#navigation" class="nav-link">Navigation</a>
+      <a href="#empty-states" class="nav-link">Empty States</a>
       <a href="#motion" class="nav-link">Motion</a>
     </div>
   </div>
@@ -742,9 +743,85 @@
     </div>
   </section>
 
-  <!-- ── 08 MOTION & TONE ── -->
-  <section id="motion">
+  <!-- ── 08 EMPTY STATES ── -->
+  <section id="empty-states">
     <div class="section-num">08</div>
+    <h2 class="section-title">Empty States</h2>
+
+    <div class="sub-label">Variants</div>
+    <div class="empty-states-grid">
+
+      <!-- Today — No Tasks -->
+      <div class="empty-state-card">
+        <div class="empty-state-demo">
+          <div class="empty-state-illus">
+            <svg width="100" height="88" viewBox="0 0 100 88" fill="none">
+              <circle cx="50" cy="46" r="30" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.25"/>
+              <circle cx="50" cy="46" r="20" stroke="#1C3D2E" stroke-width="1" stroke-dasharray="3 4" opacity="0.12"/>
+              <path d="M40 46L48 54L62 38" stroke="#1C3D2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+              <polygon points="12,6 13.1,9.4 16.6,9.4 13.9,11.5 14.9,15 12,13 9.1,15 10.1,11.5 7.4,9.4 10.9,9.4" fill="#C4993E" opacity="0.85"/>
+              <polygon points="88,8 88.8,10.5 91.5,10.5 89.4,12 90.2,14.5 88,12.8 85.8,14.5 86.6,12 84.5,10.5 87.2,10.5" fill="#C4993E" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="empty-state-title">Start your ibadah</div>
+          <div class="empty-state-body">Add an activity above to begin tracking your day.</div>
+        </div>
+        <div class="empty-state-card-label">Today — No Tasks</div>
+      </div>
+
+      <!-- Search — No Results -->
+      <div class="empty-state-card">
+        <div class="empty-state-demo">
+          <div class="empty-state-illus">
+            <svg width="80" height="88" viewBox="0 0 80 88" fill="none">
+              <circle cx="34" cy="42" r="18" stroke="#A49E94" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <path d="M47 55L57 65" stroke="#A49E94" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M27 38H41" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <path d="M27 42H37" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              <path d="M27 46H39" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+              <polygon points="10,8 11,11 14,11 11.5,12.8 12.5,15.8 10,14.1 7.5,15.8 8.5,12.8 6,11 9,11" fill="#C4993E" opacity="0.8"/>
+              <polygon points="70,14 70.7,16.2 73,16.2 71.2,17.5 71.9,19.7 70,18.4 68.1,19.7 68.8,17.5 67,16.2 69.3,16.2" fill="#C4993E" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="empty-state-title">No activities found</div>
+          <div class="empty-state-body">Try a different search term.</div>
+        </div>
+        <div class="empty-state-card-label">Search — No Results</div>
+      </div>
+
+      <!-- Analytics — No Data -->
+      <div class="empty-state-card">
+        <div class="empty-state-demo">
+          <div class="empty-state-illus">
+            <svg width="100" height="88" viewBox="0 0 100 88" fill="none">
+              <rect x="16" y="22" width="68" height="46" rx="4" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.2"/>
+              <rect x="27" y="50" width="12" height="12" rx="2" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.25"/>
+              <rect x="44" y="38" width="12" height="24" rx="2" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.25"/>
+              <rect x="61" y="44" width="12" height="18" rx="2" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.25"/>
+              <polygon points="8,10 9.1,13.4 12.6,13.4 9.9,15.5 10.9,19 8,17 5.1,19 6.1,15.5 3.4,13.4 6.9,13.4" fill="#C4993E" opacity="0.85"/>
+              <polygon points="92,16 92.8,18.5 95.5,18.5 93.4,20 94.2,22.5 92,20.8 89.8,22.5 90.6,20 88.5,18.5 91.2,18.5" fill="#C4993E" opacity="0.55"/>
+            </svg>
+          </div>
+          <div class="empty-state-title">Nothing to show yet</div>
+          <div class="empty-state-body">Complete some ibadah to see your progress here.</div>
+        </div>
+        <div class="empty-state-card-label">Analytics — No Data</div>
+      </div>
+
+    </div>
+
+    <div class="dark-mode-note">
+      <div class="dm-dot" style="background: var(--sage);"></div>
+      <div>
+        <div class="dm-title">Design Principle</div>
+        <div class="dm-body">Empty states use a gentle floating illustration with encouraging copy. Never present zero as failure — reframe it as an invitation to begin. Illustrations animate with a slow 3s vertical float to feel alive without being distracting.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 09 MOTION & TONE ── -->
+  <section id="motion">
+    <div class="section-num">09</div>
     <h2 class="section-title">Motion &amp; Tone</h2>
 
     <div class="sub-label" style="margin-bottom:20px;">Animation Principles</div>
