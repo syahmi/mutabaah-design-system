@@ -416,6 +416,7 @@ footer {
 }
 .footer-brand { display: flex; align-items: center; gap: 10px; }
 .footer-logo { width: 28px; height: 28px; background: var(--primary); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+.footer-logo svg { width: 28px; height: 28px; display: block; }
 .footer-name { font-family: 'Google Sans Flex', sans-serif; font-size: 14px; font-weight: 600; color: var(--text-1); }
 .footer-meta { font-size: 12px; color: var(--text-3); }
 
