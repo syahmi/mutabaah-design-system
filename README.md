@@ -13,7 +13,7 @@ mutabaah-design-system/
 ├── index.html          # Design system documentation
 ├── styles.css          # All styles and design tokens
 ├── script.js           # Copy-to-clipboard, sticky nav highlighting, icon init
-├── og-image.png        # Social share image (1200×630px) — referenced by meta tags
+├── og-image.png        # Social share image (2400×1260px) — referenced by meta tags
 ├── favicon-16x16.png
 └── favicon-32x32.png
 ```
@@ -24,7 +24,7 @@ mutabaah-design-system/
 |---|---------|----------------|
 | 01 | **Colors** | Core palette (background, surface, primary, sage, gold) and category colors (Worship, Quran, Charity, Personal) |
 | 02 | **Typography** | Inter Tight (display), Inter (body) — full type scale |
-| 03 | **Spacing** | Base spacing scale (4–80px) plus component and layout rhythm tables |
+| 03 | **Spacing** | Base spacing scale (4–80px), component and layout rhythm tables, border-radius tokens, elevation scale |
 | 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
 | 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
 | 06 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
@@ -33,6 +33,8 @@ mutabaah-design-system/
 | 09 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
+
+All tokens live in the `:root` block at the top of `styles.css`.
 
 ### Color Palette
 
@@ -57,6 +59,37 @@ mutabaah-design-system/
 | Quran | `#2E5D8C` | `#E6EEF7` |
 | Charity (Sadaqah) | `#C4993E` | `#FBF3E3` |
 | Personal | `#6E4A8C` | `#EFE9F7` |
+
+### Border Radius
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--radius-xs` | `6px` | Small elements (code pills) |
+| `--radius-sm` | `8px` | Small surfaces |
+| `--radius-md` | `12px` | Buttons, input fields |
+| `--radius-lg` | `16px` | Cards, list containers |
+| `--radius-xl` | `20px` | Large cards, bottom nav |
+| `--radius-2xl` | `24px` | Bottom sheets |
+| `--radius-pill` | `100px` | Chips, tags, pill buttons |
+
+### Elevation
+
+| Token | Shadow | Use |
+|-------|--------|-----|
+| `--shadow-1` | `0 1px 4px rgba(28,61,46,0.06)` | Subtle — resting cards, lists |
+| `--shadow-2` | `0 2px 12px rgba(28,61,46,0.10)` | Raised — bottom sheets, modals |
+| `--shadow-3` | `0 4px 24px rgba(28,61,46,0.16)` | Elevated — overlapping panels |
+| `--shadow-fab` | `0 4px 16px rgba(28,61,46,0.30)` | FAB — floating action button |
+| `--shadow-nav` | `0 -4px 24px rgba(28,61,46,0.06)` | Bottom navigation bar |
+
+### Duration
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--duration-fast` | `150ms` | Hover / state transitions |
+| `--duration-exit` | `200ms` | Exits, dismissals — ease in |
+| `--duration-enter` | `280ms` | Entrances, confirmations — ease out |
+| `--duration-complete` | `360ms` | Task complete spring animation |
 
 ### Typography
 
@@ -84,22 +117,19 @@ Icons are initialised automatically on page load via `lucide.createIcons()` in `
 |-----|-------|
 | `og:title` | Design System — Mutabaah Amal |
 | `og:description` | Visual foundations for the Mutabaah Amal progressive web application. |
-| `og:image` | `og-image.png` (1200×630px) |
+| `og:image` | `og-image.png` (2400×1260px) |
 | `twitter:card` | `summary_large_image` |
-
-When deploying, replace the relative `og-image.png` path with an absolute URL so crawlers can fetch it:
-
-```html
-<meta property="og:image" content="https://your-domain.com/og-image.png" />
-```
 
 ## Interactive Features
 
 | Feature | File | Notes |
 |---------|------|-------|
-| Copy hex to clipboard | `script.js` | Click any hex value in the Colors section; falls back to `execCommand` on HTTP |
-| Sticky nav highlighting | `script.js` | Active section is highlighted in the nav as you scroll; active link scrolls into view on mobile |
+| Copy hex to clipboard | `script.js` | Click any hex value in the Colors section |
+| Copy icon name to clipboard | `script.js` | Click any icon card in the Iconography section |
+| Sticky nav highlighting | `script.js` | Active section is highlighted as you scroll; active link scrolls into view on mobile |
 | Icon rendering | `script.js` | Lucide icons are initialised after the CDN script loads |
+
+Clipboard writes use the `navigator.clipboard` API exclusively.
 
 ## Usage
 
@@ -130,4 +160,4 @@ No installation, build tools, or package manager required.
 | `styles.css` | All styles and CSS custom property tokens |
 | `script.js` | Interactive behaviour — clipboard, nav highlighting, icon init |
 
-To update design tokens, edit the `:root` block at the top of `styles.css`. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`. To replace the social share image, swap out `og-image.png` (keep it at 1200×630px) and update the `og:image` meta tag URL if needed.
+To update design tokens, edit the `:root` block at the top of `styles.css`. It is organised into colour, radius, elevation, and duration groups. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`. To replace the social share image, swap out `og-image.png` (keep it at 2400×1260px) and update the `og:image` meta tag URL if needed.
