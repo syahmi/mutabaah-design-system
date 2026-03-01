@@ -21,6 +21,11 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
+// ── Shared clipboard copy utility ──
+function copyToClipboard(text, onSuccess) {
+  navigator.clipboard.writeText(text).then(onSuccess).catch(() => {});
+}
+
 // ── Copy hex to clipboard ──
 document.querySelectorAll('.swatch-hex').forEach(el => {
   el.title = 'Click to copy';
@@ -29,26 +34,34 @@ document.querySelectorAll('.swatch-hex').forEach(el => {
     const hex = el.textContent.split('/')[0].trim();
     const original = el.textContent;
 
-    const confirm = () => {
+    copyToClipboard(hex, () => {
       el.textContent = 'Copied!';
       el.classList.add('swatch-hex--copied');
       setTimeout(() => {
         el.textContent = original;
         el.classList.remove('swatch-hex--copied');
       }, 1500);
-    };
+    });
+  });
+});
 
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(hex).then(confirm);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = hex;
-      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      confirm();
-    }
+// ── Copy icon name to clipboard ──
+document.querySelectorAll('.icon-card').forEach(card => {
+  const nameEl = card.querySelector('.icon-card-name');
+  if (!nameEl) return;
+
+  card.title = 'Click to copy';
+
+  card.addEventListener('click', () => {
+    const name = nameEl.textContent.trim();
+
+    copyToClipboard(name, () => {
+      nameEl.textContent = 'Copied!';
+      nameEl.classList.add('icon-card-name--copied');
+      setTimeout(() => {
+        nameEl.textContent = name;
+        nameEl.classList.remove('icon-card-name--copied');
+      }, 1500);
+    });
   });
 });
