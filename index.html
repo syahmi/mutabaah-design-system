@@ -347,10 +347,35 @@
       </div>
       <div class="spacing-card">
         <div class="spacing-card-title">Border Radius</div>
-        <div class="spacing-row"><span class="spacing-row-label">Chips / Tags</span><span class="spacing-row-val">100px (pill)</span></div>
-        <div class="spacing-row"><span class="spacing-row-label">Buttons</span><span class="spacing-row-val">12px</span></div>
-        <div class="spacing-row"><span class="spacing-row-label">Cards</span><span class="spacing-row-val">16px</span></div>
-        <div class="spacing-row"><span class="spacing-row-label">Bottom sheet</span><span class="spacing-row-val">24px top</span></div>
+        <div class="spacing-row"><span class="spacing-row-label">Chips / Tags</span><span class="spacing-row-val">--radius-pill · 100px</span></div>
+        <div class="spacing-row"><span class="spacing-row-label">Buttons</span><span class="spacing-row-val">--radius-md · 12px</span></div>
+        <div class="spacing-row"><span class="spacing-row-label">Cards</span><span class="spacing-row-val">--radius-lg · 16px</span></div>
+        <div class="spacing-row"><span class="spacing-row-label">Large cards</span><span class="spacing-row-val">--radius-xl · 20px</span></div>
+        <div class="spacing-row"><span class="spacing-row-label">Bottom sheet</span><span class="spacing-row-val">--radius-2xl · 24px</span></div>
+      </div>
+    </div>
+
+    <div class="sub-label" style="margin-top:48px;">Elevation</div>
+    <div class="elevation-row">
+      <div class="elevation-item" style="border:1px solid var(--border);">
+        <code class="code-pill" style="font-size:10px;">--shadow-0</code>
+        <div class="elevation-use">Flat — default surfaces, inline cards</div>
+      </div>
+      <div class="elevation-item" style="box-shadow:var(--shadow-1);">
+        <code class="code-pill" style="font-size:10px;">--shadow-1</code>
+        <div class="elevation-use">Subtle — lists, resting cards</div>
+      </div>
+      <div class="elevation-item" style="box-shadow:var(--shadow-2);">
+        <code class="code-pill" style="font-size:10px;">--shadow-2</code>
+        <div class="elevation-use">Raised — bottom sheets, modals</div>
+      </div>
+      <div class="elevation-item" style="box-shadow:var(--shadow-3);">
+        <code class="code-pill" style="font-size:10px;">--shadow-3</code>
+        <div class="elevation-use">Elevated — overlapping panels</div>
+      </div>
+      <div class="elevation-item" style="box-shadow:var(--shadow-fab);">
+        <code class="code-pill" style="font-size:10px;">--shadow-fab</code>
+        <div class="elevation-use">FAB — floating action button</div>
       </div>
     </div>
   </section>
@@ -833,7 +858,8 @@
         </div>
         <div class="motion-title">Ease Out — 280ms</div>
         <div class="motion-desc">Default for entrances and confirmations. Items settle gently into place — never bouncy or urgent.</div>
-        <code class="code-pill">cubic-bezier(0, 0, 0.2, 1)</code>
+        <code class="code-pill">--duration-enter · 280ms</code>
+        <code class="code-pill" style="margin-top:6px;">cubic-bezier(0, 0, 0.2, 1)</code>
       </div>
       <div class="motion-card">
         <div class="motion-icon green">
@@ -841,7 +867,8 @@
         </div>
         <div class="motion-title">Ease In — 200ms</div>
         <div class="motion-desc">For exits and dismissals. Elements leave quickly, cleanly — no lingering.</div>
-        <code class="code-pill">cubic-bezier(0.4, 0, 1, 1)</code>
+        <code class="code-pill">--duration-exit · 200ms</code>
+        <code class="code-pill" style="margin-top:6px;">cubic-bezier(0.4, 0, 1, 1)</code>
       </div>
       <div class="motion-card">
         <div class="motion-icon gold">
@@ -849,7 +876,8 @@
         </div>
         <div class="motion-title">Task Complete — 360ms</div>
         <div class="motion-desc">Checkmark draws in with a gentle spring. Subtle gold sparkle. A moment of quiet satisfaction.</div>
-        <code class="code-pill">spring(1, 0.6, 0, 0)</code>
+        <code class="code-pill">--duration-complete · 360ms</code>
+        <code class="code-pill" style="margin-top:6px;">spring(1, 0.6, 0, 0)</code>
       </div>
     </div>
 

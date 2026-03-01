@@ -25,6 +25,28 @@
   --cat-charity-bg:   #FBF3E3;
   --cat-personal:     #6E4A8C;
   --cat-personal-bg:  #EFE9F7;
+
+  /* Radius tokens */
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  24px;
+  --radius-pill: 100px;
+
+  /* Elevation tokens */
+  --shadow-1:   0 1px 4px rgba(28,61,46,0.06);
+  --shadow-2:   0 2px 12px rgba(28,61,46,0.10);
+  --shadow-3:   0 4px 24px rgba(28,61,46,0.16);
+  --shadow-fab: 0 4px 16px rgba(28,61,46,0.30);
+  --shadow-nav: 0 -4px 24px rgba(28,61,46,0.06);
+
+  /* Duration tokens */
+  --duration-fast:     150ms;
+  --duration-exit:     200ms;
+  --duration-enter:    280ms;
+  --duration-complete: 360ms;
 }
 
 html { scroll-behavior: smooth; }
@@ -191,6 +213,15 @@ section:last-child { border-bottom: none; }
 .spacing-row-label { font-size: 13px; color: var(--text-2); }
 .spacing-row-val { font-family: 'Google Sans Flex', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-1); }
 
+/* ── Elevation ── */
+.elevation-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.elevation-item {
+  background: var(--surface); border-radius: var(--radius-lg);
+  padding: 20px; flex: 1; min-width: 120px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.elevation-use { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+
 /* ── Components ── */
 .component-group { margin-bottom: 48px; }
 .component-group:last-child { margin-bottom: 0; }
@@ -210,7 +241,7 @@ section:last-child { border-bottom: none; }
 .btn-fab {
   width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: #fff;
   border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(28,61,46,0.3); transition: opacity 0.15s;
+  box-shadow: var(--shadow-fab); transition: opacity 0.15s;
 }
 .btn-fab:hover { opacity: 0.85; }
 
@@ -305,7 +336,7 @@ section:last-child { border-bottom: none; }
 .bottom-nav {
   background: var(--surface); border-radius: 20px 20px 0 0;
   border: 1px solid var(--border); display: flex; align-items: flex-start;
-  max-width: 400px; box-shadow: 0 -4px 24px rgba(28,61,46,0.06); overflow: hidden;
+  max-width: 400px; box-shadow: var(--shadow-nav); overflow: hidden;
 }
 .nav-tab {
   flex: 1; display: flex; flex-direction: column; align-items: center;
