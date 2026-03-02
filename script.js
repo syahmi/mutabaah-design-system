@@ -45,6 +45,58 @@ document.querySelectorAll('.swatch-hex').forEach(el => {
   });
 });
 
+// ── Motion live demos ──
+function playDemo(type) {
+  if (type === 'enter') {
+    const el = document.getElementById('demo-enter');
+    el.classList.remove('demo-anim-enter');
+    void el.offsetWidth;
+    el.classList.add('demo-anim-enter');
+
+  } else if (type === 'exit') {
+    const el = document.getElementById('demo-exit');
+    el.classList.remove('demo-anim-exit', 'demo-anim-enter');
+    void el.offsetWidth;
+    el.classList.add('demo-anim-exit');
+    setTimeout(() => {
+      el.classList.remove('demo-anim-exit');
+      void el.offsetWidth;
+      el.classList.add('demo-anim-enter');
+    }, 500);
+
+  } else if (type === 'complete') {
+    const check = document.getElementById('demo-complete-check');
+    const text  = document.getElementById('demo-complete-text');
+    check.classList.remove('filled');
+    text.classList.remove('done');
+    void check.offsetWidth;
+    setTimeout(() => {
+      check.classList.add('filled');
+      text.classList.add('done');
+    }, 80);
+  }
+}
+
+document.querySelectorAll('.motion-replay-btn').forEach(btn => {
+  btn.addEventListener('click', () => playDemo(btn.dataset.demo));
+});
+
+// Auto-play once when section scrolls into view
+const motionSection = document.getElementById('motion');
+if (motionSection) {
+  const motionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => playDemo('enter'),   100);
+        setTimeout(() => playDemo('exit'),    500);
+        setTimeout(() => playDemo('complete'), 900);
+        motionObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+  motionObserver.observe(motionSection);
+}
+
 // ── Copy icon name to clipboard ──
 document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');
