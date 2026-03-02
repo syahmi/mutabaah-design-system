@@ -501,6 +501,61 @@
       </div>
     </div>
 
+    <!-- Button States -->
+    <div class="component-group">
+      <div class="sub-label">Button States</div>
+      <div class="state-matrix">
+        <table class="state-matrix-table">
+          <thead>
+            <tr>
+              <th>Variant</th>
+              <th>Default</th>
+              <th>Hover</th>
+              <th>Disabled</th>
+              <th>Loading</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="state-matrix-row-label">Primary</span></td>
+              <td><button class="btn btn-primary">Add Ibadah</button></td>
+              <td><button class="btn btn-primary" style="opacity:0.85;">Add Ibadah</button></td>
+              <td><button class="btn btn-primary" disabled>Add Ibadah</button></td>
+              <td><button class="btn btn-primary btn-loading" aria-busy="true"><span class="btn-spinner"></span>Loading…</button></td>
+            </tr>
+            <tr>
+              <td><span class="state-matrix-row-label">Secondary</span></td>
+              <td><button class="btn btn-secondary">View All</button></td>
+              <td><button class="btn btn-secondary" style="opacity:0.85;">View All</button></td>
+              <td><button class="btn btn-secondary" disabled>View All</button></td>
+              <td><span class="state-matrix-dash">—</span></td>
+            </tr>
+            <tr>
+              <td><span class="state-matrix-row-label">Outline</span></td>
+              <td><button class="btn btn-outline">Save</button></td>
+              <td><button class="btn btn-outline" style="opacity:0.85;">Save</button></td>
+              <td><button class="btn btn-outline" disabled>Save</button></td>
+              <td><span class="state-matrix-dash">—</span></td>
+            </tr>
+            <tr>
+              <td><span class="state-matrix-row-label">Destructive</span></td>
+              <td><button class="btn btn-destructive">Delete</button></td>
+              <td><button class="btn btn-destructive" style="opacity:0.85;">Delete</button></td>
+              <td><button class="btn btn-destructive" disabled>Delete</button></td>
+              <td><span class="state-matrix-dash">—</span></td>
+            </tr>
+            <tr>
+              <td><span class="state-matrix-row-label">Ghost</span></td>
+              <td><button class="btn btn-ghost">Cancel</button></td>
+              <td><button class="btn btn-ghost" style="opacity:0.85;">Cancel</button></td>
+              <td><button class="btn btn-ghost" disabled>Cancel</button></td>
+              <td><span class="state-matrix-dash">—</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Category chips -->
     <div class="component-group">
       <div class="sub-label">Category Chips</div>
@@ -530,6 +585,12 @@
         <span class="tag tag-personal">Personal</span>
         <span style="font-size:11px;color:var(--text-3);margin-left:8px;">↑ Small inline tags used on task items</span>
       </div>
+      <div class="chips-row" style="margin-top:4px;">
+        <button class="chip chip-active" disabled>Worship</button>
+        <button class="chip chip-inactive" disabled>Quran</button>
+        <button class="chip chip-outline" disabled>All</button>
+        <span style="font-size:11px;color:var(--text-3);margin-left:8px;">↑ Disabled — 35% opacity, not-allowed cursor</span>
+      </div>
     </div>
 
     <!-- Input -->
@@ -549,6 +610,24 @@
             Fajr Prayer
           </div>
           <span class="btn-label-sm">Active / Focused</span>
+        </div>
+        <div class="input-item">
+          <div class="input-field input-error">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="none" stroke="#B84040" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="#B84040" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Fajr Prayer
+          </div>
+          <div class="input-error-msg">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#B84040" stroke-width="1.5"/><path d="M6 3.5v3" stroke="#B84040" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="8.5" r="0.75" fill="#B84040"/></svg>
+            Activity name already exists
+          </div>
+          <span class="btn-label-sm">Error</span>
+        </div>
+        <div class="input-item">
+          <div class="input-field input-disabled" aria-disabled="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="none" stroke="#A49E94" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Add an ibadah activity…
+          </div>
+          <span class="btn-label-sm">Disabled</span>
         </div>
       </div>
     </div>
