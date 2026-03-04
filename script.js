@@ -9,10 +9,14 @@ const navLinks = document.querySelectorAll('.nav-link');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      });
       const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
       if (active) {
         active.classList.add('active');
+        active.setAttribute('aria-current', 'true');
         active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
       }
     }
@@ -26,22 +30,41 @@ function copyToClipboard(text, onSuccess) {
   navigator.clipboard.writeText(text).then(onSuccess).catch(() => {});
 }
 
+// ── Aria-live announcement region ──
+const copyAnnouncement = document.getElementById('copy-announcement');
+function announce(msg) {
+  if (copyAnnouncement) {
+    copyAnnouncement.textContent = '';
+    // Force re-announcement if same message repeated
+    requestAnimationFrame(() => { copyAnnouncement.textContent = msg; });
+  }
+}
+
 // ── Copy hex to clipboard ──
 document.querySelectorAll('.swatch-hex').forEach(el => {
   el.title = 'Click to copy';
 
-  el.addEventListener('click', () => {
+  function handleCopy() {
     const hex = el.textContent.split('/')[0].trim();
     const original = el.textContent;
 
     copyToClipboard(hex, () => {
       el.textContent = 'Copied!';
       el.classList.add('swatch-hex--copied');
+      announce(`Copied: ${hex}`);
       setTimeout(() => {
         el.textContent = original;
         el.classList.remove('swatch-hex--copied');
       }, 1500);
     });
+  }
+
+  el.addEventListener('click', handleCopy);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCopy();
+    }
   });
 });
 
@@ -102,14 +125,13 @@ document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');
   if (!nameEl) return;
 
-  card.title = 'Click to copy';
-
   card.addEventListener('click', () => {
     const name = nameEl.textContent.trim();
 
     copyToClipboard(name, () => {
       nameEl.textContent = 'Copied!';
       nameEl.classList.add('icon-card-name--copied');
+      announce(`Copied: ${name}`);
       setTimeout(() => {
         nameEl.textContent = name;
         nameEl.classList.remove('icon-card-name--copied');

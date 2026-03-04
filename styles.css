@@ -1,5 +1,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 0;
+  background: var(--primary); color: #fff;
+  padding: 8px 16px; text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  z-index: 9999; border-radius: 0 0 8px 0;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Screen-reader only utility ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
 :root {
   --bg:           #F5F1EA;
   --surface:      #FFFFFF;
@@ -96,6 +113,7 @@ section:last-child { border-bottom: none; }
 }
 .nav-link:hover { background: var(--surface-alt); color: var(--text-1); }
 .nav-link.active { background: var(--surface-alt); color: var(--text-1); font-weight: 600; }
+.nav-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
 /* ── Section header ── */
 .section-num {
@@ -139,6 +157,7 @@ section:last-child { border-bottom: none; }
   text-decoration: none; transition: background 0.15s;
 }
 .hero-chip:hover { background: #d5e8dc; }
+.hero-chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .hero-meta { text-align: right; flex-shrink: 0; padding-top: 4px; }
 .hero-meta-label { font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
 .hero-version { font-family: 'Google Sans Flex', sans-serif; font-size: 40px; font-weight: 800; color: var(--text-1); line-height: 1; }
@@ -164,6 +183,7 @@ section:last-child { border-bottom: none; }
 }
 .swatch-hex:hover { color: var(--primary); }
 .swatch-hex--copied { color: var(--success) !important; }
+.swatch-hex:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
 .swatch-desc { font-size: 11px; color: var(--text-3); margin-top: 1px; }
 
 .dark-mode-note {
@@ -233,6 +253,7 @@ section:last-child { border-bottom: none; }
 
 .btn { display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; font-family: 'Google Sans Flex', sans-serif; font-size: 14px; font-weight: 600; border-radius: 12px; padding: 13px 22px; transition: opacity 0.15s; }
 .btn:hover { opacity: 0.85; }
+.btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-secondary { background: var(--surface-alt); color: var(--text-1); }
 .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); padding: 11.5px 22px; }
@@ -244,6 +265,7 @@ section:last-child { border-bottom: none; }
   box-shadow: var(--shadow-fab); transition: opacity 0.15s;
 }
 .btn-fab:hover { opacity: 0.85; }
+.btn-fab:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
 /* Chips */
 .chips-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
@@ -253,6 +275,7 @@ section:last-child { border-bottom: none; }
   padding: 8px 16px; border-radius: 100px; cursor: pointer;
   border: none; transition: background 0.15s;
 }
+.chip:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .chip-active { background: var(--primary); color: #fff; font-weight: 600; }
 .chip-inactive { background: var(--surface-alt); color: var(--text-2); }
 .chip-outline { background: transparent; color: var(--text-2); border: 1.5px solid var(--border); padding: 6.5px 16px; }
@@ -452,6 +475,7 @@ section:last-child { border-bottom: none; }
   border-radius: 100px; padding: 5px 12px; cursor: pointer; transition: background 0.15s, color 0.15s;
 }
 .motion-replay-btn:hover { background: var(--surface-alt); color: var(--text-1); }
+.motion-replay-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
 .demo-item {
   display: flex; align-items: center; gap: 10px;
@@ -520,6 +544,8 @@ section:last-child { border-bottom: none; }
 }
 .icon-card { cursor: pointer; }
 .icon-card:hover { border-color: var(--primary); background: var(--surface-alt); }
+.icon-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+button.icon-card { font: inherit; color: inherit; }
 .icon-card-preview { color: var(--text-1); display: flex; align-items: center; justify-content: center; }
 .icon-card-preview svg { width: 24px; height: 24px; }
 .icon-card-name { font-size: 10px; color: var(--text-3); text-align: center; line-height: 1.4; word-break: break-all; }

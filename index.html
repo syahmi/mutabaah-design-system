@@ -30,12 +30,15 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div aria-live="polite" aria-atomic="true" class="sr-only" id="copy-announcement"></div>
+
 <!-- Sticky navigation -->
-<nav class="sticky-nav">
+<nav class="sticky-nav" aria-label="Design system sections">
   <div class="sticky-nav-inner">
     <a href="#hero" class="nav-brand">
       <div class="nav-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#a)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#a)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="a" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#a)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#a)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
       </div>
       <span class="nav-title">Mutabaah Amal</span>
     </a>
@@ -53,7 +56,7 @@
   </div>
 </nav>
 
-<div class="page">
+<main class="page" id="main-content">
 
   <!-- ── HERO ── -->
   <section id="hero">
@@ -61,7 +64,7 @@
       <div>
         <div class="hero-brand">
           <div class="hero-logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#a)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#a)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="b" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#b)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#b)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
           </div>
           <span class="hero-brand-name">Mutabaah Amal</span>
         </div>
@@ -97,37 +100,37 @@
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#1C3D2E;"></div>
         <div class="swatch-name">Forest Green</div>
-        <div class="swatch-hex">#1C3D2E</div>
+        <div class="swatch-hex" role="button" tabindex="0">#1C3D2E</div>
         <div class="swatch-desc">Primary action, brand</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#4A7860;"></div>
         <div class="swatch-name">Sage</div>
-        <div class="swatch-hex">#4A7860</div>
+        <div class="swatch-hex" role="button" tabindex="0">#4A7860</div>
         <div class="swatch-desc">Secondary, hover states</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#C4993E;"></div>
         <div class="swatch-name">Gold</div>
-        <div class="swatch-hex">#C4993E</div>
+        <div class="swatch-hex" role="button" tabindex="0">#C4993E</div>
         <div class="swatch-desc">Accent, streaks, stars</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#F5F1EA; border-color: var(--border);"></div>
         <div class="swatch-name">Parchment</div>
-        <div class="swatch-hex">#F5F1EA</div>
+        <div class="swatch-hex" role="button" tabindex="0">#F5F1EA</div>
         <div class="swatch-desc">App background</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#FFFFFF; border-color: var(--border);"></div>
         <div class="swatch-name">Surface</div>
-        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-hex" role="button" tabindex="0">#FFFFFF</div>
         <div class="swatch-desc">Cards, bottom sheet</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block tall" style="background:#EDE8DF;"></div>
         <div class="swatch-name">Surface Alt</div>
-        <div class="swatch-hex">#EDE8DF</div>
+        <div class="swatch-hex" role="button" tabindex="0">#EDE8DF</div>
         <div class="swatch-desc">Input bg, inactive</div>
       </div>
     </div>
@@ -137,32 +140,32 @@
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#1A1816;"></div>
         <div class="swatch-name">Text Primary</div>
-        <div class="swatch-hex">#1A1816</div>
+        <div class="swatch-hex" role="button" tabindex="0">#1A1816</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#635E56;"></div>
         <div class="swatch-name">Text Secondary</div>
-        <div class="swatch-hex">#635E56</div>
+        <div class="swatch-hex" role="button" tabindex="0">#635E56</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#A49E94;"></div>
         <div class="swatch-name">Text Tertiary</div>
-        <div class="swatch-hex">#A49E94</div>
+        <div class="swatch-hex" role="button" tabindex="0">#A49E94</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#DDD8CF;"></div>
         <div class="swatch-name">Border</div>
-        <div class="swatch-hex">#DDD8CF</div>
+        <div class="swatch-hex" role="button" tabindex="0">#DDD8CF</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#2D7A5A;"></div>
         <div class="swatch-name">Success</div>
-        <div class="swatch-hex">#2D7A5A</div>
+        <div class="swatch-hex" role="button" tabindex="0">#2D7A5A</div>
       </div>
       <div class="swatch-card">
         <div class="swatch-block medium" style="background:#B84040;"></div>
         <div class="swatch-name">Error</div>
-        <div class="swatch-hex">#B84040</div>
+        <div class="swatch-hex" role="button" tabindex="0">#B84040</div>
       </div>
     </div>
 
@@ -174,7 +177,7 @@
           <div class="swatch-split-btm" style="background:#E8F2EC;"></div>
         </div>
         <div class="swatch-name">Worship</div>
-        <div class="swatch-hex">#2D6E4E / #E8F2EC</div>
+        <div class="swatch-hex" role="button" tabindex="0">#2D6E4E / #E8F2EC</div>
         <div class="swatch-desc">Salah, Dua, Dhikr</div>
       </div>
       <div class="swatch-card">
@@ -183,7 +186,7 @@
           <div class="swatch-split-btm" style="background:#E6EEF7;"></div>
         </div>
         <div class="swatch-name">Quran</div>
-        <div class="swatch-hex">#2E5D8C / #E6EEF7</div>
+        <div class="swatch-hex" role="button" tabindex="0">#2E5D8C / #E6EEF7</div>
         <div class="swatch-desc">Reading, Memorisation</div>
       </div>
       <div class="swatch-card">
@@ -192,7 +195,7 @@
           <div class="swatch-split-btm" style="background:#FBF3E3;"></div>
         </div>
         <div class="swatch-name">Charity</div>
-        <div class="swatch-hex">#C4993E / #FBF3E3</div>
+        <div class="swatch-hex" role="button" tabindex="0">#C4993E / #FBF3E3</div>
         <div class="swatch-desc">Sadaqah, Zakat</div>
       </div>
       <div class="swatch-card">
@@ -201,7 +204,7 @@
           <div class="swatch-split-btm" style="background:#EFE9F7;"></div>
         </div>
         <div class="swatch-name">Personal</div>
-        <div class="swatch-hex">#6E4A8C / #EFE9F7</div>
+        <div class="swatch-hex" role="button" tabindex="0">#6E4A8C / #EFE9F7</div>
         <div class="swatch-desc">Reflection, Goals</div>
       </div>
     </div>
@@ -405,61 +408,61 @@
 
     <div class="sub-label" style="margin-top:48px;">Navigation &amp; Actions</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="home"></i></div><div class="icon-card-name">home</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="arrow-left"></i></div><div class="icon-card-name">arrow-left</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="chevron-left"></i></div><div class="icon-card-name">chevron-left</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="chevron-right"></i></div><div class="icon-card-name">chevron-right</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="x"></i></div><div class="icon-card-name">x</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="search"></i></div><div class="icon-card-name">search</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="settings"></i></div><div class="icon-card-name">settings</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="download"></i></div><div class="icon-card-name">download</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="log-out"></i></div><div class="icon-card-name">log-out</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="info"></i></div><div class="icon-card-name">info</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: home"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="home"></i></div><div class="icon-card-name">home</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: arrow-left"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="arrow-left"></i></div><div class="icon-card-name">arrow-left</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: chevron-left"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="chevron-left"></i></div><div class="icon-card-name">chevron-left</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: chevron-right"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="chevron-right"></i></div><div class="icon-card-name">chevron-right</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: x"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="x"></i></div><div class="icon-card-name">x</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: search"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="search"></i></div><div class="icon-card-name">search</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: settings"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="settings"></i></div><div class="icon-card-name">settings</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: download"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="download"></i></div><div class="icon-card-name">download</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: log-out"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="log-out"></i></div><div class="icon-card-name">log-out</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: info"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="info"></i></div><div class="icon-card-name">info</div></button>
     </div>
 
     <div class="sub-label">Tasks &amp; Status</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="moon-star"></i></div><div class="icon-card-name">moon-star</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="check"></i></div><div class="icon-card-name">check</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="circle-check"></i></div><div class="icon-card-name">circle-check</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="repeat"></i></div><div class="icon-card-name">repeat</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="trash-2"></i></div><div class="icon-card-name">trash-2</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="target"></i></div><div class="icon-card-name">target</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="calendar-check"></i></div><div class="icon-card-name">calendar-check</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: moon-star"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="moon-star"></i></div><div class="icon-card-name">moon-star</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: check"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="check"></i></div><div class="icon-card-name">check</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: circle-check"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="circle-check"></i></div><div class="icon-card-name">circle-check</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: repeat"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="repeat"></i></div><div class="icon-card-name">repeat</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: trash-2"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="trash-2"></i></div><div class="icon-card-name">trash-2</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: target"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="target"></i></div><div class="icon-card-name">target</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: calendar-check"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="calendar-check"></i></div><div class="icon-card-name">calendar-check</div></button>
     </div>
 
     <div class="sub-label">Calendar</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="calendar"></i></div><div class="icon-card-name">calendar</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="calendar-days"></i></div><div class="icon-card-name">calendar-days</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="calendar-range"></i></div><div class="icon-card-name">calendar-range</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: calendar"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="calendar"></i></div><div class="icon-card-name">calendar</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: calendar-days"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="calendar-days"></i></div><div class="icon-card-name">calendar-days</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: calendar-range"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="calendar-range"></i></div><div class="icon-card-name">calendar-range</div></button>
     </div>
 
     <div class="sub-label">Analytics</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="bar-chart-3"></i></div><div class="icon-card-name">bar-chart-3</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="trending-up"></i></div><div class="icon-card-name">trending-up</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="trending-down"></i></div><div class="icon-card-name">trending-down</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: bar-chart-3"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div><div class="icon-card-name">bar-chart-3</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: trending-up"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="trending-up"></i></div><div class="icon-card-name">trending-up</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: trending-down"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="trending-down"></i></div><div class="icon-card-name">trending-down</div></button>
     </div>
 
     <div class="sub-label">Categories</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview" style="color:var(--cat-worship);"><i data-lucide="moon-star"></i></div><div class="icon-card-name">Worship</div></div>
-      <div class="icon-card"><div class="icon-card-preview" style="color:var(--cat-quran);"><i data-lucide="book-open"></i></div><div class="icon-card-name">Quran</div></div>
-      <div class="icon-card"><div class="icon-card-preview" style="color:var(--cat-charity);"><i data-lucide="heart-handshake"></i></div><div class="icon-card-name">Charity</div></div>
-      <div class="icon-card"><div class="icon-card-preview" style="color:var(--cat-personal);"><i data-lucide="sparkles"></i></div><div class="icon-card-name">Personal</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: Worship"><div class="icon-card-preview" aria-hidden="true" style="color:var(--cat-worship);"><i data-lucide="moon-star"></i></div><div class="icon-card-name">Worship</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: Quran"><div class="icon-card-preview" aria-hidden="true" style="color:var(--cat-quran);"><i data-lucide="book-open"></i></div><div class="icon-card-name">Quran</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: Charity"><div class="icon-card-preview" aria-hidden="true" style="color:var(--cat-charity);"><i data-lucide="heart-handshake"></i></div><div class="icon-card-name">Charity</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: Personal"><div class="icon-card-preview" aria-hidden="true" style="color:var(--cat-personal);"><i data-lucide="sparkles"></i></div><div class="icon-card-name">Personal</div></button>
     </div>
 
     <div class="sub-label">System</div>
     <div class="icon-grid">
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="cloud"></i></div><div class="icon-card-name">cloud</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="wifi-off"></i></div><div class="icon-card-name">wifi-off</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="shield-check"></i></div><div class="icon-card-name">shield-check</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="globe"></i></div><div class="icon-card-name">globe</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="moon"></i></div><div class="icon-card-name">moon</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="volume-2"></i></div><div class="icon-card-name">volume-2</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="smartphone"></i></div><div class="icon-card-name">smartphone</div></div>
-      <div class="icon-card"><div class="icon-card-preview"><i data-lucide="refresh-cw"></i></div><div class="icon-card-name">refresh-cw</div></div>
+      <button class="icon-card" type="button" aria-label="Copy icon name: cloud"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="cloud"></i></div><div class="icon-card-name">cloud</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: wifi-off"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="wifi-off"></i></div><div class="icon-card-name">wifi-off</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: shield-check"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="shield-check"></i></div><div class="icon-card-name">shield-check</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: globe"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="globe"></i></div><div class="icon-card-name">globe</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: moon"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="moon"></i></div><div class="icon-card-name">moon</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: volume-2"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="volume-2"></i></div><div class="icon-card-name">volume-2</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: smartphone"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="smartphone"></i></div><div class="icon-card-name">smartphone</div></button>
+      <button class="icon-card" type="button" aria-label="Copy icon name: refresh-cw"><div class="icon-card-preview" aria-hidden="true"><i data-lucide="refresh-cw"></i></div><div class="icon-card-name">refresh-cw</div></button>
     </div>
   </section>
 
@@ -561,19 +564,19 @@
       <div class="sub-label">Category Chips</div>
       <div class="chips-row">
         <button class="chip chip-active">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" fill="none" stroke="#C4993E" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="#C4993E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#C4993E" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="#C4993E" stroke-width="1.5" stroke-linecap="round"/></svg>
           Worship
         </button>
         <button class="chip chip-inactive">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="2" width="10" height="10" rx="2" fill="none" stroke="#A49E94" stroke-width="1.5"/><path d="M4.5 5h5M4.5 7h5M4.5 9h3" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="2" width="10" height="10" rx="2" fill="none" stroke="#A49E94" stroke-width="1.5"/><path d="M4.5 5h5M4.5 7h5M4.5 9h3" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round"/></svg>
           Quran
         </button>
         <button class="chip chip-inactive">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 11C4.5 9 2 7.5 2 5.5C2 3.5 3.5 2.5 5 2.5C5.8 2.5 6.5 2.9 7 3.5C7.5 2.9 8.2 2.5 9 2.5C10.5 2.5 12 3.5 12 5.5C12 7.5 9.5 9 7 11Z" fill="none" stroke="#A49E94" stroke-width="1.5"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 11C4.5 9 2 7.5 2 5.5C2 3.5 3.5 2.5 5 2.5C5.8 2.5 6.5 2.9 7 3.5C7.5 2.9 8.2 2.5 9 2.5C10.5 2.5 12 3.5 12 5.5C12 7.5 9.5 9 7 11Z" fill="none" stroke="#A49E94" stroke-width="1.5"/></svg>
           Charity
         </button>
         <button class="chip chip-inactive">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" fill="none" stroke="#A49E94" stroke-width="1.5"/><path d="M2 12C2 9.8 4.2 8 7 8C9.8 8 12 9.8 12 12" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="5" r="2.5" fill="none" stroke="#A49E94" stroke-width="1.5"/><path d="M2 12C2 9.8 4.2 8 7 8C9.8 8 12 9.8 12 12" stroke="#A49E94" stroke-width="1.5" stroke-linecap="round"/></svg>
           Personal
         </button>
         <button class="chip chip-outline">All</button>
@@ -639,12 +642,12 @@
         <!-- Ring -->
         <div class="ring-wrap">
           <div style="position:relative;width:80px;height:80px;">
-            <svg width="80" height="80" viewBox="0 0 80 80">
+            <svg width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Daily progress ring at 75%">
               <circle cx="40" cy="40" r="32" fill="none" stroke="#EDE8DF" stroke-width="6"/>
               <circle cx="40" cy="40" r="32" fill="none" stroke="#1C3D2E" stroke-width="6" stroke-linecap="round"
                 stroke-dasharray="201" stroke-dashoffset="50" transform="rotate(-90 40 40)"/>
             </svg>
-            <div class="ring-label-center">75%</div>
+            <div class="ring-label-center" aria-hidden="true">75%</div>
           </div>
           <span class="btn-label-sm">Daily ring</span>
         </div>
@@ -667,7 +670,7 @@
         <!-- Streak badge -->
         <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
           <div class="streak-badge">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L13.8 8.2L20 8.2L15.1 11.8L16.9 18L12 14.4L7.1 18L8 11.8L4 8.2L10.2 8.2L12 2Z" fill="#C4993E"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L13.8 8.2L20 8.2L15.1 11.8L16.9 18L12 14.4L7.1 18L8 11.8L4 8.2L10.2 8.2L12 2Z" fill="#C4993E"/></svg>
             <span class="streak-num">14</span>
             <span class="streak-text">Day Streak</span>
           </div>
@@ -691,18 +694,18 @@
             <span class="task-text">Fajr Prayer</span>
             <div class="task-meta"><span class="tag tag-worship">Worship</span></div>
           </div>
-          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <!-- Completed Worship -->
         <div class="task-item done">
           <div class="task-check filled">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6L5 9L10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div class="task-content">
             <span class="task-text strikethrough">Dhuhr Prayer</span>
             <div class="task-meta"><span class="tag tag-worship">Worship</span><span class="task-time">1:14 PM</span></div>
           </div>
-          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <!-- Pending Quran -->
         <div class="task-item">
@@ -711,18 +714,18 @@
             <span class="task-text">Read 1 Juz</span>
             <div class="task-meta"><span class="tag tag-quran">Quran</span></div>
           </div>
-          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <!-- Completed Charity -->
         <div class="task-item done">
           <div class="task-check filled">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6L5 9L10 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <div class="task-content">
             <span class="task-text strikethrough">Give Sadaqah</span>
             <div class="task-meta"><span class="tag tag-charity">Charity</span><span class="task-time">9:30 AM</span></div>
           </div>
-          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <!-- Pending Personal -->
         <div class="task-item">
@@ -731,7 +734,7 @@
             <span class="task-text">Evening Reflection</span>
             <div class="task-meta"><span class="tag tag-personal">Personal</span></div>
           </div>
-          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="task-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
       </div>
 
@@ -859,7 +862,7 @@
       <!-- Today — No Tasks -->
       <div class="empty-state-card">
         <div class="empty-state-demo">
-          <div class="empty-state-illus">
+          <div class="empty-state-illus" aria-hidden="true">
             <svg width="100" height="88" viewBox="0 0 100 88" fill="none">
               <circle cx="50" cy="46" r="30" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.25"/>
               <circle cx="50" cy="46" r="20" stroke="#1C3D2E" stroke-width="1" stroke-dasharray="3 4" opacity="0.12"/>
@@ -877,7 +880,7 @@
       <!-- Search — No Results -->
       <div class="empty-state-card">
         <div class="empty-state-demo">
-          <div class="empty-state-illus">
+          <div class="empty-state-illus" aria-hidden="true">
             <svg width="80" height="88" viewBox="0 0 80 88" fill="none">
               <circle cx="34" cy="42" r="18" stroke="#A49E94" stroke-width="1.5" stroke-dasharray="5 4"/>
               <path d="M47 55L57 65" stroke="#A49E94" stroke-width="2.5" stroke-linecap="round"/>
@@ -897,7 +900,7 @@
       <!-- Analytics — No Data -->
       <div class="empty-state-card">
         <div class="empty-state-demo">
-          <div class="empty-state-illus">
+          <div class="empty-state-illus" aria-hidden="true">
             <svg width="100" height="88" viewBox="0 0 100 88" fill="none">
               <rect x="16" y="22" width="68" height="46" rx="4" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.2"/>
               <rect x="27" y="50" width="12" height="12" rx="2" stroke="#1C3D2E" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.25"/>
@@ -1064,15 +1067,15 @@
   <footer>
     <div class="footer-brand">
       <div class="footer-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="a" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#a)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#a)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="c" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#1a5f4a"/><stop offset="100%" stop-color="#124032"/></linearGradient></defs><rect width="64" height="64" fill="url(#c)" rx="14"/><circle cx="29" cy="33" r="17" fill="#fdfbf7"/><circle cx="37" cy="29" r="15" fill="url(#c)"/><path fill="#d4af37" d="m49 15 1.8 4.2L55 21l-4.2 1.8L49 27l-1.8-4.2L43 21l4.2-1.8Z"/></svg>
       </div>
       <span class="footer-name">Mutabaah Amal</span>
     </div>
     <span class="footer-meta">Design System v1.1 · March 2026</span>
   </footer>
 
-</div>
   <script defer src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <script src="script.js"></script>
+</main>
 </body>
 </html>
