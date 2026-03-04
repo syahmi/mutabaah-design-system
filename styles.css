@@ -416,7 +416,8 @@ section:last-child { border-bottom: none; }
 
 .card-hero {
   background: var(--primary); border-radius: 20px; padding: 24px;
-  display: flex; flex-direction: column; gap: 16px; width: 280px;
+  display: flex; flex-direction: column; gap: 16px;
+  min-width: 240px; flex: 1.2; max-width: 320px;
 }
 .card-hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
 .card-today-label { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
@@ -571,6 +572,71 @@ button.icon-card { font: inherit; color: inherit; }
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
+
+/* ── Doc: Swatch token colors ── */
+.swatch-primary       { background: var(--primary); }
+.swatch-sage          { background: var(--sage); }
+.swatch-gold          { background: var(--gold); }
+.swatch-bg            { background: var(--bg); border-color: var(--border); }
+.swatch-surface       { background: var(--surface); border-color: var(--border); }
+.swatch-surface-alt   { background: var(--surface-alt); }
+.swatch-text-1        { background: var(--text-1); }
+.swatch-text-2        { background: var(--text-2); }
+.swatch-text-3        { background: var(--text-3); }
+.swatch-border        { background: var(--border); }
+.swatch-success       { background: var(--success); }
+.swatch-error         { background: var(--error); }
+.swatch-cat-worship    { background: var(--cat-worship); }
+.swatch-cat-worship-bg { background: var(--cat-worship-bg); }
+.swatch-cat-quran      { background: var(--cat-quran); }
+.swatch-cat-quran-bg   { background: var(--cat-quran-bg); }
+.swatch-cat-charity    { background: var(--cat-charity); }
+.swatch-cat-charity-bg { background: var(--cat-charity-bg); }
+.swatch-cat-personal   { background: var(--cat-personal); }
+.swatch-cat-personal-bg{ background: var(--cat-personal-bg); }
+
+/* ── Doc: Elevation demo variants ── */
+.elevation-flat { border: 1px solid var(--border); }
+.elevation-1    { box-shadow: var(--shadow-1); }
+.elevation-2    { box-shadow: var(--shadow-2); }
+.elevation-3    { box-shadow: var(--shadow-3); }
+.elevation-fab  { box-shadow: var(--shadow-fab); }
+
+/* ── Doc: Component state demos ── */
+.state-hover  { opacity: 0.85; }
+.code-pill--sm { font-size: 10px; }
+.code-pill + .code-pill { margin-top: 6px; }
+
+/* ── Doc: Category icon preview colors ── */
+.icon-preview--worship { color: var(--cat-worship); }
+.icon-preview--quran   { color: var(--cat-quran); }
+.icon-preview--charity { color: var(--cat-charity); }
+.icon-preview--personal{ color: var(--cat-personal); }
+
+/* ── Doc: Progress bar category fills ── */
+.bar-fill--worship { background: var(--cat-worship); }
+.bar-fill--quran   { background: var(--cat-quran); }
+.bar-fill--charity { background: var(--cat-charity); }
+
+/* ── Doc: Streak bar states ── */
+.streak-bar--filled  { background: var(--primary); }
+.streak-bar--partial { background: var(--sage); opacity: 0.5; }
+.streak-bar--empty   { background: var(--surface-alt); }
+
+/* ── Doc: Card demo layout ── */
+.card-white--date   { width: 220px; min-width: 180px; flex: 1; }
+.card-white--streak { width: 200px; min-width: 180px; flex: 1; }
+
+/* ── Doc: Sub-label spacing modifiers ── */
+.sub-label--mt    { margin-top: 48px; }
+.sub-label--mb-sm { margin-bottom: 8px; }
+.sub-label--mb    { margin-bottom: 20px; }
+
+/* ── Doc: Misc repeating patterns ── */
+.font-digits     { font-size: 13px; color: var(--text-2); }
+.chip-annotation { font-size: 11px; color: var(--text-3); margin-left: 8px; }
+.ring-container  { position: relative; width: 80px; height: 80px; }
+.streak-num-row  { display: flex; align-items: baseline; gap: 4px; margin-bottom: 14px; }
 
 /* ── Footer ── */
 footer {
