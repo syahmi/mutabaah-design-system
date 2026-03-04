@@ -25,7 +25,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&display=swap" /></noscript>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -1076,8 +1077,8 @@
     <span class="footer-meta">Design System v1.1 · March 2026</span>
   </footer>
 
-  <script defer src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-  <script src="script.js"></script>
+  <script defer src="lucide-mini.js"></script>
+  <script defer src="script.js"></script>
 </main>
 </body>
 </html>
