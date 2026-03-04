@@ -148,6 +148,20 @@ if (navLinksEl) {
   updateNavFade();
 }
 
+// ── Pause gentleFloat when off-screen ──
+const illusEls = document.querySelectorAll('.empty-state-illus');
+if (illusEls.length) {
+  const illusObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('paused', !entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  illusEls.forEach(el => {
+    el.classList.add('paused');
+    illusObserver.observe(el);
+  });
+}
+
 // ── Copy icon name to clipboard ──
 document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');
