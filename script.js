@@ -40,27 +40,38 @@ function announce(msg) {
   }
 }
 
-// ── Copy hex to clipboard ──
-document.querySelectorAll('.swatch-hex').forEach(el => {
-  el.title = 'Click to copy';
+// ── Copy hex to clipboard (entire swatch card is the click target) ──
+document.querySelectorAll('.swatch-card').forEach(card => {
+  const hexEl = card.querySelector('.swatch-hex');
+  if (!hexEl) return;
+
+  const originalText = hexEl.textContent;
+  const hexValue = originalText.split('/')[0].trim();
+
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.title = `Click to copy ${hexValue}`;
+
+  let copying = false;
 
   function handleCopy() {
-    const hex = el.textContent.split('/')[0].trim();
-    const original = el.textContent;
+    if (copying) return;
+    copying = true;
 
-    copyToClipboard(hex, () => {
-      el.textContent = 'Copied!';
-      el.classList.add('swatch-hex--copied');
-      announce(`Copied: ${hex}`);
+    copyToClipboard(hexValue, () => {
+      hexEl.textContent = 'Copied!';
+      hexEl.classList.add('swatch-hex--copied');
+      announce(`Copied: ${hexValue}`);
       setTimeout(() => {
-        el.textContent = original;
-        el.classList.remove('swatch-hex--copied');
+        hexEl.textContent = originalText;
+        hexEl.classList.remove('swatch-hex--copied');
+        copying = false;
       }, 1500);
     });
   }
 
-  el.addEventListener('click', handleCopy);
-  el.addEventListener('keydown', e => {
+  card.addEventListener('click', handleCopy);
+  card.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleCopy();
