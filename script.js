@@ -40,17 +40,26 @@ function announce(msg) {
   }
 }
 
-// ── Copy hex to clipboard (entire swatch card is the click target) ──
+// ── Copy CSS variable to clipboard (entire swatch card is the click target) ──
+const SWATCH_STRUCTURAL = new Set(['swatch-block', 'swatch-split-top', 'swatch-split-btm']);
+
+function swatchVarName(card) {
+  const el = card.querySelector('.swatch-split-top') || card.querySelector('.swatch-block');
+  if (!el) return null;
+  const cls = [...el.classList].find(c => c.startsWith('swatch-') && !SWATCH_STRUCTURAL.has(c));
+  return cls ? `var(--${cls.slice(7)})` : null;
+}
+
 document.querySelectorAll('.swatch-card').forEach(card => {
   const hexEl = card.querySelector('.swatch-hex');
   if (!hexEl) return;
 
   const originalText = hexEl.textContent;
-  const hexValue = originalText.split('/')[0].trim();
+  const copyValue = swatchVarName(card) || originalText.split('/')[0].trim();
 
   card.setAttribute('role', 'button');
   card.setAttribute('tabindex', '0');
-  card.title = `Click to copy ${hexValue}`;
+  card.title = `Click to copy ${copyValue}`;
 
   let copying = false;
 
@@ -58,10 +67,10 @@ document.querySelectorAll('.swatch-card').forEach(card => {
     if (copying) return;
     copying = true;
 
-    copyToClipboard(hexValue, () => {
+    copyToClipboard(copyValue, () => {
       hexEl.textContent = 'Copied!';
       hexEl.classList.add('swatch-hex--copied');
-      announce(`Copied: ${hexValue}`);
+      announce(`Copied: ${copyValue}`);
       setTimeout(() => {
         hexEl.textContent = originalText;
         hexEl.classList.remove('swatch-hex--copied');
