@@ -679,8 +679,29 @@ footer {
   .page { padding: 0 16px; }
   .sticky-nav-inner { padding: 10px 16px 0; flex-wrap: wrap; gap: 0; }
   .nav-brand { margin-bottom: 8px; }
+  .nav-links-wrap {
+    position: relative;
+    width: 100%;
+  }
+  .nav-links-wrap::before,
+  .nav-links-wrap::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0;
+    width: 36px; pointer-events: none; z-index: 1;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .nav-links-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(245,241,234,0.95), transparent);
+  }
+  .nav-links-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(245,241,234,0.95), transparent);
+  }
+  .nav-links-wrap.fade-left::before  { opacity: 1; }
+  .nav-links-wrap.fade-right::after  { opacity: 1; }
   .nav-links {
-    width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
     padding-bottom: 10px; gap: 4px;
     scrollbar-width: none;
   }

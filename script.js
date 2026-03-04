@@ -131,6 +131,23 @@ if (motionSection) {
   motionObserver.observe(motionSection);
 }
 
+// ── Nav overflow fade (mobile) ──
+const navLinksEl = document.querySelector('.nav-links');
+const navLinksWrap = document.querySelector('.nav-links-wrap');
+
+function updateNavFade() {
+  if (!navLinksEl || !navLinksWrap) return;
+  const { scrollLeft, scrollWidth, clientWidth } = navLinksEl;
+  navLinksWrap.classList.toggle('fade-left',  scrollLeft > 4);
+  navLinksWrap.classList.toggle('fade-right', scrollLeft < scrollWidth - clientWidth - 4);
+}
+
+if (navLinksEl) {
+  navLinksEl.addEventListener('scroll', updateNavFade, { passive: true });
+  window.addEventListener('resize', updateNavFade, { passive: true });
+  updateNavFade();
+}
+
 // ── Copy icon name to clipboard ──
 document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');
