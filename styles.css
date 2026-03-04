@@ -259,6 +259,8 @@ section:last-child { border-bottom: none; }
 .btn-secondary { background: var(--surface-alt); color: var(--text-1); }
 .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); padding: 11.5px 22px; }
 .btn-destructive { background: #FAE9E9; color: var(--error); }
+.btn-destructive:hover,
+.btn-destructive.state-hover { opacity: 1; color: #9E3838; }
 .btn-ghost { background: transparent; color: var(--text-2); }
 .btn-fab {
   width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: #fff;
@@ -358,7 +360,7 @@ section:last-child { border-bottom: none; }
 .state-matrix-table tbody tr { border-top: 1px solid var(--border-light); }
 .state-matrix-table tbody td { padding: 14px 20px; vertical-align: middle; }
 .state-matrix-row-label { font-size: 12px; color: var(--text-3); font-weight: 500; white-space: nowrap; }
-.state-matrix-dash { font-size: 16px; color: var(--border); }
+.state-matrix-dash { font-size: 16px; color: var(--text-3); }
 
 /* ── Task Items ── */
 .task-layout { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
@@ -421,7 +423,7 @@ section:last-child { border-bottom: none; }
   min-width: 240px; flex: 1.2; max-width: 320px;
 }
 .card-hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.card-today-label { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+.card-today-label { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.60); letter-spacing: 0.1em; text-transform: uppercase; }
 .card-today-date { font-family: 'Google Sans Flex', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); margin-top: 2px; }
 .card-big-num { font-family: 'Google Sans Flex', sans-serif; font-size: 44px; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1; }
 .card-big-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 2px; }
