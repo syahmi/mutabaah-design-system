@@ -169,6 +169,41 @@ if (illusEls.length) {
   });
 }
 
+// ── Copy design token (radius, shadow, duration) ──
+document.querySelectorAll('[data-token]').forEach(el => {
+  const token = el.dataset.token;
+  const copyValue = `var(${token})`;
+  const originalText = el.textContent;
+  el.setAttribute('role', 'button');
+  el.setAttribute('tabindex', '0');
+  el.title = `Click to copy ${copyValue}`;
+
+  let copying = false;
+
+  function handleTokenCopy() {
+    if (copying) return;
+    copying = true;
+    copyToClipboard(copyValue, () => {
+      el.textContent = 'Copied!';
+      el.classList.add('token-copyable--copied');
+      announce(`Copied: ${copyValue}`);
+      setTimeout(() => {
+        el.textContent = originalText;
+        el.classList.remove('token-copyable--copied');
+        copying = false;
+      }, 1500);
+    });
+  }
+
+  el.addEventListener('click', handleTokenCopy);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleTokenCopy();
+    }
+  });
+});
+
 // ── Copy icon name to clipboard ──
 document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');

@@ -166,6 +166,7 @@ section:last-child { border-bottom: none; }
 /* ── Color Palette ── */
 .swatches { display: grid; gap: 14px; margin-bottom: 48px; }
 .swatches-6 { grid-template-columns: repeat(6, 1fr); }
+.swatches-7 { grid-template-columns: repeat(7, 1fr); }
 .swatches-4 { grid-template-columns: repeat(4, 1fr); }
 .swatch-card { display: flex; flex-direction: column; gap: 10px; cursor: pointer; border-radius: 4px; }
 .swatch-card:hover .swatch-block { opacity: 0.9; }
@@ -590,6 +591,7 @@ button.icon-card { font: inherit; color: inherit; }
 .swatch-border        { background: var(--border); }
 .swatch-success       { background: var(--success); }
 .swatch-error         { background: var(--error); }
+.swatch-border-light  { background: var(--border-light); border-color: var(--border); }
 .swatch-cat-worship    { background: var(--cat-worship); }
 .swatch-cat-worship-bg { background: var(--cat-worship-bg); }
 .swatch-cat-quran      { background: var(--cat-quran); }
@@ -610,6 +612,9 @@ button.icon-card { font: inherit; color: inherit; }
 .state-hover  { opacity: 0.85; }
 .code-pill--sm { font-size: 10px; }
 .code-pill + .code-pill { margin-top: 6px; }
+.token-copyable { cursor: pointer; transition: color 0.15s; }
+.token-copyable:hover { color: var(--primary); }
+.token-copyable--copied { color: var(--success) !important; }
 
 /* ── Doc: Category icon preview colors ── */
 .icon-preview--worship { color: var(--cat-worship); }
@@ -667,6 +672,7 @@ footer {
   .hero-title { font-size: 44px; }
   .hero-subtitle { font-size: 15px; }
   .swatches-6 { grid-template-columns: repeat(3, 1fr); }
+  .swatches-7 { grid-template-columns: repeat(4, 1fr); }
   .swatches-4 { grid-template-columns: repeat(2, 1fr); }
   .font-cards { grid-template-columns: 1fr; }
   .spacing-tables { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -718,6 +724,7 @@ footer {
   .hero-meta { text-align: left; }
   .hero-version { font-size: 32px; }
   .swatches-6 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .swatches-7 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .swatches-4 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .swatch-block.tall { height: 80px; }
   .swatch-block.medium { height: 56px; }
