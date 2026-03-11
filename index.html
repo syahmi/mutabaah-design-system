@@ -644,6 +644,143 @@
       </div>
     </div>
 
+    <!-- Select -->
+    <div class="component-group">
+      <div class="sub-label">Select</div>
+      <div class="input-row">
+        <div class="input-item">
+          <div class="select-wrap">
+            <select class="form-select">
+              <option value="">Choose category…</option>
+              <option>Worship</option>
+              <option>Quran</option>
+              <option>Charity</option>
+              <option>Personal</option>
+            </select>
+            <svg class="select-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="btn-label-sm">Default</span>
+        </div>
+        <div class="input-item">
+          <div class="select-wrap">
+            <select class="form-select">
+              <option>Worship</option>
+              <option selected>Quran</option>
+              <option>Charity</option>
+              <option>Personal</option>
+            </select>
+            <svg class="select-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="btn-label-sm">With Value</span>
+        </div>
+        <div class="input-item">
+          <div class="select-wrap">
+            <select class="form-select" disabled>
+              <option>Choose category…</option>
+            </select>
+            <svg class="select-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="btn-label-sm">Disabled</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="component-group">
+      <div class="sub-label">Textarea</div>
+      <div class="input-row">
+        <div class="input-item" style="max-width:340px;">
+          <textarea class="form-textarea" placeholder="Add a note about this ibadah…" rows="3"></textarea>
+          <span class="btn-label-sm">Default</span>
+        </div>
+        <div class="input-item" style="max-width:340px;">
+          <textarea class="form-textarea" rows="3">Completed Fajr at the masjid with the congregation. Felt peaceful and focused.</textarea>
+          <span class="btn-label-sm">With Content</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="component-group">
+      <div class="sub-label">Checkbox</div>
+      <div class="form-controls-row">
+        <label class="form-check">
+          <input type="checkbox" />
+          <span class="form-check-box" aria-hidden="true"></span>
+          <span class="form-check-label">Fajr Prayer</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" checked />
+          <span class="form-check-box" aria-hidden="true"></span>
+          <span class="form-check-label">Dhuhr Prayer</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" checked disabled />
+          <span class="form-check-box" aria-hidden="true"></span>
+          <span class="form-check-label">Asr Prayer</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" disabled />
+          <span class="form-check-box" aria-hidden="true"></span>
+          <span class="form-check-label">Maghrib Prayer</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Radio -->
+    <div class="component-group">
+      <div class="sub-label">Radio</div>
+      <div class="form-controls-row">
+        <label class="form-radio">
+          <input type="radio" name="cat-demo" />
+          <span class="form-radio-dot" aria-hidden="true"></span>
+          <span class="form-radio-label">Worship</span>
+        </label>
+        <label class="form-radio">
+          <input type="radio" name="cat-demo" checked />
+          <span class="form-radio-dot" aria-hidden="true"></span>
+          <span class="form-radio-label">Quran</span>
+        </label>
+        <label class="form-radio">
+          <input type="radio" name="cat-demo" />
+          <span class="form-radio-dot" aria-hidden="true"></span>
+          <span class="form-radio-label">Charity</span>
+        </label>
+        <label class="form-radio">
+          <input type="radio" name="cat-demo" disabled />
+          <span class="form-radio-dot" aria-hidden="true"></span>
+          <span class="form-radio-label">Personal</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="component-group">
+      <div class="sub-label">Toggle</div>
+      <div class="form-controls-row">
+        <label class="form-toggle">
+          <input type="checkbox" />
+          <span class="form-toggle-track" aria-hidden="true"><span class="form-toggle-thumb"></span></span>
+          <span class="form-toggle-label">Daily reminder</span>
+        </label>
+        <label class="form-toggle">
+          <input type="checkbox" checked />
+          <span class="form-toggle-track" aria-hidden="true"><span class="form-toggle-thumb"></span></span>
+          <span class="form-toggle-label">Streak tracking</span>
+        </label>
+        <label class="form-toggle">
+          <input type="checkbox" checked disabled />
+          <span class="form-toggle-track" aria-hidden="true"><span class="form-toggle-thumb"></span></span>
+          <span class="form-toggle-label">Notifications</span>
+        </label>
+        <label class="form-toggle">
+          <input type="checkbox" disabled />
+          <span class="form-toggle-track" aria-hidden="true"><span class="form-toggle-thumb"></span></span>
+          <span class="form-toggle-label">Dark mode</span>
+        </label>
+      </div>
+    </div>
+
     <!-- Progress -->
     <div class="component-group">
       <div class="sub-label">Progress &amp; Completion</div>
