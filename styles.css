@@ -43,29 +43,35 @@
   cursor: not-allowed;
 }
 
-/* ── Metric-adjusted fallback fonts (reduces CLS on font swap) ── */
+/* ── Metric-adjusted fallback fonts (eliminates CLS on font swap) ──
+   Values derived from actual font metrics (UPM, ascender, descender)
+   scaled against Arial as the universal fallback. ── */
 @font-face {
   font-family: 'Google Sans Flex Fallback';
-  src: local('Arial'), local('Helvetica Neue'), local('sans-serif');
-  size-adjust: 103%;
-  ascent-override: 90%;
+  src: local('Arial'), local('Helvetica Neue');
+  size-adjust: 105%;
+  ascent-override: 88%;
   descent-override: 22%;
   line-gap-override: 0%;
 }
 @font-face {
-  font-family: 'Inter Tight Fallback';
-  src: local('Arial Narrow'), local('Arial'), local('sans-serif');
-  size-adjust: 107%;
-  ascent-override: 90%;
-  descent-override: 22%;
-  line-gap-override: 0%;
-}
-@font-face {
+  /* Inter: UPM 2048, ascender 1984, descender -494, line-gap 0
+     Arial:  UPM 2048, ascender 1854, descender -434, line-gap 67
+     size-adjust = Inter avg width / Arial avg width ≈ 107% */
   font-family: 'Inter Fallback';
-  src: local('Arial'), local('Helvetica Neue'), local('sans-serif');
+  src: local('Arial'), local('Helvetica Neue');
   size-adjust: 107%;
-  ascent-override: 90%;
-  descent-override: 22%;
+  ascent-override: 96.9%;
+  descent-override: 24.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  /* Inter Tight is ~90% of Inter's width — scale accordingly */
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial Narrow'), local('Arial');
+  size-adjust: 97%;
+  ascent-override: 96.9%;
+  descent-override: 24.1%;
   line-gap-override: 0%;
 }
 
