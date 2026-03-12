@@ -27,10 +27,11 @@ mutabaah-design-system/
 | 03 | **Spacing** | Base spacing scale (4–80px), component and layout rhythm tables, border-radius tokens, elevation scale |
 | 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
 | 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
-| 06 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 07 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
-| 08 | **Empty States** | Three variants (no tasks, no search results, no analytics data) with illustration and copy guidelines |
-| 09 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
+| 06 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
+| 07 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
+| 08 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
+| 09 | **Empty States** | Three variants (no tasks, no search results, no analytics data) with illustration and copy guidelines |
+| 10 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
 
@@ -45,11 +46,12 @@ All tokens live in the `:root` block at the top of `styles.css`.
 | `--surface-alt` | `#EDE8DF` | Secondary surface, input fill |
 | `--border` | `#DDD8CF` | Default border |
 | `--primary` | `#1C3D2E` | Primary action, brand green |
-| `--sage` | `#4A7860` | Accent / secondary green |
-| `--gold` | `#C4993E` | Streak, highlight |
+| `--sage` | `#46725B` | Accent / secondary green |
+| `--gold` | `#AC8636` | Streak, highlight |
+| `--gold-dark` | `#90691E` | Gold text on light backgrounds (tags, streak labels) |
 | `--text-1` | `#1A1816` | Primary text |
 | `--text-2` | `#635E56` | Secondary text |
-| `--text-3` | `#A49E94` | Muted / placeholder text |
+| `--text-3` | `#6C6861` | Muted / placeholder text |
 
 ### Category Colors
 
@@ -57,7 +59,7 @@ All tokens live in the `:root` block at the top of `styles.css`.
 |----------|-------|------------|
 | Worship (Ibadah) | `#2D6E4E` | `#E8F2EC` |
 | Quran | `#2E5D8C` | `#E6EEF7` |
-| Charity (Sadaqah) | `#C4993E` | `#FBF3E3` |
+| Charity (Sadaqah) | `#AC8636` | `#FBF3E3` |
 | Personal | `#6E4A8C` | `#EFE9F7` |
 
 ### Border Radius
