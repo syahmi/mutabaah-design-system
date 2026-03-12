@@ -21,3 +21,9 @@ Desktop.ini
 # Local env
 .env
 .env.local
+
+# Build
+node_modules/
+package-lock.json
+package.json
+build.js
