@@ -1,5 +1,5 @@
 // ── Version ──
-const VERSION = '1.2.0';
+const VERSION = '1.2.1';
 document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · March 2026` : VERSION; });
 
 // ── Lucide icons ──

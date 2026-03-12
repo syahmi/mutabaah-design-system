@@ -6,16 +6,32 @@ A design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. I
 
 ## Overview
 
-The design system requires no build step or dependencies. Open `index.html` directly in a browser to browse the living style guide.
+Edit source files directly and open `index.html` in a browser to browse the living style guide. Run `npm run build` to produce a minified production build in `docs/`.
 
 ```
 mutabaah-design-system/
 ├── index.html          # Design system documentation
 ├── styles.css          # All styles and design tokens
 ├── script.js           # Copy-to-clipboard, sticky nav highlighting, icon init
+├── lucide-mini.js      # Self-hosted Lucide icon subset
+├── build.js            # Production build script (outputs to docs/)
+├── package.json        # Build dependencies
 ├── og-image.png        # Social share image (2400×1260px) — referenced by meta tags
 ├── favicon-16x16.png
-└── favicon-32x32.png
+├── favicon-32x32.png
+└── docs/               # Minified production build (git-ignored)
+```
+
+## Development
+
+```bash
+# Browse locally
+open index.html
+# or
+npm run dev   # python3 -m http.server 8080
+
+# Production build → docs/
+npm run build
 ```
 
 ## Sections
@@ -46,21 +62,25 @@ All tokens live in the `:root` block at the top of `styles.css`.
 | `--surface-alt` | `#EDE8DF` | Secondary surface, input fill |
 | `--border` | `#DDD8CF` | Default border |
 | `--primary` | `#1C3D2E` | Primary action, brand green |
+| `--primary-hover` | `#163224` | Primary button hover state |
 | `--sage` | `#46725B` | Accent / secondary green |
 | `--gold` | `#AC8636` | Streak, highlight |
 | `--gold-dark` | `#90691E` | Gold text on light backgrounds (tags, streak labels) |
+| `--gold-bg` | `#FBF3E3` | Gold tinted background |
 | `--text-1` | `#1A1816` | Primary text |
 | `--text-2` | `#635E56` | Secondary text |
 | `--text-3` | `#6C6861` | Muted / placeholder text |
+| `--success` | `#2D7A5A` | Success states |
+| `--error` | `#B84040` | Error states |
 
 ### Category Colors
 
-| Category | Color | Background |
-|----------|-------|------------|
-| Worship (Ibadah) | `#2D6E4E` | `#E8F2EC` |
-| Quran | `#2E5D8C` | `#E6EEF7` |
-| Charity (Sadaqah) | `#AC8636` | `#FBF3E3` |
-| Personal | `#6E4A8C` | `#EFE9F7` |
+| Category | Token | Color | Background token | Background |
+|----------|-------|-------|-----------------|------------|
+| Worship (Ibadah) | `--cat-worship` | `#2D6E4E` | `--cat-worship-bg` | `#E8F2EC` |
+| Quran | `--cat-quran` | `#2E5D8C` | `--cat-quran-bg` | `#E6EEF7` |
+| Charity (Sadaqah) | `--cat-charity` | `#AC8636` | `--cat-charity-bg` | `#FBF3E3` |
+| Personal | `--cat-personal` | `#6E4A8C` | `--cat-personal-bg` | `#EFE9F7` |
 
 ### Border Radius
 
@@ -95,21 +115,31 @@ All tokens live in the `:root` block at the top of `styles.css`.
 
 ### Typography
 
-| Font | Use |
-|------|-----|
-| **Google Sans Flex** | Design system documentation page — all text |
-| **Inter Tight** | App display typeface (documented in the Typography section) |
-| **Inter** | App body typeface (documented in the Typography section) |
+| Font | Weights | Use |
+|------|---------|-----|
+| **Google Sans Flex** | 100–900 (variable) | Design system documentation page — all text |
+| **Inter Tight** | 400 / 500 / 600 / 700 / 800 | App display typeface — headings, large numerics |
+| **Inter** | 300 / 400 / 500 / 600 | App body typeface — body text, labels, inputs |
 
-All fonts are loaded from Google Fonts.
+All three fonts are loaded from Google Fonts in a single non-render-blocking request.
 
 ### Icons
 
 | Library | Version | Method |
 |---------|---------|--------|
-| [Lucide](https://lucide.dev) | 0.460.0 | `<i data-lucide="icon-name"></i>` via CDN |
+| [Lucide](https://lucide.dev) | 0.460.0 | `<i data-lucide="icon-name"></i>` via `lucide-mini.js` |
 
 Icons are initialised automatically on page load via `lucide.createIcons()` in `script.js`.
+
+## Versioning
+
+The version number is defined once in `script.js`:
+
+```js
+const VERSION = '1.2.1';
+```
+
+This single constant drives the version displayed in both the hero section and the footer. To bump the version, update this value and run `npm run build`.
 
 ## Social Sharing
 
@@ -127,23 +157,11 @@ Icons are initialised automatically on page load via `lucide.createIcons()` in `
 | Feature | File | Notes |
 |---------|------|-------|
 | Copy hex to clipboard | `script.js` | Click any hex value in the Colors section |
+| Copy token to clipboard | `script.js` | Click any radius, shadow, or duration token |
 | Copy icon name to clipboard | `script.js` | Click any icon card in the Iconography section |
 | Sticky nav highlighting | `script.js` | Active section is highlighted as you scroll; active link scrolls into view on mobile |
-| Icon rendering | `script.js` | Lucide icons are initialised after the CDN script loads |
 
 Clipboard writes use the `navigator.clipboard` API exclusively.
-
-## Usage
-
-Open `index.html` in any modern browser:
-
-```bash
-open index.html
-# or
-python3 -m http.server 8080
-```
-
-No installation, build tools, or package manager required.
 
 ## Responsive Breakpoints
 
@@ -160,6 +178,7 @@ No installation, build tools, or package manager required.
 |------|---------|
 | `index.html` | Structure, content, and meta tags of the style guide |
 | `styles.css` | All styles and CSS custom property tokens |
-| `script.js` | Interactive behaviour — clipboard, nav highlighting, icon init |
+| `script.js` | Interactive behaviour — clipboard, nav highlighting, version, icon init |
+| `build.js` | Production build script |
 
-To update design tokens, edit the `:root` block at the top of `styles.css`. It is organised into colour, radius, elevation, and duration groups. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`. To replace the social share image, swap out `og-image.png` (keep it at 2400×1260px) and update the `og:image` meta tag URL if needed.
+To update design tokens, edit the `:root` block at the top of `styles.css`. To add new sections or components, edit `index.html` and add corresponding styles to `styles.css`. To replace the social share image, swap out `og-image.png` (keep it at 2400×1260px) and update the `og:image` meta tag URL if needed.
