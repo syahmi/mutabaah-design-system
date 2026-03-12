@@ -45,8 +45,8 @@
     </a>
     <div class="nav-links-wrap">
       <div class="nav-links">
-        <a href="#colors" class="nav-link">Colors</a>
         <a href="#typography" class="nav-link">Typography</a>
+        <a href="#colors" class="nav-link">Colors</a>
         <a href="#spacing" class="nav-link">Spacing</a>
         <a href="#iconography" class="nav-link">Icons</a>
         <a href="#components" class="nav-link">Components</a>
@@ -75,8 +75,8 @@
         <h1 class="hero-title">Design System</h1>
         <p class="hero-subtitle">A comprehensive visual language for the Mutabaah Amal progressive web application. Grounded in calm, reverent minimalism with Islamic warmth.</p>
         <div class="hero-chips">
-          <a href="#colors" class="hero-chip">Colors</a>
           <a href="#typography" class="hero-chip">Typography</a>
+          <a href="#colors" class="hero-chip">Colors</a>
           <a href="#spacing" class="hero-chip">Spacing</a>
           <a href="#iconography" class="hero-chip">Iconography</a>
           <a href="#components" class="hero-chip">Components</a>
@@ -95,9 +95,104 @@
     </div>
   </section>
 
-  <!-- ── 01 COLOR PALETTE ── -->
-  <section id="colors">
+  <!-- ── 01 TYPOGRAPHY ── -->
+  <section id="typography">
     <div class="section-num">01</div>
+    <h2 class="section-title">Typography</h2>
+
+    <div class="font-cards">
+      <div class="font-card">
+        <div class="font-card-label">Display / Headings</div>
+        <div class="font-display">Inter Tight</div>
+        <div class="font-meta">Weights: 400 / 500 / 600 / 700 / 800</div>
+        <div class="font-use">Used for: App title, section headers, card headings, large numerics</div>
+        <div class="font-alpha">
+          <div class="font-alpha-row">Aa Bb Cc Dd Ee Ff</div>
+          <div class="font-digits">1 2 3 4 5 6 7 8 9 0</div>
+        </div>
+      </div>
+      <div class="font-card">
+        <div class="font-card-label">Body / UI Labels</div>
+        <div class="font-display font-display-inter">Inter</div>
+        <div class="font-meta">Weights: 300 / 400 / 500 / 600</div>
+        <div class="font-use">Used for: Body text, descriptions, captions, tags, inputs</div>
+        <div class="font-alpha">
+          <div class="font-alpha-row">Aa Bb Cc Dd Ee Ff</div>
+          <div class="font-digits">1 2 3 4 5 6 7 8 9 0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-label">Type Scale</div>
+    <div class="table-scroll">
+    <table class="type-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Weight</th>
+          <th>Line Ht.</th>
+          <th>Preview</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-name">Display</td>
+          <td class="col-meta">32px</td>
+          <td class="col-meta">800</td>
+          <td class="col-meta">36px</td>
+          <td><span style="font-family:'Inter Tight',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.025em;line-height:36px;">Alhamdulillah</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Heading 1</td>
+          <td class="col-meta">24px</td>
+          <td class="col-meta">700</td>
+          <td class="col-meta">30px</td>
+          <td><span style="font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.02em;">Today's Ibadah</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Heading 2</td>
+          <td class="col-meta">20px</td>
+          <td class="col-meta">600</td>
+          <td class="col-meta">26px</td>
+          <td><span style="font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.015em;">Worship Activities</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Body Large</td>
+          <td class="col-meta">16px</td>
+          <td class="col-meta">400</td>
+          <td class="col-meta">24px</td>
+          <td><span style="font-size:16px;font-weight:400;line-height:24px;">Track your daily prayers and acts of worship</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Body</td>
+          <td class="col-meta">14px</td>
+          <td class="col-meta">400</td>
+          <td class="col-meta">20px</td>
+          <td><span style="font-size:14px;color:var(--text-2);line-height:20px;">Fajr — completed at 5:42 AM · 2 Ramadan 1447</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Label</td>
+          <td class="col-meta">12px</td>
+          <td class="col-meta">500</td>
+          <td class="col-meta">16px</td>
+          <td><span style="font-size:12px;font-weight:500;color:var(--text-2);letter-spacing:0.04em;">CATEGORY · WORSHIP</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">Caption</td>
+          <td class="col-meta">11px</td>
+          <td class="col-meta">400</td>
+          <td class="col-meta">14px</td>
+          <td><span style="font-size:11px;color:var(--text-3);">Tap to mark as complete</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ── 02 COLOR PALETTE ── -->
+  <section id="colors">
+    <div class="section-num">02</div>
     <h2 class="section-title">Color Palette</h2>
 
     <div class="sub-label">Primary</div>
@@ -226,101 +321,6 @@
         <div class="dm-title">Dark Mode</div>
         <div class="dm-body">All colors invert to a warm near-black base (#18180F) with reduced-opacity surfaces. Category colors maintain their hue but shift to darker, more subdued tones. Gold accent becomes slightly more saturated to retain visibility.</div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── 02 TYPOGRAPHY ── -->
-  <section id="typography">
-    <div class="section-num">02</div>
-    <h2 class="section-title">Typography</h2>
-
-    <div class="font-cards">
-      <div class="font-card">
-        <div class="font-card-label">Display / Headings</div>
-        <div class="font-display">Inter Tight</div>
-        <div class="font-meta">Weights: 400 / 500 / 600 / 700 / 800</div>
-        <div class="font-use">Used for: App title, section headers, card headings, large numerics</div>
-        <div class="font-alpha">
-          <div class="font-alpha-row">Aa Bb Cc Dd Ee Ff</div>
-          <div class="font-digits">1 2 3 4 5 6 7 8 9 0</div>
-        </div>
-      </div>
-      <div class="font-card">
-        <div class="font-card-label">Body / UI Labels</div>
-        <div class="font-display font-display-inter">Inter</div>
-        <div class="font-meta">Weights: 300 / 400 / 500 / 600</div>
-        <div class="font-use">Used for: Body text, descriptions, captions, tags, inputs</div>
-        <div class="font-alpha">
-          <div class="font-alpha-row">Aa Bb Cc Dd Ee Ff</div>
-          <div class="font-digits">1 2 3 4 5 6 7 8 9 0</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sub-label">Type Scale</div>
-    <div class="table-scroll">
-    <table class="type-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Size</th>
-          <th>Weight</th>
-          <th>Line Ht.</th>
-          <th>Preview</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="col-name">Display</td>
-          <td class="col-meta">32px</td>
-          <td class="col-meta">800</td>
-          <td class="col-meta">36px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.025em;line-height:36px;">Alhamdulillah</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Heading 1</td>
-          <td class="col-meta">24px</td>
-          <td class="col-meta">700</td>
-          <td class="col-meta">30px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.02em;">Today's Ibadah</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Heading 2</td>
-          <td class="col-meta">20px</td>
-          <td class="col-meta">600</td>
-          <td class="col-meta">26px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.015em;">Worship Activities</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Body Large</td>
-          <td class="col-meta">16px</td>
-          <td class="col-meta">400</td>
-          <td class="col-meta">24px</td>
-          <td><span style="font-size:16px;font-weight:400;line-height:24px;">Track your daily prayers and acts of worship</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Body</td>
-          <td class="col-meta">14px</td>
-          <td class="col-meta">400</td>
-          <td class="col-meta">20px</td>
-          <td><span style="font-size:14px;color:var(--text-2);line-height:20px;">Fajr — completed at 5:42 AM · 2 Ramadan 1447</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Label</td>
-          <td class="col-meta">12px</td>
-          <td class="col-meta">500</td>
-          <td class="col-meta">16px</td>
-          <td><span style="font-size:12px;font-weight:500;color:var(--text-2);letter-spacing:0.04em;">CATEGORY · WORSHIP</span></td>
-        </tr>
-        <tr>
-          <td class="col-name">Caption</td>
-          <td class="col-meta">11px</td>
-          <td class="col-meta">400</td>
-          <td class="col-meta">14px</td>
-          <td><span style="font-size:11px;color:var(--text-3);">Tap to mark as complete</span></td>
-        </tr>
-      </tbody>
-    </table>
     </div>
   </section>
 

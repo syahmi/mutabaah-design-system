@@ -53,6 +53,16 @@ npm run build
 
 All tokens live in the `:root` block at the top of `styles.css`.
 
+### Typography
+
+| Font | Weights | Use |
+|------|---------|-----|
+| **Google Sans Flex** | 100–900 (variable) | Design system documentation page — all text |
+| **Inter Tight** | 400 / 500 / 600 / 700 / 800 | App display typeface — headings, large numerics |
+| **Inter** | 300 / 400 / 500 / 600 | App body typeface — body text, labels, inputs |
+
+All three fonts are loaded from Google Fonts in a single non-render-blocking request.
+
 ### Color Palette
 
 | Token | Value | Role |
@@ -112,16 +122,6 @@ All tokens live in the `:root` block at the top of `styles.css`.
 | `--duration-exit` | `200ms` | Exits, dismissals — ease in |
 | `--duration-enter` | `280ms` | Entrances, confirmations — ease out |
 | `--duration-complete` | `360ms` | Task complete spring animation |
-
-### Typography
-
-| Font | Weights | Use |
-|------|---------|-----|
-| **Google Sans Flex** | 100–900 (variable) | Design system documentation page — all text |
-| **Inter Tight** | 400 / 500 / 600 / 700 / 800 | App display typeface — headings, large numerics |
-| **Inter** | 300 / 400 / 500 / 600 | App body typeface — body text, labels, inputs |
-
-All three fonts are loaded from Google Fonts in a single non-render-blocking request.
 
 ### Icons
 
