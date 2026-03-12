@@ -57,6 +57,7 @@
   --primary-hover:#163224;
   --sage:         #46725B;
   --gold:         #AC8636;
+  --gold-dark:    var(--gold-dark);
   --gold-bg:      #FBF3E3;
   --text-1:       #1A1816;
   --text-2:       #635E56;
@@ -290,6 +291,7 @@ section:last-child { border-bottom: none; }
 }
 .btn:hover { opacity: 0.85; }
 .btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); opacity: 1; }
 .btn-secondary { background: var(--surface-alt); color: var(--text-1); }
 .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); padding: 11.5px 22px; }
 .btn-destructive { background: #FAE9E9; color: var(--error); }
@@ -318,7 +320,7 @@ section:last-child { border-bottom: none; }
 .tag { display: inline-flex; align-items: center; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: var(--radius-pill); }
 .tag-worship { background: var(--cat-worship-bg); color: var(--cat-worship); }
 .tag-quran   { background: var(--cat-quran-bg);   color: var(--cat-quran); }
-.tag-charity { background: var(--cat-charity-bg); color: #90691E; }
+.tag-charity { background: var(--cat-charity-bg); color: var(--gold-dark); }
 .tag-personal{ background: var(--cat-personal-bg);color: var(--cat-personal); }
 
 /* Input */
@@ -354,8 +356,8 @@ section:last-child { border-bottom: none; }
   border-radius: var(--radius-lg); padding: 16px 20px;
   display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
-.streak-num { font-size: 28px; font-weight: 800; color: #90691E; line-height: 1; }
-.streak-text { font-size: 11px; font-weight: 600; color: #90691E; letter-spacing: 0.06em; text-transform: uppercase; }
+.streak-num { font-size: 28px; font-weight: 800; color: var(--gold-dark); line-height: 1; }
+.streak-text { font-size: 11px; font-weight: 600; color: var(--gold-dark); letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ── Component States ── */
 .btn-loading,
@@ -560,7 +562,7 @@ section:last-child { border-bottom: none; }
   display: flex; align-items: center; gap: 6px;
   background: var(--gold-bg); border-radius: var(--radius-sm); padding: 8px 10px; margin-top: 14px;
 }
-.ramadan-text { font-size: 11px; font-weight: 500; color: #90691E; }
+.ramadan-text { font-size: 11px; font-weight: 500; color: var(--gold-dark); }
 
 .streak-card-num { font-size: 44px; font-weight: 800; color: var(--gold); letter-spacing: -0.03em; line-height: 1; }
 .streak-card-unit { font-size: 15px; color: var(--text-3); margin-left: 4px; }
