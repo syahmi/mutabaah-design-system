@@ -50,6 +50,7 @@
         <a href="#spacing" class="nav-link">Spacing</a>
         <a href="#iconography" class="nav-link">Icons</a>
         <a href="#components" class="nav-link">Components</a>
+        <a href="#form-controls" class="nav-link">Form Controls</a>
         <a href="#tasks" class="nav-link">Tasks</a>
         <a href="#navigation" class="nav-link">Navigation</a>
         <a href="#empty-states" class="nav-link">Empty States</a>
@@ -79,6 +80,7 @@
           <a href="#spacing" class="hero-chip">Spacing</a>
           <a href="#iconography" class="hero-chip">Iconography</a>
           <a href="#components" class="hero-chip">Components</a>
+          <a href="#form-controls" class="hero-chip">Form Controls</a>
           <a href="#tasks" class="hero-chip">Tasks</a>
           <a href="#navigation" class="hero-chip">Navigation</a>
           <a href="#empty-states" class="hero-chip">Empty States</a>
@@ -700,6 +702,56 @@
       </div>
     </div>
 
+    <!-- Progress -->
+    <div class="component-group">
+      <div class="sub-label">Progress &amp; Completion</div>
+      <div class="progress-row">
+        <!-- Ring -->
+        <div class="ring-wrap">
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Daily progress ring at 75%">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#EDE8DF" stroke-width="6"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#1C3D2E" stroke-width="6" stroke-linecap="round"
+                stroke-dasharray="201" stroke-dashoffset="50" transform="rotate(-90 40 40)"/>
+            </svg>
+            <div class="ring-label-center" aria-hidden="true">75%</div>
+          </div>
+          <span class="btn-label-sm">Daily ring</span>
+        </div>
+        <!-- Bars -->
+        <div class="bars-wrap">
+          <div class="bar-item">
+            <div class="bar-row"><span class="bar-name">Worship</span><span class="bar-count">4/5</span></div>
+            <div class="bar-track"><div class="bar-fill bar-fill--worship" style="width:80%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-row"><span class="bar-name">Quran</span><span class="bar-count">2/3</span></div>
+            <div class="bar-track"><div class="bar-fill bar-fill--quran" style="width:66%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-row"><span class="bar-name">Charity</span><span class="bar-count">1/2</span></div>
+            <div class="bar-track"><div class="bar-fill bar-fill--charity" style="width:50%;"></div></div>
+          </div>
+          <span class="btn-label-sm" style="margin-top:4px;">Category progress bars</span>
+        </div>
+        <!-- Streak badge -->
+        <div class="ring-wrap">
+          <div class="streak-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L13.8 8.2L20 8.2L15.1 11.8L16.9 18L12 14.4L7.1 18L8 11.8L4 8.2L10.2 8.2L12 2Z" fill="#C4993E"/></svg>
+            <span class="streak-num">14</span>
+            <span class="streak-text">Day Streak</span>
+          </div>
+          <span class="btn-label-sm">Streak badge</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06 FORM CONTROLS ── -->
+  <section id="form-controls">
+    <div class="section-num">06</div>
+    <h2 class="section-title">Form Controls</h2>
+
     <!-- Checkbox -->
     <div class="component-group">
       <div class="sub-label">Checkbox</div>
@@ -780,55 +832,11 @@
         </label>
       </div>
     </div>
-
-    <!-- Progress -->
-    <div class="component-group">
-      <div class="sub-label">Progress &amp; Completion</div>
-      <div class="progress-row">
-        <!-- Ring -->
-        <div class="ring-wrap">
-          <div class="ring-container">
-            <svg width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Daily progress ring at 75%">
-              <circle cx="40" cy="40" r="32" fill="none" stroke="#EDE8DF" stroke-width="6"/>
-              <circle cx="40" cy="40" r="32" fill="none" stroke="#1C3D2E" stroke-width="6" stroke-linecap="round"
-                stroke-dasharray="201" stroke-dashoffset="50" transform="rotate(-90 40 40)"/>
-            </svg>
-            <div class="ring-label-center" aria-hidden="true">75%</div>
-          </div>
-          <span class="btn-label-sm">Daily ring</span>
-        </div>
-        <!-- Bars -->
-        <div class="bars-wrap">
-          <div class="bar-item">
-            <div class="bar-row"><span class="bar-name">Worship</span><span class="bar-count">4/5</span></div>
-            <div class="bar-track"><div class="bar-fill bar-fill--worship" style="width:80%;"></div></div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-row"><span class="bar-name">Quran</span><span class="bar-count">2/3</span></div>
-            <div class="bar-track"><div class="bar-fill bar-fill--quran" style="width:66%;"></div></div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-row"><span class="bar-name">Charity</span><span class="bar-count">1/2</span></div>
-            <div class="bar-track"><div class="bar-fill bar-fill--charity" style="width:50%;"></div></div>
-          </div>
-          <span class="btn-label-sm" style="margin-top:4px;">Category progress bars</span>
-        </div>
-        <!-- Streak badge -->
-        <div class="ring-wrap">
-          <div class="streak-badge">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L13.8 8.2L20 8.2L15.1 11.8L16.9 18L12 14.4L7.1 18L8 11.8L4 8.2L10.2 8.2L12 2Z" fill="#C4993E"/></svg>
-            <span class="streak-num">14</span>
-            <span class="streak-text">Day Streak</span>
-          </div>
-          <span class="btn-label-sm">Streak badge</span>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <!-- ── 06 TASK ITEMS ── -->
+  <!-- ── 07 TASK ITEMS ── -->
   <section id="tasks">
-    <div class="section-num">06</div>
+    <div class="section-num">07</div>
     <h2 class="section-title">Task Items</h2>
 
     <div class="task-layout">
@@ -909,9 +917,9 @@
     </div>
   </section>
 
-  <!-- ── 07 NAVIGATION & CARDS ── -->
+  <!-- ── 08 NAVIGATION & CARDS ── -->
   <section id="navigation">
-    <div class="section-num">07</div>
+    <div class="section-num">08</div>
     <h2 class="section-title">Navigation &amp; Cards</h2>
 
     <div class="sub-label">Bottom Navigation Bar</div>
@@ -997,9 +1005,9 @@
     </div>
   </section>
 
-  <!-- ── 08 EMPTY STATES ── -->
+  <!-- ── 09 EMPTY STATES ── -->
   <section id="empty-states">
-    <div class="section-num">08</div>
+    <div class="section-num">09</div>
     <h2 class="section-title">Empty States</h2>
 
     <div class="sub-label">Variants</div>
@@ -1073,9 +1081,9 @@
     </div>
   </section>
 
-  <!-- ── 09 MOTION & TONE ── -->
+  <!-- ── 10 MOTION & TONE ── -->
   <section id="motion">
-    <div class="section-num">09</div>
+    <div class="section-num">10</div>
     <h2 class="section-title">Motion &amp; Tone</h2>
 
     <div class="sub-label sub-label--mb">Animation Principles</div>
