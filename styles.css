@@ -43,9 +43,35 @@
   cursor: not-allowed;
 }
 
+/* ── Metric-adjusted fallback fonts (reduces CLS on font swap) ── */
+@font-face {
+  font-family: 'Google Sans Flex Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('sans-serif');
+  size-adjust: 103%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial Narrow'), local('Arial'), local('sans-serif');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('sans-serif');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 :root {
   /* Typography */
-  --font-sans: 'Google Sans Flex', sans-serif;
+  --font-sans: 'Google Sans Flex', 'Google Sans Flex Fallback', sans-serif;
 
   /* Colors */
   --bg:           #F5F1EA;
@@ -234,7 +260,7 @@ section:last-child { border-bottom: none; }
 }
 .font-card-label { font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
 .font-display { font-size: 40px; font-weight: 800; color: var(--text-1); letter-spacing: -0.03em; line-height: 1; margin-bottom: 12px; }
-.font-display-inter { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 300; }
+.font-display-inter { font-family: 'Inter', 'Inter Fallback', sans-serif; font-size: 40px; font-weight: 300; }
 .font-meta { font-size: 12px; color: var(--text-2); margin-bottom: 2px; }
 .font-use { font-size: 12px; color: var(--text-3); }
 .font-alpha { border-top: 1px solid var(--border-light); margin-top: 16px; padding-top: 14px; display: flex; flex-direction: column; gap: 6px; }

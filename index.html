@@ -25,8 +25,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" /></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=fallback" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=fallback" /></noscript>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -89,7 +89,7 @@
       </div>
       <div class="hero-meta">
         <div class="hero-meta-label">Version</div>
-        <div class="hero-version" data-version="short"></div>
+        <div class="hero-version" data-version="short">1.2.1</div>
         <div class="hero-date">March 2026</div>
       </div>
     </div>
@@ -141,21 +141,21 @@
           <td class="col-meta">32px</td>
           <td class="col-meta">800</td>
           <td class="col-meta">36px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.025em;line-height:36px;">Alhamdulillah</span></td>
+          <td><span style="font-family:'Inter Tight','Inter Tight Fallback',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.025em;line-height:36px;">Alhamdulillah</span></td>
         </tr>
         <tr>
           <td class="col-name">Heading 1</td>
           <td class="col-meta">24px</td>
           <td class="col-meta">700</td>
           <td class="col-meta">30px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.02em;">Today's Ibadah</span></td>
+          <td><span style="font-family:'Inter Tight','Inter Tight Fallback',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.02em;">Today's Ibadah</span></td>
         </tr>
         <tr>
           <td class="col-name">Heading 2</td>
           <td class="col-meta">20px</td>
           <td class="col-meta">600</td>
           <td class="col-meta">26px</td>
-          <td><span style="font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.015em;">Worship Activities</span></td>
+          <td><span style="font-family:'Inter Tight','Inter Tight Fallback',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.015em;">Worship Activities</span></td>
         </tr>
         <tr>
           <td class="col-name">Body Large</td>
@@ -1225,7 +1225,7 @@
       </div>
       <span class="footer-name">Mutabaah Amal</span>
     </div>
-    <span class="footer-meta" data-version="full"></span>
+    <span class="footer-meta" data-version="full">Design System v1.2.1 · March 2026</span>
   </footer>
 
   <script defer src="lucide-mini.js"></script>
