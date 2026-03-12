@@ -68,6 +68,9 @@
 
 html { scroll-behavior: smooth; }
 
+/* ── Scroll offset for sticky nav ── */
+section[id] { scroll-margin-top: 60px; }
+
 body {
   background: var(--bg);
   color: var(--text-1);
@@ -768,6 +771,7 @@ footer {
 
 /* ── Responsive — Mobile (≤640px) ── */
 @media (max-width: 640px) {
+  section[id] { scroll-margin-top: 96px; }
   .page { padding: 0 16px; }
   .sticky-nav-inner { padding: 10px 16px 0; flex-wrap: wrap; gap: 0; }
   .nav-brand { margin-bottom: 8px; }
