@@ -19,7 +19,9 @@ themeToggleBtn.addEventListener('click', () => {
 
 // ── Version ──
 const VERSION = '1.3.0';
-document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · March 2026` : VERSION; });
+const DATE = 'March 2026';
+document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
+document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });
 
 // ── Lucide icons ──
 if (window.lucide) lucide.createIcons();
