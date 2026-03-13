@@ -112,34 +112,36 @@ document.querySelectorAll('.swatch-card').forEach(card => {
 });
 
 // ── Motion live demos ──
+function nextFrame(fn) {
+  requestAnimationFrame(() => requestAnimationFrame(fn));
+}
+
 function playDemo(type) {
   if (type === 'enter') {
     const el = document.getElementById('demo-enter');
     el.classList.remove('demo-anim-enter');
-    void el.offsetWidth;
-    el.classList.add('demo-anim-enter');
+    nextFrame(() => el.classList.add('demo-anim-enter'));
 
   } else if (type === 'exit') {
     const el = document.getElementById('demo-exit');
     el.classList.remove('demo-anim-exit', 'demo-anim-enter');
-    void el.offsetWidth;
-    el.classList.add('demo-anim-exit');
-    setTimeout(() => {
-      el.classList.remove('demo-anim-exit');
-      void el.offsetWidth;
-      el.classList.add('demo-anim-enter');
-    }, 500);
+    nextFrame(() => {
+      el.classList.add('demo-anim-exit');
+      setTimeout(() => {
+        el.classList.remove('demo-anim-exit');
+        nextFrame(() => el.classList.add('demo-anim-enter'));
+      }, 500);
+    });
 
   } else if (type === 'complete') {
     const check = document.getElementById('demo-complete-check');
     const text  = document.getElementById('demo-complete-text');
     check.classList.remove('filled');
     text.classList.remove('done');
-    void check.offsetWidth;
-    setTimeout(() => {
+    nextFrame(() => {
       check.classList.add('filled');
       text.classList.add('done');
-    }, 80);
+    });
   }
 }
 
