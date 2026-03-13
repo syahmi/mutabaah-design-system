@@ -28,6 +28,9 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" /></noscript>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');})();
+  </script>
 </head>
 <body>
 
@@ -57,6 +60,13 @@
         <a href="#motion" class="nav-link">Motion</a>
       </div>
     </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+      <!-- Moon — shown in light mode -->
+      <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      <!-- Sun — shown in dark mode -->
+      <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+      <span id="theme-toggle-label">Dark</span>
+    </button>
   </div>
 </nav>
 
@@ -315,11 +325,86 @@
       </div>
     </div>
 
+    <div class="sub-label sub-label--mt">Dark Mode</div>
+    <div class="swatches swatches-6" style="margin-bottom:16px;">
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#18180F;"></div>
+        <div class="swatch-name">Void</div>
+        <div class="swatch-hex">#18180F</div>
+        <div class="swatch-desc">App background</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#222219;border-color:#3D3D2E;"></div>
+        <div class="swatch-name">Surface Dark</div>
+        <div class="swatch-hex">#222219</div>
+        <div class="swatch-desc">Cards, bottom sheet</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#2D2D22;"></div>
+        <div class="swatch-name">Surface Alt Dark</div>
+        <div class="swatch-hex">#2D2D22</div>
+        <div class="swatch-desc">Input bg, inactive</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#4A9B70;"></div>
+        <div class="swatch-name">Forest Green</div>
+        <div class="swatch-hex">#4A9B70</div>
+        <div class="swatch-desc">Primary — lightened</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#C9993D;"></div>
+        <div class="swatch-name">Gold</div>
+        <div class="swatch-hex">#C9993D</div>
+        <div class="swatch-desc">Accent — saturated</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block tall" style="background:#F0EDE6;"></div>
+        <div class="swatch-name">Ivory</div>
+        <div class="swatch-hex">#F0EDE6</div>
+        <div class="swatch-desc">Text primary</div>
+      </div>
+    </div>
+
+    <div class="swatches swatches-4" style="margin-bottom:20px;">
+      <div class="swatch-card">
+        <div class="swatch-block split" style="overflow:hidden;border-radius:var(--radius-md);">
+          <div class="swatch-split-top" style="background:#5DBB8A;"></div>
+          <div class="swatch-split-btm" style="background:#1A2E22;"></div>
+        </div>
+        <div class="swatch-name">Worship</div>
+        <div class="swatch-hex">#5DBB8A / #1A2E22</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block split" style="overflow:hidden;border-radius:var(--radius-md);">
+          <div class="swatch-split-top" style="background:#6B9ED4;"></div>
+          <div class="swatch-split-btm" style="background:#1A2230;"></div>
+        </div>
+        <div class="swatch-name">Quran</div>
+        <div class="swatch-hex">#6B9ED4 / #1A2230</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block split" style="overflow:hidden;border-radius:var(--radius-md);">
+          <div class="swatch-split-top" style="background:#C9993D;"></div>
+          <div class="swatch-split-btm" style="background:#2A2416;"></div>
+        </div>
+        <div class="swatch-name">Charity</div>
+        <div class="swatch-hex">#C9993D / #2A2416</div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-block split" style="overflow:hidden;border-radius:var(--radius-md);">
+          <div class="swatch-split-top" style="background:#A87ED4;"></div>
+          <div class="swatch-split-btm" style="background:#221830;"></div>
+        </div>
+        <div class="swatch-name">Personal</div>
+        <div class="swatch-hex">#A87ED4 / #221830</div>
+      </div>
+    </div>
+
     <div class="dark-mode-note">
       <div class="dm-dot"></div>
       <div>
-        <div class="dm-title">Dark Mode</div>
-        <div class="dm-body">All colors invert to a warm near-black base (#18180F) with reduced-opacity surfaces. Category colors maintain their hue but shift to darker, more subdued tones. Gold accent becomes slightly more saturated to retain visibility.</div>
+        <div class="dm-title">Live preview</div>
+        <div class="dm-body">Use the <strong>Dark</strong> toggle in the top nav to preview the full design system in dark mode. All CSS custom properties update automatically. Your preference is saved across visits and respects your system setting by default.</div>
       </div>
     </div>
   </section>

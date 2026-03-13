@@ -1,3 +1,22 @@
+// ── Theme toggle ──
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeToggleLabel = document.getElementById('theme-toggle-label');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  const isDark = theme === 'dark';
+  themeToggleLabel.textContent = isDark ? 'Light' : 'Dark';
+  themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
+// Sync label with whatever the inline script set on <html>
+applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+themeToggleBtn.addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
 // ── Version ──
 const VERSION = '1.2.1';
 document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · March 2026` : VERSION; });
