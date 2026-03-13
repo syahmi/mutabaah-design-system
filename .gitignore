@@ -24,6 +24,4 @@ Desktop.ini
 
 # Build
 node_modules/
-package-lock.json
-package.json
-build.js
+docs/
