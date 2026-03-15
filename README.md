@@ -117,13 +117,15 @@ All three fonts are loaded from Google Fonts in a single non-render-blocking req
 
 ### Elevation
 
-| Token | Shadow | Use |
-|-------|--------|-----|
-| `--shadow-1` | `0 1px 4px rgba(28,61,46,0.06)` | Subtle — resting cards |
-| `--shadow-2` | `0 2px 12px rgba(28,61,46,0.10)` | Raised — bottom sheets |
-| `--shadow-3` | `0 4px 24px rgba(28,61,46,0.16)` | Elevated — overlapping panels |
-| `--shadow-fab` | `0 4px 16px rgba(28,61,46,0.30)` | Floating action button |
-| `--shadow-nav` | `0 -4px 24px rgba(28,61,46,0.06)` | Bottom navigation bar |
+Light mode shadows use a green-tinted base colour; dark mode overrides switch to neutral black so shadows read correctly against dark surfaces.
+
+| Token | Light | Dark | Use |
+|-------|-------|------|-----|
+| `--shadow-1` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Subtle — resting cards |
+| `--shadow-2` | `rgba(28,61,46,0.10)` | `rgba(0,0,0,0.32)` | Raised — bottom sheets |
+| `--shadow-3` | `rgba(28,61,46,0.16)` | `rgba(0,0,0,0.44)` | Elevated — overlapping panels |
+| `--shadow-fab` | `rgba(28,61,46,0.30)` | `rgba(0,0,0,0.56)` | Floating action button |
+| `--shadow-nav` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Bottom navigation bar |
 
 ### Duration
 

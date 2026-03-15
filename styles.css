@@ -157,6 +157,14 @@
   --cat-charity-bg: #2A2416;
   --cat-personal: #A87ED4;
   --cat-personal-bg: #221830;
+
+  /* Elevation tokens — neutral black shadows read better on dark surfaces
+     than the green-tinted light-mode values */
+  --shadow-1: 0 1px 4px rgba(0,0,0,0.20);
+  --shadow-2: 0 2px 12px rgba(0,0,0,0.32);
+  --shadow-3: 0 4px 24px rgba(0,0,0,0.44);
+  --shadow-fab: 0 4px 16px rgba(0,0,0,0.56);
+  --shadow-nav: 0 -4px 24px rgba(0,0,0,0.20);
 }
 
 /* Overrides for hardcoded values that can't be resolved with tokens alone */
