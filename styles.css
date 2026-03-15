@@ -1082,3 +1082,21 @@ footer {
   .swatches-6 { grid-template-columns: repeat(2, 1fr); }
   .chip { font-size: 12px; padding: 7px 12px; }
 }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  /* Kill all durations system-wide — one-shot animations become instant,
+     transitions become imperceptible. scroll-behavior falls back to jump. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Infinite animations must be stopped entirely — shortening to 0.01ms
+     would cause them to flash repeatedly. Remove the animation instead. */
+  .btn-spinner     { animation: none !important; }
+  .empty-state-illus { animation: none !important; }
+  .skeleton::after { animation: none !important; }
+}
