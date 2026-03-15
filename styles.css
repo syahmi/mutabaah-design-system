@@ -915,6 +915,9 @@ button.icon-card { font: inherit; color: inherit; }
   inset: 0;
   width: 60%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+}
+[data-theme="dark"] .skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
   animation: skeleton-shimmer 1.8s ease-in-out infinite;
 }
 .skeleton-demo-row { display: flex; flex-wrap: wrap; gap: 20px; }
