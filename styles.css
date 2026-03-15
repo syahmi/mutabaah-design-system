@@ -27,7 +27,9 @@
 .form-radio input[type="radio"]:focus-visible + .form-radio-dot,
 .form-toggle input[type="checkbox"]:focus-visible + .form-toggle-track,
 .motion-replay-btn:focus-visible,
-.icon-card:focus-visible {
+.icon-card:focus-visible,
+.form-select:focus-visible,
+.form-textarea:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
@@ -39,7 +41,7 @@
 .btn-fab[disabled],
 .chip:disabled,
 .chip[disabled] {
-  opacity: 0.35;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
@@ -483,7 +485,7 @@ section:last-child { border-bottom: none; }
   font-family: var(--font-sans); font-size: 14px; color: var(--text-1);
   cursor: pointer; transition: background var(--duration-fast), box-shadow var(--duration-fast);
 }
-.form-select:focus { outline: none; background: var(--surface); box-shadow: 0 0 0 1.5px var(--primary); }
+.form-select:focus-visible { background: var(--surface); }
 .form-select:disabled { opacity: 0.45; cursor: not-allowed; }
 .select-chevron { position: absolute; right: 14px; pointer-events: none; color: var(--text-3); }
 
@@ -496,7 +498,7 @@ section:last-child { border-bottom: none; }
   color: var(--text-1); line-height: 1.5; transition: background var(--duration-fast), box-shadow var(--duration-fast);
 }
 .form-textarea::placeholder { color: var(--text-3); }
-.form-textarea:focus { outline: none; background: var(--surface); box-shadow: 0 0 0 1.5px var(--primary); }
+.form-textarea:focus-visible { background: var(--surface); }
 .form-textarea:disabled { opacity: 0.45; cursor: not-allowed; resize: none; }
 
 /* ── Form controls (shared base) ── */
