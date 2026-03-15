@@ -18,7 +18,7 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // ── Version ──
-const VERSION = '1.3.1';
+const VERSION = '1.4.0';
 const DATE = 'March 2026';
 document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
 document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });

@@ -54,10 +54,10 @@ No manual build or push is required.
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
 | 03 | **Spacing** | Base spacing scale (4–80px), component and layout rhythm, border-radius tokens, elevation scale |
 | 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
-| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges |
+| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders, alerts |
 | 06 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
 | 07 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 08 | **Navigation** | Bottom tab bar and dashboard cards (hero card, Hijri date, streak) |
+| 08 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
 | 09 | **Empty States** | Three variants with illustration and copy guidelines |
 | 10 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
@@ -107,13 +107,13 @@ All three fonts are loaded from Google Fonts in a single non-render-blocking req
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--radius-xs` | `6px` | Small elements (code pills) |
+| `--radius-xs` | `6px` | Small elements (code pills, skeleton bones) |
 | `--radius-sm` | `8px` | Small surfaces |
-| `--radius-md` | `12px` | Buttons, input fields |
+| `--radius-md` | `12px` | Buttons, input fields, bottom nav |
 | `--radius-lg` | `16px` | Cards, list containers |
-| `--radius-xl` | `20px` | Large cards, bottom nav |
+| `--radius-xl` | `20px` | Large cards |
 | `--radius-2xl` | `24px` | Bottom sheets |
-| `--radius-pill` | `100px` | Chips, tags, pill buttons |
+| `--radius-pill` | `100px` | Chips, tags, pill buttons, M3 indicator |
 
 ### Elevation
 
@@ -142,6 +142,62 @@ All three fonts are loaded from Google Fonts in a single non-render-blocking req
 
 Icons are initialised on page load via `lucide.createIcons()` in `script.js`.
 
+## Components
+
+### Skeleton Loaders
+
+Skeleton loaders use a GPU-accelerated shimmer via a `::after` pseudo-element sweep rather than a background-position animation. The white highlight overlay works across both light and dark themes without additional token overrides.
+
+```html
+<!-- Task list skeleton -->
+<div class="skeleton-demo-card">
+  <div class="skeleton-task-item">
+    <div class="skeleton skeleton-check"></div>
+    <div class="skeleton-task-lines">
+      <div class="skeleton skeleton-line--title"></div>
+      <div class="skeleton skeleton-line--meta"></div>
+    </div>
+    <div class="skeleton skeleton-tag"></div>
+  </div>
+</div>
+```
+
+### Alerts
+
+Four semantic variants — info, success, warning, error — using existing category color tokens.
+
+```html
+<div class="alert alert-info" role="alert">…</div>
+<div class="alert alert-success" role="alert">…</div>
+<div class="alert alert-warning" role="alert">…</div>
+<div class="alert alert-error" role="alert">…</div>
+```
+
+| Variant | Background token | Border / text token |
+|---------|-----------------|---------------------|
+| Info | `--cat-quran-bg` | `--cat-quran` |
+| Success | `--cat-worship-bg` | `--success` |
+| Warning | `--gold-bg` | `--gold` / `--gold-dark` |
+| Error | `#FEF2F2` (`#2A1818` dark) | `--error` |
+
+### Bottom Navigation Bar
+
+The navigation section documents two platform-specific variants side by side.
+
+**iOS · Human Interface Guidelines**
+- Frosted glass background — `backdrop-filter: saturate(180%) blur(20px)`
+- Top hairline separator — `0.5px solid rgba(0,0,0,0.12)`
+- Active state: tinted icon + label in `--primary`, no indicator pill
+- Home indicator bar at bottom representing the safe area inset
+
+**Android · Material 3**
+- Opaque `--surface` background with `--shadow-nav` elevation
+- Active indicator: `64×32dp` pill (`--cat-worship-bg`) behind the icon only
+- Label always visible, `700` weight when active
+- Gesture navigation bar at bottom
+
+Both variants use `role="tablist"` / `role="tab"` with `aria-selected` for semantics, and `currentColor` on all SVG strokes so dark mode is handled by the CSS color cascade.
+
 ## Versioning
 
 Version and build date are single-sourced:
@@ -156,6 +212,17 @@ Running `npm run build` propagates both into `script.js` (for the dev server) an
 The design system ships with a full dark mode. A moon/sun toggle in the sticky nav switches themes. The preference is persisted in `localStorage` and respects the OS `prefers-color-scheme` setting on first visit.
 
 All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
+
+## Accessibility
+
+| Practice | Detail |
+|----------|--------|
+| Focus ring | Unified `outline: 2px solid var(--primary); outline-offset: 2px` across all interactive elements including select and textarea, using `:focus-visible` to avoid showing rings on mouse clicks |
+| Disabled opacity | Consistent `opacity: 0.45` across buttons, chips, inputs, selects, textareas, and form controls |
+| Aria live region | `#copy-announcement` announces clipboard copy results to screen readers |
+| Motion replay buttons | Each replay button carries a descriptive `aria-label` (e.g. `"Replay enter animation"`) |
+| Skip link | Visible-on-focus skip link to `#main-content` |
+| Semantic roles | `role="tablist"` / `role="tab"` / `aria-selected` on bottom navigation; `role="alert"` on alert components |
 
 ## Interactive Features
 
