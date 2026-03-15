@@ -731,7 +731,8 @@
       <div class="input-row">
         <div class="input-item">
           <div class="select-wrap">
-            <select class="form-select">
+            <label for="select-demo-default" class="sr-only">Category</label>
+            <select class="form-select" id="select-demo-default">
               <option value="">Choose category…</option>
               <option>Worship</option>
               <option>Quran</option>
@@ -744,7 +745,8 @@
         </div>
         <div class="input-item">
           <div class="select-wrap">
-            <select class="form-select">
+            <label for="select-demo-value" class="sr-only">Category</label>
+            <select class="form-select" id="select-demo-value">
               <option>Worship</option>
               <option selected>Quran</option>
               <option>Charity</option>
@@ -756,7 +758,8 @@
         </div>
         <div class="input-item">
           <div class="select-wrap">
-            <select class="form-select" disabled>
+            <label for="select-demo-disabled" class="sr-only">Category</label>
+            <select class="form-select" id="select-demo-disabled" disabled>
               <option>Choose category…</option>
             </select>
             <svg class="select-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -771,11 +774,13 @@
       <div class="sub-label">Textarea</div>
       <div class="input-row">
         <div class="input-item" style="max-width:340px;">
-          <textarea class="form-textarea" placeholder="Add a note about this ibadah…" rows="3"></textarea>
+          <label for="textarea-demo-default" class="sr-only">Note</label>
+          <textarea class="form-textarea" id="textarea-demo-default" placeholder="Add a note about this ibadah…" rows="3"></textarea>
           <span class="btn-label-sm">Default</span>
         </div>
         <div class="input-item" style="max-width:340px;">
-          <textarea class="form-textarea" rows="3">Completed Fajr at the masjid with the congregation. Felt peaceful and focused.</textarea>
+          <label for="textarea-demo-content" class="sr-only">Note</label>
+          <textarea class="form-textarea" id="textarea-demo-content" rows="3">Completed Fajr at the masjid with the congregation. Felt peaceful and focused.</textarea>
           <span class="btn-label-sm">With Content</span>
         </div>
       </div>
