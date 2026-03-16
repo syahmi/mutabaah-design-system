@@ -22,6 +22,7 @@ async function build() {
   // ── CSS ──────────────────────────────────────────────────────────────────
   const css = fs.readFileSync('styles.css', 'utf8');
   const { styles } = new CleanCSS({ level: 2 }).minify(css);
+  // Keep a standalone copy for reference, but the HTML build inlines it.
   fs.writeFileSync(path.join(DIST, 'styles.css'), styles);
   console.log(`styles.css    ${fmt(css.length, styles.length)}`);
 
@@ -42,7 +43,9 @@ async function build() {
   const html = fs.readFileSync('index.html', 'utf8')
     .replace(/data-version="short">[^<]+</, `data-version="short">${VERSION}<`)
     .replace(/data-version="full">[^<]+</, `data-version="full">Design System v${VERSION} · ${BUILD_DATE}<`)
-    .replace(/data-date="[^"]*">[^<]+</, `data-date="${BUILD_DATE}">${BUILD_DATE}<`);
+    .replace(/data-date="[^"]*">[^<]+</, `data-date="${BUILD_DATE}">${BUILD_DATE}<`)
+    // Inline CSS to eliminate the render-blocking external stylesheet request.
+    .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`);
   const minified = await minHTML(html, {
     collapseWhitespace: true,
     removeComments: true,
