@@ -719,8 +719,10 @@ section:last-child { border-bottom: none; }
 .motion-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
 .motion-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; }
 .motion-icon { width: 40px; height: 40px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.motion-icon.green { background: var(--cat-worship-bg); }
-.motion-icon.gold { background: var(--gold-bg); }
+.motion-icon.green { background: var(--cat-worship-bg); color: #1C3D2E; }
+.motion-icon.gold { background: var(--gold-bg); color: #C4993E; }
+[data-theme="dark"] .motion-icon.green { color: var(--cat-worship); }
+[data-theme="dark"] .motion-icon.gold { color: var(--gold-dark); }
 .motion-title { font-size: 16px; font-weight: 600; color: var(--text-1); margin-bottom: 8px; }
 .motion-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
 .code-pill {
