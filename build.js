@@ -2,8 +2,11 @@
 // Minifies source files into dist/ for production deployment.
 // Run: npm run build
 
-const fs   = require('fs');
-const path = require('path');
+const fs     = require('fs');
+const path   = require('path');
+const crypto = require('crypto');
+
+const contentHash = (str) => crypto.createHash('sha256').update(str).digest('hex').slice(0, 8);
 
 const CleanCSS          = require('clean-css');
 const { minify: minJS } = require('terser');
@@ -27,6 +30,7 @@ async function build() {
   console.log(`styles.css    ${fmt(css.length, styles.length)}`);
 
   // ── JS ───────────────────────────────────────────────────────────────────
+  const jsHashes = {};
   for (const file of ['script.js', 'lucide-mini.js']) {
     let src = fs.readFileSync(file, 'utf8');
     if (file === 'script.js') {
@@ -35,8 +39,11 @@ async function build() {
       fs.writeFileSync(file, src); // keep source in sync for dev server
     }
     const { code } = await minJS(src, { compress: true, mangle: true });
-    fs.writeFileSync(path.join(DIST, file), code);
-    console.log(`${file.padEnd(14)}${fmt(src.length, code.length)}`);
+    const base = path.basename(file, '.js');
+    const hashedName = `${base}.${contentHash(code)}.js`;
+    jsHashes[file] = hashedName;
+    fs.writeFileSync(path.join(DIST, hashedName), code);
+    console.log(`${hashedName.padEnd(24)}${fmt(src.length, code.length)}`);
   }
 
   // ── HTML ─────────────────────────────────────────────────────────────────
@@ -45,7 +52,10 @@ async function build() {
     .replace(/data-version="full">[^<]+</, `data-version="full">Design System v${VERSION} · ${BUILD_DATE}<`)
     .replace(/data-date="[^"]*">[^<]+</, `data-date="${BUILD_DATE}">${BUILD_DATE}<`)
     // Inline CSS to eliminate the render-blocking external stylesheet request.
-    .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`);
+    .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`)
+    // Use content-hashed filenames for JS so assets can be cached indefinitely.
+    .replace(/src="lucide-mini\.js"/, `src="${jsHashes['lucide-mini.js']}"`)
+    .replace(/src="script\.js"/, `src="${jsHashes['script.js']}"`);
   const minified = await minHTML(html, {
     collapseWhitespace: true,
     removeComments: true,
