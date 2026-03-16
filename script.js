@@ -40,7 +40,9 @@ const observer = new IntersectionObserver(entries => {
       if (active) {
         active.classList.add('active');
         active.setAttribute('aria-current', 'true');
-        active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+        // Defer scrollIntoView to the next frame so the browser commits the
+        // classList writes above before reading layout to perform the scroll.
+        requestAnimationFrame(() => active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' }));
       }
     }
   });
