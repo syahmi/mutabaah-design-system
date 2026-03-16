@@ -54,7 +54,7 @@ No manual build or push is required.
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
 | 03 | **Spacing** | Base spacing scale (4–80px), component and layout rhythm, border-radius tokens, elevation scale |
 | 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
-| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders, alerts |
+| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders (task list, dashboard card, profile header, input form), alerts |
 | 06 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
 | 07 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
 | 08 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
@@ -150,6 +150,17 @@ Icons are initialised on page load via `lucide.createIcons()` in `script.js`.
 
 Skeleton loaders use a GPU-accelerated shimmer via a `::after` pseudo-element sweep rather than a background-position animation. The white highlight overlay works across both light and dark themes without additional token overrides.
 
+Four variants are documented:
+
+| Variant | Classes | Use |
+|---------|---------|-----|
+| Task list | `skeleton-task-item`, `skeleton-check`, `skeleton-task-lines`, `skeleton-tag` | Loading state for the main task feed |
+| Dashboard card | `skeleton-card-inner`, `skeleton-heading`, `skeleton-stat`, `skeleton-line--body` | Loading state for summary/stats cards |
+| Profile header | `skeleton-profile`, `skeleton-avatar`, `skeleton-profile-lines`, `skeleton-profile-body` | Loading state for user profile sections |
+| Input form | `skeleton-input-group`, `skeleton-input-label`, `skeleton-input-box` | Loading state for forms with labelled fields |
+
+All variants use the `.skeleton` base class for the shimmer effect. Wrap bones in `.skeleton-demo-card` to get the card chrome.
+
 ```html
 <!-- Task list skeleton -->
 <div class="skeleton-demo-card">
@@ -160,6 +171,29 @@ Skeleton loaders use a GPU-accelerated shimmer via a `::after` pseudo-element sw
       <div class="skeleton skeleton-line--meta"></div>
     </div>
     <div class="skeleton skeleton-tag"></div>
+  </div>
+</div>
+
+<!-- Profile header skeleton -->
+<div class="skeleton-demo-card">
+  <div class="skeleton-profile">
+    <div class="skeleton skeleton-avatar"></div>
+    <div class="skeleton-profile-lines">
+      <div class="skeleton skeleton-profile-name"></div>
+      <div class="skeleton skeleton-profile-sub"></div>
+    </div>
+  </div>
+  <div class="skeleton-profile-body">
+    <div class="skeleton skeleton-line--body"></div>
+    <div class="skeleton skeleton-line--body skeleton-line--short"></div>
+  </div>
+</div>
+
+<!-- Input form skeleton -->
+<div class="skeleton-demo-card">
+  <div class="skeleton-input-group">
+    <div class="skeleton skeleton-input-label"></div>
+    <div class="skeleton skeleton-input-box"></div>
   </div>
 </div>
 ```
