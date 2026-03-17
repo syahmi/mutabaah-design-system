@@ -52,7 +52,7 @@ No manual build or push is required.
 |---|---------|----------------|
 | 01 | **Typography** | Inter Tight (display), Inter (body) — full type scale |
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
-| 03 | **Spacing** | Base spacing scale (4–80px), component and layout rhythm, border-radius tokens, elevation scale |
+| 03 | **Spacing** | Base spacing scale (0.25–5rem), component and layout rhythm, border-radius tokens, elevation scale |
 | 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
 | 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders (task list, dashboard card, profile header, input form), alerts |
 | 06 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
@@ -64,6 +64,8 @@ No manual build or push is required.
 ## Design Tokens
 
 All tokens live in the `:root` block at the top of `styles.css`. Dark mode overrides live in the `[data-theme="dark"]` block immediately below.
+
+Spacing, padding, gap, and font-size values throughout `styles.css` use `rem` units so the layout scales correctly when a user changes their browser's base font size. Border widths, outline widths, box-shadows, SVG dimensions, and fixed component control sizes (checkbox, toggle, radio) intentionally remain in `px`.
 
 ### Typography
 
@@ -259,6 +261,7 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 | Motion replay buttons | Each replay button carries a descriptive `aria-label` (e.g. `"Replay enter animation"`) |
 | Skip link | Visible-on-focus skip link to `#main-content` |
 | Semantic roles | `role="tablist"` / `role="tab"` / `aria-selected` on bottom navigation; `role="alert"` on alert components |
+| Rem-based spacing | All spacing, padding, gap, and font-size values use `rem` so the layout scales with the user's browser font size setting |
 
 ## Interactive Features
 
