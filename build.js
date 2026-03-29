@@ -20,7 +20,8 @@ const fmt = (before, after) =>
   `${before} → ${after} bytes (${Math.round((1 - after / before) * 100)}% smaller)`;
 
 async function build() {
-  if (!fs.existsSync(DIST)) fs.mkdirSync(DIST);
+  if (fs.existsSync(DIST)) fs.rmSync(DIST, { recursive: true, force: true });
+  fs.mkdirSync(DIST);
 
   // ── CSS ──────────────────────────────────────────────────────────────────
   const css = fs.readFileSync('styles.css', 'utf8');
