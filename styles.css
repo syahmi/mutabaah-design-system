@@ -108,6 +108,9 @@
   --cat-personal: #6E4A8C;
   --cat-personal-bg: #EFE9F7;
 
+  --surface-sage: #E8F0EC;
+  --surface-sage-hover: #D5E8DC;
+
   /* Radius tokens */
   --radius-xs: 6px;
   --radius-sm: 8px;
@@ -158,6 +161,9 @@
   --cat-personal: #A87ED4;
   --cat-personal-bg: #221830;
 
+  --surface-sage: #1E2E26;
+  --surface-sage-hover: #263D2E;
+
   /* Elevation tokens — neutral black shadows read better on dark surfaces
      than the green-tinted light-mode values */
   --shadow-1: 0 1px 4px rgba(0,0,0,0.20);
@@ -179,12 +185,6 @@
 }
 [data-theme="dark"] .btn-destructive {
   background: #3A1A1A;
-}
-[data-theme="dark"] .hero-chip {
-  background: #1E2E26;
-}
-[data-theme="dark"] .hero-chip:hover {
-  background: #263D2E;
 }
 
 [data-theme="dark"] .input-error {
@@ -294,10 +294,10 @@ section:last-child { border-bottom: none; }
 .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .hero-chip {
   font-size: 0.75rem; font-weight: 500; color: var(--sage);
-  background: #E8F0EC; padding: 0.3125rem 0.875rem; border-radius: var(--radius-pill);
+  background: var(--surface-sage); padding: 0.3125rem 0.875rem; border-radius: var(--radius-pill);
   text-decoration: none; transition: background var(--duration-fast);
 }
-.hero-chip:hover { background: #d5e8dc; }
+.hero-chip:hover { background: var(--surface-sage-hover); }
 .hero-meta { text-align: right; flex-shrink: 0; padding-top: 0.25rem; }
 .hero-meta-label { font-size: 0.6875rem; font-weight: 600; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; }
 .hero-version { font-size: 2.5rem; font-weight: 800; color: var(--text-1); line-height: 1; }
