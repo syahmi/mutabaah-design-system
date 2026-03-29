@@ -47,10 +47,12 @@ async function build() {
   }
 
   // ── HTML ─────────────────────────────────────────────────────────────────
-  const html = fs.readFileSync('index.html', 'utf8')
+  let html = fs.readFileSync('index.html', 'utf8')
     .replace(/data-version="short">[^<]+</, `data-version="short">${VERSION}<`)
     .replace(/data-version="full">[^<]+</, `data-version="full">Design System v${VERSION} · ${BUILD_DATE}<`)
-    .replace(/data-date="[^"]*">[^<]+</, `data-date="${BUILD_DATE}">${BUILD_DATE}<`)
+    .replace(/data-date="[^"]*">[^<]+</, `data-date="${BUILD_DATE}">${BUILD_DATE}<`);
+  fs.writeFileSync('index.html', html); // keep source in sync with package.json version
+  html = html
     // Inline CSS to eliminate the render-blocking external stylesheet request.
     .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`)
     // Use content-hashed filenames for JS so assets can be cached indefinitely.
