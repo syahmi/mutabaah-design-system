@@ -1455,6 +1455,350 @@
     </div>
   </section>
 
+  <!-- ── 11 AVATAR ── -->
+  <section id="avatar">
+    <div class="section-num">11</div>
+    <h2 class="section-title">Avatar</h2>
+
+    <div class="sub-label">Sizes</div>
+    <div class="avatar-demo-row">
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-sm avatar-initials">SI</div>
+        <span class="btn-label-sm">Small · 24px</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-md avatar-initials">SI</div>
+        <span class="btn-label-sm">Medium · 32px</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-lg avatar-initials">SI</div>
+        <span class="btn-label-sm">Large · 48px</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-xl avatar-initials">SI</div>
+        <span class="btn-label-sm">XLarge · 64px</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-2xl avatar-initials">SI</div>
+        <span class="btn-label-sm">2XLarge · 80px</span>
+      </div>
+    </div>
+
+    <div class="sub-label">Variants</div>
+    <div class="avatar-demo-row">
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-lg avatar-initials">SI</div>
+        <span class="btn-label-sm">Initials</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-lg avatar-image" aria-label="User photo">
+          <div class="avatar-img-placeholder"></div>
+        </div>
+        <span class="btn-label-sm">Image</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar avatar-lg avatar-fallback" aria-label="Unknown user">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.134 6.686 13 11 13C15.314 13 19 16.134 19 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="btn-label-sm">Fallback</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar-wrap">
+          <div class="avatar avatar-lg avatar-initials">SI</div>
+          <span class="avatar-badge avatar-badge-online" aria-label="Online"></span>
+        </div>
+        <span class="btn-label-sm">Online</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar-wrap">
+          <div class="avatar avatar-lg avatar-sage">AF</div>
+          <span class="avatar-badge avatar-badge-away" aria-label="Away"></span>
+        </div>
+        <span class="btn-label-sm">Away</span>
+      </div>
+      <div class="avatar-demo-item">
+        <div class="avatar-wrap">
+          <div class="avatar avatar-lg avatar-gold">MR</div>
+          <span class="avatar-badge avatar-badge-offline" aria-label="Offline"></span>
+        </div>
+        <span class="btn-label-sm">Offline</span>
+      </div>
+    </div>
+
+    <div class="sub-label">Avatar Group</div>
+    <div class="avatar-group" aria-label="Syahmi Ismail, Ahmad Fauzi, and 5 others">
+      <div class="avatar avatar-md avatar-initials" title="Syahmi Ismail">SI</div>
+      <div class="avatar avatar-md avatar-sage" title="Ahmad Fauzi">AF</div>
+      <div class="avatar avatar-md avatar-gold" title="Mohammad Razi">MR</div>
+      <div class="avatar avatar-md avatar-fallback" title="Unknown user">
+        <svg width="14" height="14" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.134 6.686 13 11 13C15.314 13 19 16.134 19 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="avatar avatar-md avatar-overflow" aria-label="5 more">+5</div>
+    </div>
+    <p class="component-note">Stacked with 2px ring separation. Overflow count uses <code class="code-pill code-pill--sm">+N</code> pattern.</p>
+  </section>
+
+  <!-- ── 12 OVERLAYS ── -->
+  <section id="overlays">
+    <div class="section-num">12</div>
+    <h2 class="section-title">Modal &amp; Tooltip</h2>
+
+    <!-- Modal anatomy -->
+    <div class="sub-label">Modal / Dialog — Anatomy</div>
+    <div class="modal-anatomy">
+      <div class="modal-preview">
+        <div class="modal-preview-header">
+          <span class="modal-preview-title">Add Ibadah Activity</span>
+          <button class="modal-x-btn" aria-label="Close" tabindex="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="modal-preview-body">
+          <div class="modal-field-label">Activity name</div>
+          <div class="input-field input-active" style="margin-bottom:0.875rem;">Fajr Prayer</div>
+          <div class="modal-field-label">Category</div>
+          <div class="chips-row" style="margin-bottom:0;">
+            <button class="chip chip-active" tabindex="-1">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Worship
+            </button>
+            <button class="chip chip-inactive" tabindex="-1">Quran</button>
+            <button class="chip chip-inactive" tabindex="-1">Charity</button>
+          </div>
+        </div>
+        <div class="modal-preview-footer">
+          <button class="btn btn-ghost" tabindex="-1">Cancel</button>
+          <button class="btn btn-primary" tabindex="-1">Save Activity</button>
+        </div>
+      </div>
+      <div class="modal-backdrop-label">
+        <div class="modal-backdrop-swatch"></div>
+        <span class="modal-backdrop-note">Backdrop: <code class="code-pill code-pill--sm">rgba(0,0,0,.45)</code> · blur 0</span>
+      </div>
+    </div>
+
+    <!-- Confirmation dialog -->
+    <div class="sub-label" style="margin-top:2rem;">Confirmation Dialog</div>
+    <div class="modal-preview modal-preview--compact">
+      <div class="modal-confirm-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="var(--error)" stroke-width="2" stroke-linecap="round"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="modal-confirm-title">Delete activity?</div>
+      <div class="modal-confirm-desc">This will permanently remove "Fajr Prayer" and all its history. This cannot be undone.</div>
+      <div class="modal-preview-footer modal-preview-footer--right">
+        <button class="btn btn-ghost" tabindex="-1">Cancel</button>
+        <button class="btn btn-destructive" tabindex="-1">Delete</button>
+      </div>
+    </div>
+
+    <!-- Live demo triggers -->
+    <div class="sub-label" style="margin-top:2rem;">Live Demo</div>
+    <div class="btn-row">
+      <div class="btn-item">
+        <button class="btn btn-primary" id="open-modal-form">Open Form Modal</button>
+        <span class="btn-label-sm">Full-form overlay</span>
+      </div>
+      <div class="btn-item">
+        <button class="btn btn-destructive" id="open-modal-confirm">Open Confirmation</button>
+        <span class="btn-label-sm">Alertdialog overlay</span>
+      </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="sub-label" style="margin-top:3rem;">Tooltip — Positions</div>
+    <div class="tooltip-demo-row">
+      <div class="tooltip-demo-item">
+        <div class="tooltip-wrap">
+          <button class="btn btn-secondary">Top</button>
+          <div class="tooltip tooltip--top" role="tooltip">Mark as done</div>
+        </div>
+      </div>
+      <div class="tooltip-demo-item">
+        <div class="tooltip-wrap tooltip-wrap--bottom">
+          <button class="btn btn-secondary">Bottom</button>
+          <div class="tooltip tooltip--bottom" role="tooltip">Mark as done</div>
+        </div>
+      </div>
+      <div class="tooltip-demo-item">
+        <div class="tooltip-wrap tooltip-wrap--left">
+          <button class="btn btn-secondary">Left</button>
+          <div class="tooltip tooltip--left" role="tooltip">Left</div>
+        </div>
+      </div>
+      <div class="tooltip-demo-item">
+        <div class="tooltip-wrap tooltip-wrap--right">
+          <button class="btn btn-secondary">Right</button>
+          <div class="tooltip tooltip--right" role="tooltip">Right</div>
+        </div>
+      </div>
+    </div>
+    <p class="component-note">Tooltips use CSS <code class="code-pill code-pill--sm">:hover</code> / <code class="code-pill code-pill--sm">:focus-within</code> — no JS required. Add <code class="code-pill code-pill--sm">role="tooltip"</code> and link via <code class="code-pill code-pill--sm">aria-describedby</code> on the trigger.</p>
+  </section>
+
+  <!-- ── 13 DATA TABLE ── -->
+  <section id="data-table">
+    <div class="section-num">13</div>
+    <h2 class="section-title">Data Table</h2>
+
+    <div class="sub-label">Activity Log</div>
+    <div class="table-scroll">
+      <table class="data-table" aria-label="Activity log">
+        <thead>
+          <tr>
+            <th class="dt-col-check">
+              <label class="form-check" style="display:inline-flex;">
+                <input type="checkbox" aria-label="Select all rows" />
+                <span class="form-check-box"></span>
+              </label>
+            </th>
+            <th class="dt-col-sortable dt-sorted-asc" aria-sort="ascending" tabindex="0">
+              Activity
+              <svg class="dt-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </th>
+            <th>Category</th>
+            <th class="dt-col-sortable" aria-sort="none" tabindex="0">
+              Streak
+              <svg class="dt-sort-icon dt-sort-inactive" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3M8 6l-3 3-3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </th>
+            <th class="dt-col-sortable" aria-sort="none" tabindex="0">
+              Last Done
+              <svg class="dt-sort-icon dt-sort-inactive" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3M8 6l-3 3-3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </th>
+            <th>Status</th>
+            <th class="dt-col-actions"><span class="sr-only">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Selected row -->
+          <tr class="dt-row-selected">
+            <td class="dt-col-check">
+              <label class="form-check" style="display:inline-flex;">
+                <input type="checkbox" checked aria-label="Select Fajr Prayer" />
+                <span class="form-check-box"></span>
+              </label>
+            </td>
+            <td class="dt-cell-primary">Fajr Prayer</td>
+            <td><span class="tag tag-worship">Worship</span></td>
+            <td class="dt-streak">
+              <span class="dt-streak-num">14</span>
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z" fill="var(--gold)" stroke="var(--gold)" stroke-width="0.5" stroke-linejoin="round"/></svg>
+            </td>
+            <td class="dt-cell-meta">Today</td>
+            <td><span class="status-badge status-done">Done</span></td>
+            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Fajr Prayer" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
+          </tr>
+          <!-- Default row -->
+          <tr>
+            <td class="dt-col-check">
+              <label class="form-check" style="display:inline-flex;">
+                <input type="checkbox" aria-label="Select Quran Reading" />
+                <span class="form-check-box"></span>
+              </label>
+            </td>
+            <td class="dt-cell-primary">Quran Reading</td>
+            <td><span class="tag tag-quran">Quran</span></td>
+            <td class="dt-streak"><span class="dt-streak-num">7</span>
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z" fill="var(--gold)" stroke="var(--gold)" stroke-width="0.5" stroke-linejoin="round"/></svg>
+            </td>
+            <td class="dt-cell-meta">Yesterday</td>
+            <td><span class="status-badge status-pending">Pending</span></td>
+            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Quran Reading" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
+          </tr>
+          <!-- Missed row -->
+          <tr>
+            <td class="dt-col-check">
+              <label class="form-check" style="display:inline-flex;">
+                <input type="checkbox" aria-label="Select Sadaqah" />
+                <span class="form-check-box"></span>
+              </label>
+            </td>
+            <td class="dt-cell-primary">Sadaqah</td>
+            <td><span class="tag tag-charity">Charity</span></td>
+            <td class="dt-streak"><span class="dt-streak-num">3</span></td>
+            <td class="dt-cell-meta">2 days ago</td>
+            <td><span class="status-badge status-missed">Missed</span></td>
+            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Sadaqah" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
+          </tr>
+          <!-- Archived / disabled row -->
+          <tr class="dt-row-muted">
+            <td class="dt-col-check">
+              <label class="form-check" style="display:inline-flex;">
+                <input type="checkbox" disabled aria-label="Select Tahajjud (archived)" />
+                <span class="form-check-box"></span>
+              </label>
+            </td>
+            <td class="dt-cell-primary dt-cell-muted">Tahajjud</td>
+            <td><span class="tag tag-worship">Worship</span></td>
+            <td class="dt-streak dt-cell-muted">—</td>
+            <td class="dt-cell-meta dt-cell-muted">Archived</td>
+            <td><span class="status-badge status-archived">Archived</span></td>
+            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Tahajjud" tabindex="-1" disabled><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="component-note">Sortable columns use <code class="code-pill code-pill--sm">aria-sort</code>. Selected rows use <code class="code-pill code-pill--sm">.dt-row-selected</code>. Always wrap in <code class="code-pill code-pill--sm">.table-scroll</code> for responsive overflow.</p>
+  </section>
+
+  <!-- ── 14 BREADCRUMB & PAGINATION ── -->
+  <section id="breadcrumb">
+    <div class="section-num">14</div>
+    <h2 class="section-title">Breadcrumb &amp; Pagination</h2>
+
+    <div class="sub-label">Breadcrumb</div>
+    <div class="component-group">
+      <!-- Standard -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#breadcrumb" class="breadcrumb-link">Home</a>
+        <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#breadcrumb" class="breadcrumb-link">Activities</a>
+        <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="breadcrumb-current" aria-current="page">Fajr Prayer</span>
+      </nav>
+
+      <!-- Truncated deep path -->
+      <nav class="breadcrumb" aria-label="Breadcrumb — truncated" style="margin-top:0.875rem;">
+        <a href="#breadcrumb" class="breadcrumb-link">Home</a>
+        <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="breadcrumb-ellipsis" aria-label="More pages">…</span>
+        <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="#breadcrumb" class="breadcrumb-link">Worship</a>
+        <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5L7.5 6L4.5 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="breadcrumb-current" aria-current="page">Fajr Prayer</span>
+      </nav>
+    </div>
+
+    <div class="sub-label">Pagination</div>
+    <div class="component-group">
+      <!-- Full pagination -->
+      <nav class="pagination" aria-label="Activity log pages">
+        <button class="page-btn" aria-label="Previous page" disabled>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3L5 7L8.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="page-btn page-btn--active" aria-current="page">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <span class="page-ellipsis" aria-hidden="true">…</span>
+        <button class="page-btn">12</button>
+        <button class="page-btn" aria-label="Next page">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5.5 3L9 7L5.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </nav>
+
+      <!-- Compact pagination -->
+      <nav class="pagination" aria-label="Simple page navigation" style="margin-top:1rem;">
+        <button class="page-btn" aria-label="Previous page">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M8.5 3L5 7L8.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="page-counter">Page <strong>2</strong> of 12</span>
+        <button class="page-btn" aria-label="Next page">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5.5 3L9 7L5.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </nav>
+    </div>
+    <p class="component-note">Use <code class="code-pill code-pill--sm">aria-current="page"</code> on the active page button and <code class="code-pill code-pill--sm">aria-label</code> on prev/next controls.</p>
+  </section>
+
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-brand">
@@ -1469,5 +1813,51 @@
   <script defer src="lucide-mini.js"></script>
   <script defer src="script.js"></script>
 </main>
+
+<!-- ── Modal overlays (live demos) ── -->
+<div class="modal-overlay" id="modal-form" role="dialog" aria-modal="true" aria-labelledby="modal-form-title" aria-hidden="true">
+  <div class="modal-box">
+    <div class="modal-box-header">
+      <span class="modal-box-title" id="modal-form-title">Add Ibadah Activity</span>
+      <button class="modal-x-btn" data-modal-close aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal-box-body">
+      <div class="modal-field-label">Activity name</div>
+      <div class="input-field input-active" style="margin-bottom:0.875rem;">Fajr Prayer</div>
+      <div class="modal-field-label">Category</div>
+      <div class="chips-row" style="margin-bottom:1.25rem;">
+        <button class="chip chip-active">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Worship
+        </button>
+        <button class="chip chip-inactive">Quran</button>
+        <button class="chip chip-inactive">Charity</button>
+        <button class="chip chip-inactive">Personal</button>
+      </div>
+      <div class="modal-field-label">Notes (optional)</div>
+      <textarea class="form-textarea" placeholder="Any notes for today's prayer…" rows="3"></textarea>
+    </div>
+    <div class="modal-box-footer">
+      <button class="btn btn-ghost" data-modal-close>Cancel</button>
+      <button class="btn btn-primary">Save Activity</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-confirm" role="alertdialog" aria-modal="true" aria-labelledby="modal-confirm-title" aria-describedby="modal-confirm-desc" aria-hidden="true">
+  <div class="modal-box modal-box--compact">
+    <div class="modal-confirm-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="var(--error)" stroke-width="2" stroke-linecap="round"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="var(--error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="modal-confirm-title" id="modal-confirm-title">Delete activity?</div>
+    <div class="modal-confirm-desc" id="modal-confirm-desc">This will permanently remove "Fajr Prayer" and all its history. This cannot be undone.</div>
+    <div class="modal-box-footer">
+      <button class="btn btn-ghost" data-modal-close>Cancel</button>
+      <button class="btn btn-destructive">Delete</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

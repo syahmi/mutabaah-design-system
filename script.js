@@ -233,6 +233,54 @@ document.querySelectorAll('[data-token]').forEach(el => {
   });
 });
 
+// ── Modal demos ──
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const focusable = overlay.querySelector('button:not([tabindex="-1"]), input, textarea, [tabindex="0"]');
+  if (focusable) requestAnimationFrame(() => focusable.focus());
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  // Return focus to the trigger
+  const trigger = document.querySelector(`[data-opens="${id}"], #open-modal-form, #open-modal-confirm`);
+  const openFormBtn = document.getElementById('open-modal-form');
+  const openConfirmBtn = document.getElementById('open-modal-confirm');
+  if (id === 'modal-form' && openFormBtn) openFormBtn.focus();
+  if (id === 'modal-confirm' && openConfirmBtn) openConfirmBtn.focus();
+}
+
+const openFormBtn = document.getElementById('open-modal-form');
+if (openFormBtn) openFormBtn.addEventListener('click', () => openModal('modal-form'));
+
+const openConfirmBtn = document.getElementById('open-modal-confirm');
+if (openConfirmBtn) openConfirmBtn.addEventListener('click', () => openModal('modal-confirm'));
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  // Close on backdrop click
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay.id); });
+  // Close buttons inside modal
+  overlay.querySelectorAll('[data-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(overlay.id));
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const open = document.querySelector('.modal-overlay.open');
+    if (open) closeModal(open.id);
+  }
+});
+
 // ── Copy icon name to clipboard ──
 document.querySelectorAll('.icon-card').forEach(card => {
   const nameEl = card.querySelector('.icon-card-name');
