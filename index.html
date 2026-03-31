@@ -47,20 +47,28 @@
       </div>
       <span class="nav-title">Mutabaah Amal</span>
     </a>
-    <div class="nav-links-wrap">
-      <div class="nav-links">
-        <a href="#typography" class="nav-link">Typography</a>
-        <a href="#colors" class="nav-link">Colors</a>
-        <a href="#spacing" class="nav-link">Spacing</a>
-        <a href="#iconography" class="nav-link">Icons</a>
-        <a href="#components" class="nav-link">Components</a>
-        <a href="#form-controls" class="nav-link">Form Controls</a>
-        <a href="#tasks" class="nav-link">Tasks</a>
-        <a href="#navigation" class="nav-link">Navigation</a>
-        <a href="#empty-states" class="nav-link">Empty States</a>
-        <a href="#motion" class="nav-link">Motion</a>
-      </div>
-    </div>
+
+    <button class="megamenu-toggle" id="megamenu-toggle"
+            aria-expanded="false" aria-controls="megamenu-panel"
+            aria-label="Browse design system sections">
+      <!-- Grid (apps) icon — desktop default -->
+      <svg class="toggle-icon-menu" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <circle cx="3.5" cy="3.5" r="1.75" fill="currentColor"/>
+        <circle cx="10.5" cy="3.5" r="1.75" fill="currentColor"/>
+        <circle cx="3.5" cy="10.5" r="1.75" fill="currentColor"/>
+        <circle cx="10.5" cy="10.5" r="1.75" fill="currentColor"/>
+      </svg>
+      <!-- X icon — shown when panel is open -->
+      <svg class="toggle-icon-close" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M2.5 2.5l9 9M11.5 2.5l-9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+      <!-- Label + chevron (desktop only) -->
+      <span class="megamenu-toggle-label"><span id="megamenu-active-label">Sections</span></span>
+      <svg class="megamenu-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M2.5 4L6 7.5L9.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
     <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
       <!-- Moon — shown in light mode -->
       <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
@@ -68,6 +76,171 @@
       <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
       <span id="theme-toggle-label">Dark</span>
     </button>
+
+  <!-- ── Megamenu panel ── -->
+  <div class="megamenu-panel" id="megamenu-panel" aria-hidden="true">
+    <div class="megamenu-panel-inner">
+      <div class="megamenu-groups">
+
+        <div class="megamenu-group">
+          <div class="megamenu-group-label">
+            <span>Foundations</span><span class="megamenu-group-count">3</span>
+          </div>
+          <a href="#typography" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M8 4v8M5 12h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Typography</span>
+              <span class="megamenu-link-desc">Typefaces, weights &amp; type scale</span>
+            </span>
+          </a>
+          <a href="#colors" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="10" r="1.25" fill="currentColor"/><circle cx="8" cy="5.5" r="1.25" fill="currentColor"/><circle cx="10" cy="10" r="1.25" fill="currentColor"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Colors</span>
+              <span class="megamenu-link-desc">Tokens, palette &amp; dark mode</span>
+            </span>
+          </a>
+          <a href="#spacing" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5.5" width="12" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M5 5.5v2M8 5.5v3M11 5.5v2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Spacing</span>
+              <span class="megamenu-link-desc">Scale, radius, shadows &amp; duration</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="megamenu-group">
+          <div class="megamenu-group-label">
+            <span>UI Components</span><span class="megamenu-group-count">4</span>
+          </div>
+          <a href="#components" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Components</span>
+              <span class="megamenu-link-desc">Buttons, chips &amp; tags</span>
+            </span>
+          </a>
+          <a href="#form-controls" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2.5 2.5L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Form Controls</span>
+              <span class="megamenu-link-desc">Inputs, checkbox, radio &amp; toggle</span>
+            </span>
+          </a>
+          <a href="#avatar" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6.5" r="2" stroke="currentColor" stroke-width="1.25"/><path d="M4.5 13C4.5 11 6.1 9.5 8 9.5C9.9 9.5 11.5 11 11.5 13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Avatar</span>
+              <span class="megamenu-link-desc">Sizes, variants &amp; groups</span>
+            </span>
+          </a>
+          <a href="#overlays" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="3" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Overlays</span>
+              <span class="megamenu-link-desc">Modal, dialog &amp; tooltip</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="megamenu-group">
+          <div class="megamenu-group-label">
+            <span>App Patterns</span><span class="megamenu-group-count">4</span>
+          </div>
+          <a href="#tasks" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4.5l1.5 1.5L7 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="9" r="1.25" stroke="currentColor" stroke-width="1.25"/><path d="M9.5 9h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="13" r="1.25" stroke="currentColor" stroke-width="1.25"/><path d="M9.5 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Tasks</span>
+              <span class="megamenu-link-desc">Pending &amp; completed states</span>
+            </span>
+          </a>
+          <a href="#navigation" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10.5h12" stroke="currentColor" stroke-width="1.25"/><circle cx="5" cy="12.5" r="0.875" fill="currentColor"/><circle cx="8" cy="12.5" r="0.875" fill="currentColor"/><circle cx="11" cy="12.5" r="0.875" fill="currentColor"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Navigation</span>
+              <span class="megamenu-link-desc">iOS &amp; Android tab bars</span>
+            </span>
+          </a>
+          <a href="#empty-states" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 9.5l2-5h6l2 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="9.5" width="12" height="4.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 9.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Empty States</span>
+              <span class="megamenu-link-desc">Illustrations &amp; messaging</span>
+            </span>
+          </a>
+          <a href="#data-table" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h12M2 9.5h12" stroke="currentColor" stroke-width="1.25"/><path d="M6 6v8" stroke="currentColor" stroke-width="1.25"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Data Table</span>
+              <span class="megamenu-link-desc">Sortable, selectable rows</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="megamenu-group">
+          <div class="megamenu-group-label">
+            <span>Design Language</span><span class="megamenu-group-count">3</span>
+          </div>
+          <a href="#iconography" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 9.5C6 10.5 7 11 8 11C9 11 10 10.5 10.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="7" r="0.875" fill="currentColor"/><circle cx="10" cy="7" r="0.875" fill="currentColor"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Iconography</span>
+              <span class="megamenu-link-desc">52 curated Lucide icons</span>
+            </span>
+          </a>
+          <a href="#breadcrumb" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 5.5v.01M3 10.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Breadcrumb</span>
+              <span class="megamenu-link-desc">Wayfinding &amp; pagination</span>
+            </span>
+          </a>
+          <a href="#motion" class="nav-link megamenu-link">
+            <span class="megamenu-link-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 2L4.5 8.5h5L6 14l6.5-7.5H8.5L9.5 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="megamenu-link-body">
+              <span class="megamenu-link-title">Motion</span>
+              <span class="megamenu-link-desc">Easing, duration &amp; voice</span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="megamenu-footer">
+        <span>14 sections</span>
+        <span class="megamenu-footer-dot" aria-hidden="true"></span>
+        <span data-version="full">Design System v1.5.0 · March 2026</span>
+      </div>
+    </div>
+  </div>
   </div>
 </nav>
 

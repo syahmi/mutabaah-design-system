@@ -26,6 +26,57 @@ document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; 
 // ── Lucide icons ──
 if (window.lucide) lucide.createIcons();
 
+// ── Megamenu ──
+const megamenuToggle = document.getElementById('megamenu-toggle');
+const megamenuPanel  = document.getElementById('megamenu-panel');
+const megamenuActiveLabel = document.getElementById('megamenu-active-label');
+
+const SECTION_LABELS = {
+  typography: 'Typography', colors: 'Colors', spacing: 'Spacing',
+  iconography: 'Iconography', components: 'Components',
+  'form-controls': 'Form Controls', tasks: 'Tasks', navigation: 'Navigation',
+  'empty-states': 'Empty States', motion: 'Motion', avatar: 'Avatar',
+  overlays: 'Overlays', 'data-table': 'Data Table', breadcrumb: 'Breadcrumb',
+};
+
+function openMegamenu() {
+  megamenuToggle.setAttribute('aria-expanded', 'true');
+  megamenuPanel.classList.add('open');
+  megamenuPanel.setAttribute('aria-hidden', 'false');
+}
+function closeMegamenu() {
+  megamenuToggle.setAttribute('aria-expanded', 'false');
+  megamenuPanel.classList.remove('open');
+  megamenuPanel.setAttribute('aria-hidden', 'true');
+}
+
+if (megamenuToggle) {
+  megamenuToggle.addEventListener('click', () => {
+    megamenuPanel.classList.contains('open') ? closeMegamenu() : openMegamenu();
+  });
+}
+
+// Close on outside click
+document.addEventListener('click', e => {
+  if (megamenuPanel && megamenuPanel.classList.contains('open') &&
+      !megamenuPanel.contains(e.target) && !megamenuToggle.contains(e.target)) {
+    closeMegamenu();
+  }
+});
+
+// Close on Escape (megamenu takes priority; modal handled separately)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && megamenuPanel && megamenuPanel.classList.contains('open')) {
+    closeMegamenu();
+    megamenuToggle.focus();
+  }
+});
+
+// Close when a link inside the panel is clicked
+megamenuPanel && megamenuPanel.querySelectorAll('.megamenu-link').forEach(link => {
+  link.addEventListener('click', closeMegamenu);
+});
+
 // ── Sticky nav: highlight active section ──
 const navLinks = document.querySelectorAll('.nav-link');
 
@@ -40,9 +91,12 @@ const observer = new IntersectionObserver(entries => {
       if (active) {
         active.classList.add('active');
         active.setAttribute('aria-current', 'true');
-        // Defer scrollIntoView to the next frame so the browser commits the
-        // classList writes above before reading layout to perform the scroll.
-        requestAnimationFrame(() => active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' }));
+      }
+      // Update toggle button label and accent state
+      if (megamenuActiveLabel) {
+        const label = SECTION_LABELS[entry.target.id];
+        megamenuActiveLabel.textContent = label || 'Sections';
+        if (megamenuToggle) megamenuToggle.classList.toggle('has-active', !!label);
       }
     }
   });
@@ -165,23 +219,6 @@ if (motionSection) {
     });
   }, { threshold: 0.25 });
   motionObserver.observe(motionSection);
-}
-
-// ── Nav overflow fade (mobile) ──
-const navLinksEl = document.querySelector('.nav-links');
-const navLinksWrap = document.querySelector('.nav-links-wrap');
-
-function updateNavFade() {
-  if (!navLinksEl || !navLinksWrap) return;
-  const { scrollLeft, scrollWidth, clientWidth } = navLinksEl;
-  navLinksWrap.classList.toggle('fade-left',  scrollLeft > 4);
-  navLinksWrap.classList.toggle('fade-right', scrollLeft < scrollWidth - clientWidth - 4);
-}
-
-if (navLinksEl) {
-  navLinksEl.addEventListener('scroll', updateNavFade, { passive: true });
-  window.addEventListener('resize', updateNavFade, { passive: true });
-  updateNavFade();
 }
 
 // ── Pause gentleFloat when off-screen ──
