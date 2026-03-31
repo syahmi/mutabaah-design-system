@@ -52,7 +52,7 @@ document.querySelectorAll('section[id]').forEach(section => observer.observe(sec
 
 // ── Shared clipboard copy utility ──
 function copyToClipboard(text, onSuccess) {
-  navigator.clipboard.writeText(text).then(onSuccess).catch(() => {});
+  navigator.clipboard.writeText(text).then(onSuccess).catch(() => { announce('Copy failed. Try selecting and copying manually.'); });
 }
 
 // ── Aria-live announcement region ──
