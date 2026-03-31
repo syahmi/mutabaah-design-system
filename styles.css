@@ -121,6 +121,7 @@
   --radius-pill: 100px;
 
   /* Elevation tokens */
+  --shadow-0: none;
   --shadow-1: 0 1px 4px rgba(28,61,46,0.06);
   --shadow-2: 0 2px 12px rgba(28,61,46,0.10);
   --shadow-3: 0 4px 24px rgba(28,61,46,0.16);
