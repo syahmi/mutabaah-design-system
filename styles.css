@@ -1167,7 +1167,7 @@ footer {
 
 .avatar-initials { background: var(--primary); color: #fff; }
 .avatar-sage     { background: var(--sage);    color: #fff; }
-.avatar-gold     { background: var(--gold);    color: #fff; }
+.avatar-gold     { background: var(--gold);    color: #1A1816; }
 .avatar-fallback { background: var(--surface-alt); color: var(--text-3); }
 .avatar-image    { background: var(--surface-alt); }
 .avatar-img-placeholder {
