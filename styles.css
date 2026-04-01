@@ -204,7 +204,7 @@
   font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500;
   color: var(--text-2); background: var(--surface-alt);
   border: 1px solid var(--border); border-radius: var(--radius-pill);
-  padding: 0.3125rem 0.75rem 0.3125rem 0.625rem; cursor: pointer;
+  padding: 0.4375rem 0.75rem 0.4375rem 0.625rem; cursor: pointer;
   transition: background var(--duration-fast), color var(--duration-fast);
 }
 .theme-toggle:hover { background: var(--border); color: var(--text-1); }
@@ -1422,6 +1422,7 @@ footer {
     padding: 0.5rem;
     border-radius: var(--radius-md);
   }
+  .theme-toggle { padding-top: 0.5rem; padding-bottom: 0.5rem; }
   .megamenu-toggle[aria-expanded="true"] .megamenu-close-label {
     display: block;
     font-size: 0.75rem; font-weight: 600;
