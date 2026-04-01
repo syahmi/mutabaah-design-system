@@ -53,13 +53,17 @@ No manual build or push is required.
 | 01 | **Typography** | Inter Tight (display), Inter (body) — full type scale |
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
 | 03 | **Spacing** | Base spacing scale (0.25–5rem), component and layout rhythm, border-radius tokens, elevation scale |
-| 04 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
-| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders (task list, dashboard card, profile header, input form), alerts |
-| 06 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
-| 07 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 08 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
-| 09 | **Empty States** | Three variants with illustration and copy guidelines |
-| 10 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
+| 04 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders (task list, dashboard card, profile header, input form), alerts |
+| 05 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
+| 06 | **Avatar** | Sizes, variants, and groups |
+| 07 | **Overlays** | Modal, dialog, and tooltip — structure, variants, and interaction patterns |
+| 08 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
+| 09 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
+| 10 | **Empty States** | Three variants with illustration and copy guidelines |
+| 11 | **Data Table** | Sortable, selectable rows with header and pagination |
+| 12 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
+| 13 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
+| 14 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
 
@@ -267,6 +271,7 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 
 | Feature | Notes |
 |---------|-------|
+| Megamenu | Sections panel in the sticky nav — keyboard and click accessible, closes on Escape or outside click, highlights the active section |
 | Copy hex / CSS variable | Click any colour swatch in the Colors section |
 | Copy token | Click any radius, shadow, or duration token |
 | Copy icon name | Click any icon card in the Iconography section |
