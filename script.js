@@ -36,7 +36,7 @@ const SECTION_LABELS = {
   iconography: 'Iconography', components: 'Components',
   'form-controls': 'Form Controls', tasks: 'Tasks', navigation: 'Navigation',
   'empty-states': 'Empty States', motion: 'Motion', avatar: 'Avatar',
-  overlays: 'Overlays', 'data-table': 'Data Table', breadcrumb: 'Breadcrumb',
+  overlays: 'Overlays', breadcrumb: 'Breadcrumb',
 };
 
 function openMegamenu() {

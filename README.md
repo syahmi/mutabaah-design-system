@@ -60,10 +60,9 @@ No manual build or push is required.
 | 08 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
 | 09 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
 | 10 | **Empty States** | Three variants with illustration and copy guidelines |
-| 11 | **Data Table** | Sortable, selectable rows with header and pagination |
-| 12 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
-| 13 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
-| 14 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
+| 11 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
+| 12 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
+| 13 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
 
 ## Design Tokens
 

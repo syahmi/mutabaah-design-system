@@ -189,15 +189,6 @@
               <span class="megamenu-link-desc">Illustrations &amp; messaging</span>
             </span>
           </a>
-          <a href="#data-table" class="nav-link megamenu-link">
-            <span class="megamenu-link-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h12M2 9.5h12" stroke="currentColor" stroke-width="1.25"/><path d="M6 6v8" stroke="currentColor" stroke-width="1.25"/></svg>
-            </span>
-            <span class="megamenu-link-body">
-              <span class="megamenu-link-title">Data Table</span>
-              <span class="megamenu-link-desc">Sortable, selectable rows</span>
-            </span>
-          </a>
         </div>
 
         <div class="megamenu-group">
@@ -261,7 +252,6 @@
           <a href="#motion" class="hero-chip">Motion &amp; Tone</a>
           <a href="#avatar" class="hero-chip">Avatar</a>
           <a href="#overlays" class="hero-chip">Overlays</a>
-          <a href="#data-table" class="hero-chip">Data Table</a>
           <a href="#breadcrumb" class="hero-chip">Breadcrumb</a>
         </div>
       </div>
@@ -1808,114 +1798,9 @@
     <p class="component-note">Tooltips use CSS <code class="code-pill code-pill--sm">:hover</code> / <code class="code-pill code-pill--sm">:focus-within</code> — no JS required. Add <code class="code-pill code-pill--sm">role="tooltip"</code> and link via <code class="code-pill code-pill--sm">aria-describedby</code> on the trigger.</p>
   </section>
 
-  <!-- ── 13 DATA TABLE ── -->
-  <section id="data-table">
-    <div class="section-num">13</div>
-    <h2 class="section-title">Data Table</h2>
-
-    <div class="sub-label">Activity Log</div>
-    <div class="table-scroll">
-      <table class="data-table" aria-label="Activity log">
-        <thead>
-          <tr>
-            <th class="dt-col-check">
-              <label class="form-check" style="display:inline-flex;">
-                <input type="checkbox" aria-label="Select all rows" />
-                <span class="form-check-box"></span>
-              </label>
-            </th>
-            <th class="dt-col-sortable dt-sorted-asc" aria-sort="ascending" tabindex="0">
-              Activity
-              <svg class="dt-sort-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </th>
-            <th>Category</th>
-            <th class="dt-col-sortable" aria-sort="none" tabindex="0">
-              Streak
-              <svg class="dt-sort-icon dt-sort-inactive" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3M8 6l-3 3-3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </th>
-            <th class="dt-col-sortable" aria-sort="none" tabindex="0">
-              Last Done
-              <svg class="dt-sort-icon dt-sort-inactive" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M2 4l3-3 3 3M8 6l-3 3-3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </th>
-            <th>Status</th>
-            <th class="dt-col-actions"><span class="sr-only">Actions</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Selected row -->
-          <tr class="dt-row-selected">
-            <td class="dt-col-check">
-              <label class="form-check" style="display:inline-flex;">
-                <input type="checkbox" checked aria-label="Select Fajr Prayer" />
-                <span class="form-check-box"></span>
-              </label>
-            </td>
-            <td class="dt-cell-primary">Fajr Prayer</td>
-            <td><span class="tag tag-worship">Worship</span></td>
-            <td class="dt-streak">
-              <span class="dt-streak-num">14</span>
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z" fill="var(--gold)" stroke="var(--gold)" stroke-width="0.5" stroke-linejoin="round"/></svg>
-            </td>
-            <td class="dt-cell-meta">Today</td>
-            <td><span class="status-badge status-done">Done</span></td>
-            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Fajr Prayer" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
-          </tr>
-          <!-- Default row -->
-          <tr>
-            <td class="dt-col-check">
-              <label class="form-check" style="display:inline-flex;">
-                <input type="checkbox" aria-label="Select Quran Reading" />
-                <span class="form-check-box"></span>
-              </label>
-            </td>
-            <td class="dt-cell-primary">Quran Reading</td>
-            <td><span class="tag tag-quran">Quran</span></td>
-            <td class="dt-streak"><span class="dt-streak-num">7</span>
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L7.5 4.5L11 5L8.5 7.5L9 11L6 9.5L3 11L3.5 7.5L1 5L4.5 4.5Z" fill="var(--gold)" stroke="var(--gold)" stroke-width="0.5" stroke-linejoin="round"/></svg>
-            </td>
-            <td class="dt-cell-meta">Yesterday</td>
-            <td><span class="status-badge status-pending">Pending</span></td>
-            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Quran Reading" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
-          </tr>
-          <!-- Missed row -->
-          <tr>
-            <td class="dt-col-check">
-              <label class="form-check" style="display:inline-flex;">
-                <input type="checkbox" aria-label="Select Sadaqah" />
-                <span class="form-check-box"></span>
-              </label>
-            </td>
-            <td class="dt-cell-primary">Sadaqah</td>
-            <td><span class="tag tag-charity">Charity</span></td>
-            <td class="dt-streak"><span class="dt-streak-num">3</span></td>
-            <td class="dt-cell-meta">2 days ago</td>
-            <td><span class="status-badge status-missed">Missed</span></td>
-            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Sadaqah" tabindex="-1"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
-          </tr>
-          <!-- Archived / disabled row -->
-          <tr class="dt-row-muted">
-            <td class="dt-col-check">
-              <label class="form-check" style="display:inline-flex;">
-                <input type="checkbox" disabled aria-label="Select Tahajjud (archived)" />
-                <span class="form-check-box"></span>
-              </label>
-            </td>
-            <td class="dt-cell-primary dt-cell-muted">Tahajjud</td>
-            <td><span class="tag tag-worship">Worship</span></td>
-            <td class="dt-streak dt-cell-muted">—</td>
-            <td class="dt-cell-meta dt-cell-muted">Archived</td>
-            <td><span class="status-badge status-archived">Archived</span></td>
-            <td class="dt-col-actions"><button class="dt-action-btn" aria-label="More options for Tahajjud" tabindex="-1" disabled><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="3" r="1" fill="currentColor"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="11" r="1" fill="currentColor"/></svg></button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="component-note">Sortable columns use <code class="code-pill code-pill--sm">aria-sort</code>. Selected rows use <code class="code-pill code-pill--sm">.dt-row-selected</code>. Always wrap in <code class="code-pill code-pill--sm">.table-scroll</code> for responsive overflow.</p>
-  </section>
-
-  <!-- ── 14 BREADCRUMB & PAGINATION ── -->
+  <!-- ── 13 BREADCRUMB & PAGINATION ── -->
   <section id="breadcrumb">
-    <div class="section-num">14</div>
+    <div class="section-num">13</div>
     <h2 class="section-title">Breadcrumb &amp; Pagination</h2>
 
     <div class="sub-label">Breadcrumb</div>
