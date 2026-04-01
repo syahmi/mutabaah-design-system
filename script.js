@@ -275,9 +275,10 @@ function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
   overlay.setAttribute('aria-hidden', 'false');
+  overlay.removeAttribute('inert');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  const focusable = overlay.querySelector('button:not([tabindex="-1"]), input, textarea, [tabindex="0"]');
+  const focusable = overlay.querySelector('button, input, textarea, [tabindex="0"]');
   if (focusable) requestAnimationFrame(() => focusable.focus());
 }
 
@@ -285,6 +286,7 @@ function closeModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
   overlay.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('inert', '');
   overlay.classList.remove('open');
   document.body.style.overflow = '';
   // Return focus to the trigger
