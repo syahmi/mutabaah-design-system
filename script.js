@@ -18,13 +18,64 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // ── Version ──
-const VERSION = '1.4.2';
-const DATE = 'March 2026';
+const VERSION = '1.5.1';
+const DATE = 'April 2026';
 document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
 document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });
 
 // ── Lucide icons ──
 if (window.lucide) lucide.createIcons();
+
+// ── Megamenu ──
+const megamenuToggle = document.getElementById('megamenu-toggle');
+const megamenuPanel  = document.getElementById('megamenu-panel');
+const megamenuActiveLabel = document.getElementById('megamenu-active-label');
+
+const SECTION_LABELS = {
+  typography: 'Typography', colors: 'Colors', spacing: 'Spacing',
+  iconography: 'Iconography', components: 'Components',
+  'form-controls': 'Form Controls', tasks: 'Tasks', navigation: 'Navigation',
+  'empty-states': 'Empty States', motion: 'Motion', avatar: 'Avatar',
+  overlays: 'Overlays', 'data-table': 'Data Table', breadcrumb: 'Breadcrumb',
+};
+
+function openMegamenu() {
+  megamenuToggle.setAttribute('aria-expanded', 'true');
+  megamenuPanel.classList.add('open');
+  megamenuPanel.setAttribute('aria-hidden', 'false');
+}
+function closeMegamenu() {
+  megamenuToggle.setAttribute('aria-expanded', 'false');
+  megamenuPanel.classList.remove('open');
+  megamenuPanel.setAttribute('aria-hidden', 'true');
+}
+
+if (megamenuToggle) {
+  megamenuToggle.addEventListener('click', () => {
+    megamenuPanel.classList.contains('open') ? closeMegamenu() : openMegamenu();
+  });
+}
+
+// Close on outside click
+document.addEventListener('click', e => {
+  if (megamenuPanel && megamenuPanel.classList.contains('open') &&
+      !megamenuPanel.contains(e.target) && !megamenuToggle.contains(e.target)) {
+    closeMegamenu();
+  }
+});
+
+// Close on Escape (megamenu takes priority; modal handled separately)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && megamenuPanel && megamenuPanel.classList.contains('open')) {
+    closeMegamenu();
+    megamenuToggle.focus();
+  }
+});
+
+// Close when a link inside the panel is clicked
+megamenuPanel && megamenuPanel.querySelectorAll('.megamenu-link').forEach(link => {
+  link.addEventListener('click', closeMegamenu);
+});
 
 // ── Sticky nav: highlight active section ──
 const navLinks = document.querySelectorAll('.nav-link');
@@ -40,9 +91,12 @@ const observer = new IntersectionObserver(entries => {
       if (active) {
         active.classList.add('active');
         active.setAttribute('aria-current', 'true');
-        // Defer scrollIntoView to the next frame so the browser commits the
-        // classList writes above before reading layout to perform the scroll.
-        requestAnimationFrame(() => active.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' }));
+      }
+      // Update toggle button label and accent state
+      if (megamenuActiveLabel) {
+        const label = SECTION_LABELS[entry.target.id];
+        megamenuActiveLabel.textContent = label || 'Sections';
+        if (megamenuToggle) megamenuToggle.classList.toggle('has-active', !!label);
       }
     }
   });
@@ -167,23 +221,6 @@ if (motionSection) {
   motionObserver.observe(motionSection);
 }
 
-// ── Nav overflow fade (mobile) ──
-const navLinksEl = document.querySelector('.nav-links');
-const navLinksWrap = document.querySelector('.nav-links-wrap');
-
-function updateNavFade() {
-  if (!navLinksEl || !navLinksWrap) return;
-  const { scrollLeft, scrollWidth, clientWidth } = navLinksEl;
-  navLinksWrap.classList.toggle('fade-left',  scrollLeft > 4);
-  navLinksWrap.classList.toggle('fade-right', scrollLeft < scrollWidth - clientWidth - 4);
-}
-
-if (navLinksEl) {
-  navLinksEl.addEventListener('scroll', updateNavFade, { passive: true });
-  window.addEventListener('resize', updateNavFade, { passive: true });
-  updateNavFade();
-}
-
 // ── Pause gentleFloat when off-screen ──
 const illusEls = document.querySelectorAll('.empty-state-illus');
 if (illusEls.length) {
@@ -231,6 +268,54 @@ document.querySelectorAll('[data-token]').forEach(el => {
       handleTokenCopy();
     }
   });
+});
+
+// ── Modal demos ──
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const focusable = overlay.querySelector('button:not([tabindex="-1"]), input, textarea, [tabindex="0"]');
+  if (focusable) requestAnimationFrame(() => focusable.focus());
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  // Return focus to the trigger
+  const trigger = document.querySelector(`[data-opens="${id}"], #open-modal-form, #open-modal-confirm`);
+  const openFormBtn = document.getElementById('open-modal-form');
+  const openConfirmBtn = document.getElementById('open-modal-confirm');
+  if (id === 'modal-form' && openFormBtn) openFormBtn.focus();
+  if (id === 'modal-confirm' && openConfirmBtn) openConfirmBtn.focus();
+}
+
+const openFormBtn = document.getElementById('open-modal-form');
+if (openFormBtn) openFormBtn.addEventListener('click', () => openModal('modal-form'));
+
+const openConfirmBtn = document.getElementById('open-modal-confirm');
+if (openConfirmBtn) openConfirmBtn.addEventListener('click', () => openModal('modal-confirm'));
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  // Close on backdrop click
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay.id); });
+  // Close buttons inside modal
+  overlay.querySelectorAll('[data-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeModal(overlay.id));
+  });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const open = document.querySelector('.modal-overlay.open');
+    if (open) closeModal(open.id);
+  }
 });
 
 // ── Copy icon name to clipboard ──
