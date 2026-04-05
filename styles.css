@@ -1404,7 +1404,6 @@ footer {
   .tone-grid { grid-template-columns: 1fr; gap: 0.75rem; }
   .cards-grid { gap: 0.75rem; }
   .card-hero { width: 100%; }
-  .nav-note { flex-direction: column; gap: 0.25rem; }
   .icon-meta-row { grid-template-columns: 1fr; }
 }
 
