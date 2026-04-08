@@ -259,6 +259,7 @@ section:last-child { border-bottom: none; }
 .nav-search {
   position: relative; margin: 0 0.5rem; flex: 1; max-width: 240px;
 }
+.megamenu-search { display: none; }
 .nav-search-input-wrap { position: relative; display: flex; align-items: center; }
 .nav-search-icon {
   position: absolute; left: 0.75rem; color: var(--text-3); pointer-events: none;
@@ -294,6 +295,14 @@ section:last-child { border-bottom: none; }
 
 @media (max-width: 640px) {
   .nav-search { display: none; }
+  .megamenu-search {
+    display: block; margin-bottom: 0.75rem; position: relative;
+    padding: 0 0.5rem;
+  }
+  .megamenu-search .nav-search-results {
+    top: calc(100% + 2px); width: 100%; max-width: none;
+    max-height: calc(100svh - 10rem);
+  }
 }
 
 /* ── Megamenu toggle ── */

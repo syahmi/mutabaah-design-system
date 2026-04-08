@@ -151,15 +151,14 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
 // ── Search ──
-const searchInput = document.getElementById('nav-search-input');
-const searchResults = document.getElementById('nav-search-results');
+function setupSearch(inputEl, resultsEl) {
+  if (!inputEl || !resultsEl) return;
 
-if (searchInput && searchResults) {
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
+  inputEl.addEventListener('input', () => {
+    const query = inputEl.value.toLowerCase().trim();
     if (!query) {
-      searchResults.classList.remove('open');
-      searchResults.setAttribute('aria-hidden', 'true');
+      resultsEl.classList.remove('open');
+      resultsEl.setAttribute('aria-hidden', 'true');
       return;
     }
 
@@ -167,13 +166,13 @@ if (searchInput && searchResults) {
       label.toLowerCase().includes(query) || id.toLowerCase().includes(query)
     );
 
-    renderSearchResults(matches);
+    renderSearchResults(matches, resultsEl, inputEl);
   });
 
-  function renderSearchResults(matches) {
-    searchResults.innerHTML = '';
+  function renderSearchResults(matches, container, input) {
+    container.innerHTML = '';
     if (matches.length === 0) {
-      searchResults.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
+      container.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
     } else {
       matches.forEach(([id, label]) => {
         const item = document.createElement('a');
@@ -181,43 +180,39 @@ if (searchInput && searchResults) {
         item.className = 'nav-search-item';
         item.textContent = label;
         item.addEventListener('click', () => {
-          searchResults.classList.remove('open');
-          searchResults.setAttribute('aria-hidden', 'true');
-          searchInput.value = '';
+          container.classList.remove('open');
+          container.setAttribute('aria-hidden', 'true');
+          input.value = '';
+          // If megamenu is open (mobile), close it
+          if (megamenuPanel && megamenuPanel.classList.contains('open')) {
+            closeMegamenu();
+          }
         });
-        searchResults.appendChild(item);
+        container.appendChild(item);
       });
     }
-    searchResults.classList.add('open');
-    searchResults.setAttribute('aria-hidden', 'false');
+    container.classList.add('open');
+    container.setAttribute('aria-hidden', 'false');
   }
 
-  // Close search on outside click
-  document.addEventListener('click', e => {
-    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-      searchResults.classList.remove('open');
-      searchResults.setAttribute('aria-hidden', 'true');
-    }
-  });
-
   // Keyboard navigation for search
-  searchInput.addEventListener('keydown', e => {
-    if (e.key === 'ArrowDown' && searchResults.classList.contains('open')) {
-      const firstItem = searchResults.querySelector('.nav-search-item');
+  inputEl.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' && resultsEl.classList.contains('open')) {
+      const firstItem = resultsEl.querySelector('.nav-search-item');
       if (firstItem) {
         e.preventDefault();
         firstItem.focus();
       }
     }
     if (e.key === 'Escape') {
-      searchResults.classList.remove('open');
-      searchResults.setAttribute('aria-hidden', 'true');
-      searchInput.blur();
+      resultsEl.classList.remove('open');
+      resultsEl.setAttribute('aria-hidden', 'true');
+      inputEl.blur();
     }
   });
 
-  searchResults.addEventListener('keydown', e => {
-    const items = Array.from(searchResults.querySelectorAll('.nav-search-item'));
+  resultsEl.addEventListener('keydown', e => {
+    const items = Array.from(resultsEl.querySelectorAll('.nav-search-item'));
     const currentIndex = items.indexOf(document.activeElement);
 
     if (e.key === 'ArrowDown') {
@@ -226,17 +221,38 @@ if (searchInput && searchResults) {
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (currentIndex === 0) {
-        searchInput.focus();
+        inputEl.focus();
       } else {
         items[(currentIndex - 1 + items.length) % items.length].focus();
       }
     } else if (e.key === 'Escape') {
-      searchResults.classList.remove('open');
-      searchResults.setAttribute('aria-hidden', 'true');
-      searchInput.focus();
+      resultsEl.classList.remove('open');
+      resultsEl.setAttribute('aria-hidden', 'true');
+      inputEl.focus();
     }
   });
 }
+
+// Initialize both search bars
+setupSearch(document.getElementById('nav-search-input'), document.getElementById('nav-search-results'));
+setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
+
+// Close search results on outside click
+document.addEventListener('click', e => {
+  const sInput = document.getElementById('nav-search-input');
+  const sResults = document.getElementById('nav-search-results');
+  const mInput = document.getElementById('mobile-search-input');
+  const mResults = document.getElementById('mobile-search-results');
+
+  if (sInput && sResults && !sInput.contains(e.target) && !sResults.contains(e.target)) {
+    sResults.classList.remove('open');
+    sResults.setAttribute('aria-hidden', 'true');
+  }
+  if (mInput && mResults && !mInput.contains(e.target) && !mResults.contains(e.target)) {
+    mResults.classList.remove('open');
+    mResults.setAttribute('aria-hidden', 'true');
+  }
+});
 
 // ── Shared clipboard copy utility ──
 function copyToClipboard(text, onSuccess) {
