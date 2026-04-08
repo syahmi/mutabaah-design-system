@@ -258,9 +258,11 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 
 | Practice | Detail |
 |----------|--------|
+| Focus Trap | Focus is strictly trapped within active Modals and the Megamenu to prevent keyboard users from tabbing into background content |
+| Keyboard Nav | Megamenu and Search results support full arrow-key navigation (`Up`/`Down`/`Left`/`Right`) for rapid selection |
 | Focus ring | Unified `outline: 2px solid var(--primary); outline-offset: 2px` across all interactive elements including select and textarea, using `:focus-visible` to avoid showing rings on mouse clicks |
 | Disabled opacity | Consistent `opacity: 0.45` across buttons, chips, inputs, selects, textareas, and form controls |
-| Aria live region | `#copy-announcement` announces clipboard copy results to screen readers |
+| Aria live region | `#copy-announcement` announces clipboard copy results and search actions to screen readers |
 | Motion replay buttons | Each replay button carries a descriptive `aria-label` (e.g. `"Replay enter animation"`) |
 | Skip link | Visible-on-focus skip link to `#main-content` |
 | Semantic roles | `role="tablist"` / `role="tab"` / `aria-selected` on bottom navigation; `role="alert"` on alert components |
@@ -270,6 +272,7 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 
 | Feature | Notes |
 |---------|-------|
+| Component Search | Real-time filtering of sections and components via the sticky nav (Desktop) or Megamenu (Mobile) |
 | Megamenu | Sections panel in the sticky nav — keyboard and click accessible, closes on Escape or outside click, highlights the active section |
 | Copy hex / CSS variable | Click any colour swatch in the Colors section |
 | Copy token | Click any radius, shadow, or duration token |
