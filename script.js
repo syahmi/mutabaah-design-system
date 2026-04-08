@@ -1,3 +1,24 @@
+// ── Accessibility Helpers ──
+function trapFocus(element, e) {
+  if (e.key !== 'Tab') return;
+  const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (focusableElements.length === 0) return;
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus();
+      e.preventDefault();
+    }
+  } else {
+    if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
+      e.preventDefault();
+    }
+  }
+}
+
 // ── Theme toggle ──
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeToggleLabel = document.getElementById('theme-toggle-label');
@@ -8,6 +29,7 @@ function applyTheme(theme) {
   const isDark = theme === 'dark';
   themeToggleLabel.textContent = isDark ? 'Light' : 'Dark';
   themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  themeToggleBtn.setAttribute('aria-pressed', isDark);
 }
 
 // Sync label with whatever the inline script set on <html>
@@ -43,6 +65,8 @@ function openMegamenu() {
   megamenuToggle.setAttribute('aria-expanded', 'true');
   megamenuPanel.classList.add('open');
   megamenuPanel.setAttribute('aria-hidden', 'false');
+  const firstLink = megamenuPanel.querySelector('.megamenu-link');
+  if (firstLink) requestAnimationFrame(() => firstLink.focus());
 }
 function closeMegamenu() {
   megamenuToggle.setAttribute('aria-expanded', 'false');
@@ -63,6 +87,28 @@ document.addEventListener('click', e => {
     closeMegamenu();
   }
 });
+
+// Megamenu keyboard navigation
+if (megamenuPanel) {
+  megamenuPanel.addEventListener('keydown', e => {
+    trapFocus(megamenuPanel, e);
+
+    if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].includes(e.key)) {
+      const links = Array.from(megamenuPanel.querySelectorAll('.megamenu-link'));
+      const currentIndex = links.indexOf(document.activeElement);
+      if (currentIndex === -1) return;
+
+      e.preventDefault();
+      let nextIndex;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        nextIndex = (currentIndex + 1) % links.length;
+      } else {
+        nextIndex = (currentIndex - 1 + links.length) % links.length;
+      }
+      links[nextIndex].focus();
+    }
+  });
+}
 
 // Close on Escape (megamenu takes priority; modal handled separately)
 document.addEventListener('keydown', e => {
@@ -280,6 +326,10 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
   const focusable = overlay.querySelector('button, input, textarea, [tabindex="0"]');
   if (focusable) requestAnimationFrame(() => focusable.focus());
+
+  // Trap focus while modal is open
+  overlay._trapFocusHandler = (e) => trapFocus(overlay, e);
+  overlay.addEventListener('keydown', overlay._trapFocusHandler);
 }
 
 function closeModal(id) {
@@ -289,8 +339,14 @@ function closeModal(id) {
   overlay.setAttribute('inert', '');
   overlay.classList.remove('open');
   document.body.style.overflow = '';
+
+  // Remove focus trap
+  if (overlay._trapFocusHandler) {
+    overlay.removeEventListener('keydown', overlay._trapFocusHandler);
+    delete overlay._trapFocusHandler;
+  }
+
   // Return focus to the trigger
-  const trigger = document.querySelector(`[data-opens="${id}"], #open-modal-form, #open-modal-confirm`);
   const openFormBtn = document.getElementById('open-modal-form');
   const openConfirmBtn = document.getElementById('open-modal-confirm');
   if (id === 'modal-form' && openFormBtn) openFormBtn.focus();
