@@ -150,6 +150,94 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
+// ── Search ──
+const searchInput = document.getElementById('nav-search-input');
+const searchResults = document.getElementById('nav-search-results');
+
+if (searchInput && searchResults) {
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    if (!query) {
+      searchResults.classList.remove('open');
+      searchResults.setAttribute('aria-hidden', 'true');
+      return;
+    }
+
+    const matches = Object.entries(SECTION_LABELS).filter(([id, label]) => 
+      label.toLowerCase().includes(query) || id.toLowerCase().includes(query)
+    );
+
+    renderSearchResults(matches);
+  });
+
+  function renderSearchResults(matches) {
+    searchResults.innerHTML = '';
+    if (matches.length === 0) {
+      searchResults.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
+    } else {
+      matches.forEach(([id, label]) => {
+        const item = document.createElement('a');
+        item.href = `#${id}`;
+        item.className = 'nav-search-item';
+        item.textContent = label;
+        item.addEventListener('click', () => {
+          searchResults.classList.remove('open');
+          searchResults.setAttribute('aria-hidden', 'true');
+          searchInput.value = '';
+        });
+        searchResults.appendChild(item);
+      });
+    }
+    searchResults.classList.add('open');
+    searchResults.setAttribute('aria-hidden', 'false');
+  }
+
+  // Close search on outside click
+  document.addEventListener('click', e => {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.classList.remove('open');
+      searchResults.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Keyboard navigation for search
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' && searchResults.classList.contains('open')) {
+      const firstItem = searchResults.querySelector('.nav-search-item');
+      if (firstItem) {
+        e.preventDefault();
+        firstItem.focus();
+      }
+    }
+    if (e.key === 'Escape') {
+      searchResults.classList.remove('open');
+      searchResults.setAttribute('aria-hidden', 'true');
+      searchInput.blur();
+    }
+  });
+
+  searchResults.addEventListener('keydown', e => {
+    const items = Array.from(searchResults.querySelectorAll('.nav-search-item'));
+    const currentIndex = items.indexOf(document.activeElement);
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      items[(currentIndex + 1) % items.length].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentIndex === 0) {
+        searchInput.focus();
+      } else {
+        items[(currentIndex - 1 + items.length) % items.length].focus();
+      }
+    } else if (e.key === 'Escape') {
+      searchResults.classList.remove('open');
+      searchResults.setAttribute('aria-hidden', 'true');
+      searchInput.focus();
+    }
+  });
+}
+
 // ── Shared clipboard copy utility ──
 function copyToClipboard(text, onSuccess) {
   navigator.clipboard.writeText(text).then(onSuccess).catch(() => { announce('Copy failed. Try selecting and copying manually.'); });
