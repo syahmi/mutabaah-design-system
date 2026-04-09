@@ -150,6 +150,54 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 
+// ── Search Index ──
+let searchIndex = [];
+
+function buildSearchIndex() {
+  const index = [];
+
+  // 1. Sections from SECTION_LABELS (for consistency with megamenu)
+  Object.entries(SECTION_LABELS).forEach(([id, label]) => {
+    index.push({
+      id,
+      label,
+      type: 'Section',
+      category: 'Foundation'
+    });
+  });
+
+  // 2. Components/Sub-labels
+  document.querySelectorAll('section').forEach(section => {
+    const sectionTitle = section.querySelector('.section-title')?.textContent || '';
+    section.querySelectorAll('.sub-label').forEach(subLabel => {
+      const labelText = subLabel.textContent.trim();
+      if (labelText && !Object.values(SECTION_LABELS).includes(labelText)) {
+        index.push({
+          id: section.id,
+          label: labelText,
+          type: 'Component',
+          category: sectionTitle
+        });
+      }
+    });
+  });
+
+  // 3. Icons
+  document.querySelectorAll('.icon-card').forEach(card => {
+    const name = card.querySelector('.icon-card-name')?.textContent.trim();
+    if (name) {
+      index.push({
+        id: 'iconography',
+        label: name,
+        type: 'Icon',
+        category: 'Iconography'
+      });
+    }
+  });
+
+  searchIndex = index;
+}
+
 // ── Search ──
 function setupSearch(inputEl, resultsEl) {
   if (!inputEl || !resultsEl) return;
@@ -162,9 +210,12 @@ function setupSearch(inputEl, resultsEl) {
       return;
     }
 
-    const matches = Object.entries(SECTION_LABELS).filter(([id, label]) => 
-      label.toLowerCase().includes(query) || id.toLowerCase().includes(query)
-    );
+    // Filter index
+    const matches = searchIndex.filter(item => 
+      item.label.toLowerCase().includes(query) || 
+      item.type.toLowerCase().includes(query) ||
+      (item.category && item.category.toLowerCase().includes(query))
+    ).slice(0, 8); // Limit to 8 results for performance/UI
 
     renderSearchResults(matches, resultsEl, inputEl);
   });
@@ -174,21 +225,41 @@ function setupSearch(inputEl, resultsEl) {
     if (matches.length === 0) {
       container.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
     } else {
-      matches.forEach(([id, label]) => {
-        const item = document.createElement('a');
-        item.href = `#${id}`;
-        item.className = 'nav-search-item';
-        item.textContent = label;
-        item.addEventListener('click', () => {
+      matches.forEach(item => {
+        const resultItem = document.createElement('a');
+        resultItem.href = `#${item.id}`;
+        resultItem.className = 'nav-search-item';
+        
+        const labelWrapper = document.createElement('div');
+        labelWrapper.className = 'nav-search-item-label-wrap';
+        
+        const labelText = document.createElement('span');
+        labelText.className = 'nav-search-item-label';
+        labelText.textContent = item.label;
+        
+        const typeBadge = document.createElement('span');
+        typeBadge.className = `nav-search-badge nav-search-badge--${item.type.toLowerCase()}`;
+        typeBadge.textContent = item.type;
+        
+        labelWrapper.appendChild(labelText);
+        labelWrapper.appendChild(typeBadge);
+        
+        const categoryText = document.createElement('div');
+        categoryText.className = 'nav-search-item-category';
+        categoryText.textContent = item.category;
+        
+        resultItem.appendChild(labelWrapper);
+        resultItem.appendChild(categoryText);
+
+        resultItem.addEventListener('click', () => {
           container.classList.remove('open');
           container.setAttribute('aria-hidden', 'true');
           input.value = '';
-          // If megamenu is open (mobile), close it
           if (megamenuPanel && megamenuPanel.classList.contains('open')) {
             closeMegamenu();
           }
         });
-        container.appendChild(item);
+        container.appendChild(resultItem);
       });
     }
     container.classList.add('open');
@@ -499,3 +570,6 @@ document.querySelectorAll('.icon-card').forEach(card => {
     });
   });
 });
+
+// ── Initialize Search Index ──
+buildSearchIndex();
