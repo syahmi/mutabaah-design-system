@@ -229,6 +229,24 @@ function setupSearch(inputEl, resultsEl) {
         const resultItem = document.createElement('a');
         resultItem.href = `#${item.id}`;
         resultItem.className = 'nav-search-item';
+        if (item.type === 'Icon') resultItem.classList.add('nav-search-item--icon');
+        
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'nav-search-item-content';
+
+        if (item.type === 'Icon') {
+          const iconPreview = document.createElement('div');
+          iconPreview.className = 'nav-search-item-preview';
+          // Find the source icon in the DOM to clone it
+          const sourceCard = Array.from(document.querySelectorAll('.icon-card')).find(c => 
+            c.querySelector('.icon-card-name')?.textContent.trim() === item.label
+          );
+          if (sourceCard) {
+            const svg = sourceCard.querySelector('svg');
+            if (svg) iconPreview.appendChild(svg.cloneNode(true));
+          }
+          resultItem.appendChild(iconPreview);
+        }
         
         const labelWrapper = document.createElement('div');
         labelWrapper.className = 'nav-search-item-label-wrap';
@@ -248,8 +266,9 @@ function setupSearch(inputEl, resultsEl) {
         categoryText.className = 'nav-search-item-category';
         categoryText.textContent = item.category;
         
-        resultItem.appendChild(labelWrapper);
-        resultItem.appendChild(categoryText);
+        contentWrapper.appendChild(labelWrapper);
+        contentWrapper.appendChild(categoryText);
+        resultItem.appendChild(contentWrapper);
 
         resultItem.addEventListener('click', () => {
           container.classList.remove('open');
