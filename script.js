@@ -198,6 +198,53 @@ function buildSearchIndex() {
   searchIndex = index;
 }
 
+// ── Search Logic ──
+function getSearchScore(item, query) {
+  const label = item.label.toLowerCase();
+  const type = item.type.toLowerCase();
+  const cat = (item.category || '').toLowerCase();
+  const q = query.toLowerCase();
+
+  // 1. Exact match (Highest priority)
+  if (label === q) return 1000;
+  
+  // 2. Starts with query
+  if (label.startsWith(q)) return 800;
+  
+  // 3. Word starts with query (e.g. "Form Controls" matched by "Controls")
+  if (label.split(' ').some(word => word.startsWith(q))) return 600;
+
+  // 4. Contains query
+  if (label.includes(q)) return 400;
+
+  // 5. Type or Category match
+  if (type.startsWith(q) || cat.startsWith(q)) return 200;
+
+  // 6. Fuzzy character sequence match (Lowest priority)
+  // Checks if characters of query appear in order in the label
+  let score = 0;
+  let labelIdx = 0;
+  let queryIdx = 0;
+  let matches = 0;
+  let consecutive = 0;
+
+  while (labelIdx < label.length && queryIdx < q.length) {
+    if (label[labelIdx] === q[queryIdx]) {
+      matches++;
+      queryIdx++;
+      consecutive++;
+      score += 10 + (consecutive * 2); // Bonus for consecutive matches
+    } else {
+      consecutive = 0;
+    }
+    labelIdx++;
+  }
+
+  if (matches === q.length) return score;
+
+  return 0;
+}
+
 // ── Search ──
 function setupSearch(inputEl, resultsEl) {
   if (!inputEl || !resultsEl) return;
@@ -210,14 +257,14 @@ function setupSearch(inputEl, resultsEl) {
       return;
     }
 
-    // Filter index
-    const matches = searchIndex.filter(item => 
-      item.label.toLowerCase().includes(query) || 
-      item.type.toLowerCase().includes(query) ||
-      (item.category && item.category.toLowerCase().includes(query))
-    ).slice(0, 8); // Limit to 8 results for performance/UI
+    // Filter and score
+    const scoredMatches = searchIndex
+      .map(item => ({ item, score: getSearchScore(item, query) }))
+      .filter(m => m.score > 0)
+      .sort((a, b) => b.score - a.score) // Sort by highest score
+      .slice(0, 8);
 
-    renderSearchResults(matches, resultsEl, inputEl);
+    renderSearchResults(scoredMatches.map(m => m.item), resultsEl, inputEl);
   });
 
   function renderSearchResults(matches, container, input) {
