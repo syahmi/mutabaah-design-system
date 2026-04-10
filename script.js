@@ -637,5 +637,28 @@ document.querySelectorAll('.icon-card').forEach(card => {
   });
 });
 
+// ── Grid Spacing Explorer ──
+const explorerGrid = document.getElementById('explorer-grid');
+const gapControls  = document.getElementById('gap-controls');
+const padControls  = document.getElementById('pad-controls');
+
+if (explorerGrid && gapControls && padControls) {
+  function setupControls(parent, property) {
+    parent.querySelectorAll('.control-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        parent.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Apply value
+        explorerGrid.style[property] = btn.dataset.val;
+      });
+    });
+  }
+
+  setupControls(gapControls, 'gap');
+  setupControls(padControls, 'padding');
+}
+
 // ── Initialize Search Index ──
 buildSearchIndex();
