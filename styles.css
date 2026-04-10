@@ -506,7 +506,7 @@ section:last-child { border-bottom: none; }
 }
 .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .hero-chip {
-  font-size: 0.75rem; font-weight: 500; color: var(--sage);
+  font-size: 0.75rem; font-weight: 500; color: var(--primary);
   background: var(--surface-sage); padding: 0.3125rem 0.875rem; border-radius: var(--radius-pill);
   text-decoration: none; transition: background var(--duration-fast);
 }
