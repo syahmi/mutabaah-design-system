@@ -1,6 +1,6 @@
 {
   "name": "mutabaah-design-system",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Design system for Mutabaah Amal",
   "scripts": {
     "build": "node build.js",
