@@ -249,26 +249,22 @@ function getSearchScore(item, query) {
 function setupSearch(inputEl, resultsEl) {
   if (!inputEl || !resultsEl) return;
 
-  let debounceTimer;
   inputEl.addEventListener('input', () => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      const query = inputEl.value.toLowerCase().trim();
-      if (!query) {
-        resultsEl.classList.remove('open');
-        resultsEl.setAttribute('aria-hidden', 'true');
-        return;
-      }
+    const query = inputEl.value.toLowerCase().trim();
+    if (!query) {
+      resultsEl.classList.remove('open');
+      resultsEl.setAttribute('aria-hidden', 'true');
+      return;
+    }
 
-      // Filter and score
-      const scoredMatches = searchIndex
-        .map(item => ({ item, score: getSearchScore(item, query) }))
-        .filter(m => m.score > 0)
-        .sort((a, b) => b.score - a.score) // Sort by highest score
-        .slice(0, 8);
+    // Filter and score
+    const scoredMatches = searchIndex
+      .map(item => ({ item, score: getSearchScore(item, query) }))
+      .filter(m => m.score > 0)
+      .sort((a, b) => b.score - a.score) // Sort by highest score
+      .slice(0, 8);
 
-      renderSearchResults(scoredMatches.map(m => m.item), resultsEl, inputEl);
-    }, 150);
+    renderSearchResults(scoredMatches.map(m => m.item), resultsEl, inputEl);
   });
 
   function renderSearchResults(matches, container, input) {
