@@ -270,15 +270,17 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 
 ## Interactive Features
 
-| Feature | Notes |
+| Interactive Features | Notes |
 |---------|-------|
 | Component Search | Real-time filtering of sections and components via the sticky nav (Desktop) or Megamenu (Mobile) |
 | Megamenu | Sections panel in the sticky nav — keyboard and click accessible, closes on Escape or outside click, highlights the active section |
 | Copy hex / CSS variable | Click any colour swatch in the Colors section |
 | Copy token | Click any radius, shadow, or duration token |
 | Copy icon name | Click any icon card in the Iconography section |
+| Copy component code | Hover over any component example and click the code icon |
 | Dark mode toggle | Moon/sun button in the sticky nav; persists across visits |
 | Sticky nav highlighting | Active section highlighted as you scroll |
+
 
 Clipboard writes use the `navigator.clipboard` API exclusively.
 
