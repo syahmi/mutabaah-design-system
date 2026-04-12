@@ -56,6 +56,7 @@
   ascent-override: 88%;
   descent-override: 22%;
   line-gap-override: 0%;
+  font-display: swap;
 }
 @font-face {
   /* Inter: UPM 2048, ascender 1984, descender -494, line-gap 0
@@ -67,6 +68,7 @@
   ascent-override: 96.9%;
   descent-override: 24.1%;
   line-gap-override: 0%;
+  font-display: swap;
 }
 @font-face {
   /* Inter Tight is ~90% of Inter's width — scale accordingly */
@@ -76,6 +78,7 @@
   ascent-override: 96.9%;
   descent-override: 24.1%;
   line-gap-override: 0%;
+  font-display: swap;
 }
 
 :root {
