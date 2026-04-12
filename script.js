@@ -637,6 +637,53 @@ document.querySelectorAll('.icon-card').forEach(card => {
   });
 });
 
+// ── Copy component code to clipboard ──
+document.querySelectorAll('.copy-code-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Don't trigger any parent click handlers
+    const wrapper = btn.closest('.example-wrapper');
+    if (!wrapper) return;
+
+    // Use a specific target if provided via data attribute, otherwise take first child that isn't the button or feedback
+    const targetSelector = btn.dataset.copyTarget;
+    let target = targetSelector ? wrapper.querySelector(targetSelector) : null;
+    if (!target) {
+      target = Array.from(wrapper.children).find(el => !el.classList.contains('copy-code-btn') && !el.classList.contains('copy-code-feedback'));
+    }
+    if (!target) return;
+
+    // Clone target to clean it up before copying
+    const clone = target.cloneNode(true);
+
+    // Remove design-system specific demo classes
+    clone.classList.remove('state-hover');
+    clone.querySelectorAll('.state-hover').forEach(el => el.classList.remove('state-hover'));
+    
+    // Remove inline styles if they are just for demo (like margins)
+    // clone.removeAttribute('style'); // Maybe too aggressive, let's keep it for now but remove specific demo hacks
+
+    let html = clone.outerHTML;
+
+    // Optional: Clean up whitespace and format slightly?
+    // For now, let's just trim and ensure it's readable.
+    html = html.trim();
+
+    copyToClipboard(html, () => {
+      btn.classList.add('copy-code-btn--copied');
+      // Change icon to checkmark temporarily
+      const originalIcon = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      
+      announce('Component code copied to clipboard');
+      
+      setTimeout(() => {
+        btn.classList.remove('copy-code-btn--copied');
+        btn.innerHTML = originalIcon;
+      }, 2000);
+    });
+  });
+});
+
 // ── Grid Spacing Explorer ──
 const explorerGrid = document.getElementById('explorer-grid');
 const gapControls  = document.getElementById('gap-controls');
