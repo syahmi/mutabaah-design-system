@@ -612,9 +612,55 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 // Close on Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    const open = document.querySelector('.modal-overlay.open');
-    if (open) closeModal(open.id);
+    const openModalEl = document.querySelector('.modal-overlay.open');
+    if (openModalEl) closeModal(openModalEl.id);
+
+    const openSheetEl = document.querySelector('.sheet-overlay.open');
+    if (openSheetEl) closeBottomSheet(openSheetEl.id);
   }
+});
+
+// ── Bottom Sheet demos ──
+function openBottomSheet(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.removeAttribute('inert');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const focusable = overlay.querySelector('button, input, textarea, [tabindex="0"]');
+  if (focusable) requestAnimationFrame(() => focusable.focus());
+
+  overlay._trapFocusHandler = (e) => trapFocus(overlay, e);
+  overlay.addEventListener('keydown', overlay._trapFocusHandler);
+}
+
+function closeBottomSheet(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.setAttribute('inert', '');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+
+  if (overlay._trapFocusHandler) {
+    overlay.removeEventListener('keydown', overlay._trapFocusHandler);
+    delete overlay._trapFocusHandler;
+  }
+
+  const trigger = document.querySelector(`[data-sheet-trigger="${id}"]`);
+  if (trigger) trigger.focus();
+}
+
+document.querySelectorAll('.sheet-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeBottomSheet(overlay.id); });
+  overlay.querySelectorAll('[data-sheet-close]').forEach(btn => {
+    btn.addEventListener('click', () => closeBottomSheet(overlay.id));
+  });
+});
+
+document.querySelectorAll('[data-sheet-trigger]').forEach(btn => {
+  btn.addEventListener('click', () => openBottomSheet(btn.dataset.sheetTrigger));
 });
 
 // ── Copy icon name to clipboard ──

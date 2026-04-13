@@ -1448,6 +1448,53 @@ footer {
   font-size: 0.875rem; color: var(--text-2); line-height: 1.6;
   padding: 0 1.5rem;
 }
+
+/* ── Bottom Sheet (live demo) ── */
+.sheet-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 500;
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--duration-enter);
+}
+.sheet-overlay.open { opacity: 1; pointer-events: auto; }
+
+.sheet-box {
+  background: var(--surface);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  width: 100%; max-width: 520px;
+  box-shadow: var(--shadow-3);
+  transform: translateY(100%);
+  transition: transform var(--duration-enter) cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sheet-overlay.open .sheet-box { transform: translateY(0); }
+
+.sheet-handle {
+  width: 36px; height: 4px;
+  background: var(--border);
+  border-radius: var(--radius-pill);
+  margin: 0.75rem auto 0.25rem;
+  flex-shrink: 0;
+}
+.sheet-header {
+  padding: 0.75rem 1.5rem 0.5rem;
+  text-align: center;
+}
+.sheet-title { font-size: 1.0625rem; font-weight: 700; color: var(--text-1); }
+.sheet-body { padding: 1rem 1.5rem 2rem; }
+
+/* ── Bottom Sheet preview (static) ── */
+.sheet-preview {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  overflow: hidden; width: 100%; max-width: 420px;
+  box-shadow: var(--shadow-2);
+  display: flex; flex-direction: column;
+}
 .modal-backdrop-label {
   display: flex; flex-direction: column; gap: 0.625rem; align-self: center;
 }
@@ -1700,5 +1747,8 @@ footer {
      would cause them to flash repeatedly. Remove the animation instead. */
   .btn-spinner     { animation: none !important; }
   .empty-state-illus { animation: none !important; }
+  .skeleton::after { animation: none !important; }
+}
+ant; }
   .skeleton::after { animation: none !important; }
 }
