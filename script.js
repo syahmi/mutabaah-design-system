@@ -40,7 +40,7 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // ── Version ──
-const VERSION = '1.6.1';
+const VERSION = '1.6.2';
 const DATE = 'April 2026';
 document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
 document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });
