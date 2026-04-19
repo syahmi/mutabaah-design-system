@@ -1,12 +1,20 @@
 # Mutabaah Amal — Design System
 
-A design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. It documents all visual tokens, components, and interaction patterns used across the product.
+**Grounded in calm, reverent minimalism with Islamic warmth.**
+
+A comprehensive design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. This project documents all visual tokens, interactive components, and specialized patterns that define the product experience.
 
 ![Design System — Mutabaah Amal](og-image.png)
 
 ## Overview
 
-Edit source files directly and open `index.html` in a browser to browse the living style guide. Run `npm run build` to produce a minified production build. Pushing to `main` deploys automatically via GitHub Actions.
+The design system is built with zero dependencies for the runtime, prioritizing performance, accessibility, and high-fidelity motion.
+
+### Core Architecture
+- **Documentation:** Built on a single `index.html` for instant accessibility and ease of maintenance.
+- **Styling:** Vanilla CSS using a deep hierarchy of Design Tokens (CSS Variables).
+- **Interactivity:** Lightweight Vanilla JS with specialized modules for search, accessibility, and clipboard management.
+- **Build Pipeline:** Node.js-based minification and content-hashing for optimized asset delivery.
 
 ```
 mutabaah-design-system/
@@ -258,7 +266,8 @@ All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
 
 | Practice | Detail |
 |----------|--------|
-| Focus Trap | Focus is strictly trapped within active Modals and the Megamenu to prevent keyboard users from tabbing into background content |
+| **WCAG 2.1 AA** | Core color palette is audited for contrast; primary actions and text tokens meet the 4.5:1 ratio for readability. |
+| **Focus Trap** | Focus is strictly trapped within active Modals and the Megamenu to prevent keyboard users from tabbing into background content |
 | Keyboard Nav | Megamenu and Search results support full arrow-key navigation (`Up`/`Down`/`Left`/`Right`) for rapid selection |
 | Focus ring | Unified `outline: 2px solid var(--primary); outline-offset: 2px` across all interactive elements including select and textarea, using `:focus-visible` to avoid showing rings on mouse clicks |
 | Disabled opacity | Consistent `opacity: 0.45` across buttons, chips, inputs, selects, textareas, and form controls |
