@@ -67,6 +67,7 @@ async function build() {
     removeStyleLinkTypeAttributes: true,
     minifyCSS: true,
     minifyJS: true,
+    minifySVG: true,
   });
   fs.writeFileSync(path.join(DIST, 'index.html'), minified);
   console.log(`index.html    ${fmt(html.length, minified.length)}`);
