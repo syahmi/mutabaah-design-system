@@ -8,8 +8,8 @@ const crypto = require('crypto');
 
 const contentHash = (str) => crypto.createHash('sha256').update(str).digest('hex').slice(0, 8);
 
-const CleanCSS          = require('clean-css');
-const { minify: minJS } = require('terser');
+const lightningcss      = require('lightningcss');
+const esbuild           = require('esbuild');
 const { minify: minHTML } = require('html-minifier-terser');
 
 const DIST = 'docs';
@@ -24,8 +24,14 @@ async function build() {
   fs.mkdirSync(DIST);
 
   // ── CSS ──────────────────────────────────────────────────────────────────
-  const css = fs.readFileSync('styles.css', 'utf8');
-  const { styles } = new CleanCSS({ level: 2 }).minify(css);
+  const css = fs.readFileSync('styles.css');
+  const { code: cssCode } = lightningcss.transform({
+    filename: 'styles.css',
+    code: css,
+    minify: true,
+    sourceMap: false
+  });
+  const styles = cssCode.toString();
   // Keep a standalone copy for reference, but the HTML build inlines it.
   fs.writeFileSync(path.join(DIST, 'styles.css'), styles);
   console.log(`styles.css    ${fmt(css.length, styles.length)}`);
@@ -39,7 +45,10 @@ async function build() {
       src = src.replace(/const DATE = '[^']*'/, `const DATE = '${BUILD_DATE}'`);
       fs.writeFileSync(file, src); // keep source in sync for dev server
     }
-    const { code } = await minJS(src, { compress: true, mangle: true });
+    const { code } = await esbuild.transform(src, {
+      minify: true,
+      legalComments: 'none'
+    });
     const base = path.basename(file, '.js');
     const hashedName = `${base}.${contentHash(code)}.js`;
     jsHashes[file] = hashedName;
