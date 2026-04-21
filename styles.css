@@ -1749,6 +1749,3 @@ footer {
   .empty-state-illus { animation: none !important; }
   .skeleton::after { animation: none !important; }
 }
-ant; }
-  .skeleton::after { animation: none !important; }
-}
