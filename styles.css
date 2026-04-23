@@ -1119,6 +1119,25 @@ button.icon-card { font: inherit; color: inherit; }
 .card-stat-val { font-size: 1.25rem; font-weight: 700; color: var(--text-1); }
 .card-stat-lbl { font-size: 0.6875rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
 
+.card-white--achievement {
+  background: linear-gradient(135deg, var(--surface), var(--cat-worship-bg));
+  border-color: var(--cat-worship);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.card-achievement-badge {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--cat-worship); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0.5rem 0 1rem;
+  box-shadow: 0 4px 12px rgba(28, 61, 46, 0.15);
+}
+.card-achievement-badge svg { width: 28px; height: 28px; }
+.card-achievement-name { font-size: 1rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.25rem; }
+.card-achievement-desc { font-size: 0.75rem; color: var(--text-3); line-height: 1.4; }
+
 /* ── Empty States ── */
 .empty-states-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
 .empty-state-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; }
