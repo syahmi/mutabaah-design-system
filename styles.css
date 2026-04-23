@@ -660,6 +660,7 @@ section:last-child { border-bottom: none; }
 .btn-destructive:hover,
 .btn-destructive.state-hover { opacity: 1; color: #9E3838; }
 .btn-ghost { background: transparent; color: var(--text-2); }
+.btn-sm { padding: 0.5rem 1rem; font-size: 0.8125rem; }
 .btn-fab {
   width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: #fff;
   border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -933,12 +934,25 @@ section:last-child { border-bottom: none; }
   background: var(--text-1); opacity: 0.15; margin: 0.375rem auto 0.5rem;
 }
 
-.cards-grid { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; margin-top: 1rem; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 .card-hero {
   background: var(--primary); border-radius: var(--radius-xl); padding: 1.5rem;
   display: flex; flex-direction: column; gap: 1rem;
-  min-width: 240px; flex: 1.2; max-width: 320px;
 }
 .card-hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
 .card-today-label { font-size: 0.625rem; font-weight: 500; color: rgba(255,255,255,0.60); letter-spacing: 0.1em; text-transform: uppercase; }
@@ -1080,6 +1094,39 @@ button.icon-card { font: inherit; color: inherit; }
   .icon-card { width: calc(25% - 9px); padding: 1rem 0.5rem 0.625rem; }
 }
 
+/* ── Card Variant Extensions ── */
+.card-white--tasks {  }
+.card-task-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+.card-task-item { display: flex; align-items: center; gap: 0.75rem; }
+.card-task-check {
+  width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center; color: transparent;
+  transition: all var(--duration-fast); flex-shrink: 0;
+}
+.card-task-check.checked { background: var(--primary); border-color: var(--primary); color: #fff; }
+.card-task-check svg { width: 12px; height: 12px; stroke-width: 3; }
+.card-task-text { font-size: 0.875rem; color: var(--text-1); font-weight: 500; }
+.card-task-text.checked { color: var(--text-3); text-decoration: line-through; }
+
+.card-white--action { display: flex; flex-direction: column; }
+.card-action-body { flex: 1; margin-bottom: 1.25rem; }
+.card-action-title { font-size: 1.125rem; font-weight: 600; color: var(--text-1); margin-bottom: 0.5rem; }
+.card-action-desc { font-size: 0.8125rem; color: var(--text-2); line-height: 1.5; }
+
+.card-white--notification { border-left: 4px solid var(--gold); }
+.card-notif-row { display: flex; gap: 0.875rem; }
+.card-notif-icon { color: var(--gold); flex-shrink: 0; }
+.card-notif-content { display: flex; flex-direction: column; gap: 0.25rem; }
+.card-notif-title { font-size: 0.875rem; font-weight: 600; color: var(--text-1); }
+.card-notif-desc { font-size: 0.8125rem; color: var(--text-2); line-height: 1.45; }
+.card-notif-time { font-size: 0.6875rem; color: var(--text-3); margin-top: 0.25rem; }
+
+.card-white--stats {  }
+.card-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.card-stat-item { display: flex; flex-direction: column; }
+.card-stat-val { font-size: 1.25rem; font-weight: 700; color: var(--text-1); }
+.card-stat-lbl { font-size: 0.6875rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
+
 /* ── Empty States ── */
 .empty-states-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
 .empty-state-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; }
@@ -1217,8 +1264,8 @@ button.icon-card { font: inherit; color: inherit; }
 .streak-bar--empty { background: var(--surface-alt); }
 
 /* ── Doc: Card demo layout ── */
-.card-white--date { width: 220px; min-width: 180px; flex: 1; }
-.card-white--streak { width: 200px; min-width: 180px; flex: 1; }
+.card-white--date {  }
+.card-white--streak {  }
 
 /* ── Skeleton loaders ── */
 @keyframes skeleton-shimmer {
@@ -1716,9 +1763,7 @@ footer {
   .platform-nav-col { max-width: 100%; }
   .bottom-nav { border-radius: var(--radius-md) var(--radius-md) 0 0; }
   .empty-states-grid { grid-template-columns: 1fr; }
-  .cards-grid { flex-direction: column; }
-  .card-hero { width: 100%; }
-  .card-white { width: 100% !important; }
+  .cards-grid { grid-template-columns: 1fr; }
   .footer-meta { font-size: 0.6875rem; }
   footer { padding: 1.5rem 0; }
   .icon-card { width: calc(25% - 9px); padding: 1rem 0.5rem 0.625rem; }
