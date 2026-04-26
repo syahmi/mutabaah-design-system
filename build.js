@@ -11,6 +11,7 @@ const contentHash = (str) => crypto.createHash('sha256').update(str).digest('hex
 const lightningcss      = require('lightningcss');
 const esbuild           = require('esbuild');
 const { minify: minHTML } = require('html-minifier-terser');
+const sharp             = require('sharp');
 
 const DIST = 'docs';
 const { version: VERSION } = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -81,10 +82,40 @@ async function build() {
   fs.writeFileSync(path.join(DIST, 'index.html'), minified);
   console.log(`index.html    ${fmt(html.length, minified.length)}`);
 
-  // ── Static assets ────────────────────────────────────────────────────────
-  for (const file of ['og-image.png', 'favicon-32x32.png', 'favicon-16x16.png']) {
-    fs.copyFileSync(file, path.join(DIST, file));
+  // ── Images ───────────────────────────────────────────────────────────────
+  console.log('\nOptimizing images...');
+  
+  // 1. OG Image: Optimize PNG and generate modern formats
+  const ogImg = fs.readFileSync('og-image.png');
+  const ogPng = await sharp(ogImg).png({ quality: 90, palette: true, compressionLevel: 9 }).toBuffer();
+  const ogWebp = await sharp(ogImg).webp({ quality: 80 }).toBuffer();
+  const ogAvif = await sharp(ogImg).avif({ quality: 65 }).toBuffer();
+
+  fs.writeFileSync(path.join(DIST, 'og-image.png'), ogPng);
+  fs.writeFileSync(path.join(DIST, 'og-image.webp'), ogWebp);
+  fs.writeFileSync(path.join(DIST, 'og-image.avif'), ogAvif);
+  
+  console.log(`og-image.png  ${fmt(ogImg.length, ogPng.length)}`);
+  console.log(`og-image.webp ${fmt(ogImg.length, ogWebp.length)}`);
+  console.log(`og-image.avif ${fmt(ogImg.length, ogAvif.length)}`);
+
+  // 2. Favicons: Generate from logo.svg
+  const logoSvg = fs.readFileSync('logo.svg');
+  // Copy logo.svg for browsers that support SVG favicons
+  fs.writeFileSync(path.join(DIST, 'logo.svg'), logoSvg);
+  console.log('logo.svg       copied to docs/');
+
+  for (const size of [16, 32, 180, 192, 512]) {
+    let name;
+    if (size <= 32) name = `favicon-${size}x${size}.png`;
+    else if (size === 180) name = 'apple-touch-icon.png';
+    else name = `icon-${size}.png`;
+
+    const buf = await sharp(logoSvg).resize(size, size).png().toBuffer();
+    fs.writeFileSync(path.join(DIST, name), buf);
+    console.log(`${name.padEnd(20)} generated from logo.svg`);
   }
+
   console.log('\nBuild complete → docs/');
 }
 
