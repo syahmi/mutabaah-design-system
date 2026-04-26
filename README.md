@@ -14,20 +14,20 @@ The design system is built with zero dependencies for the runtime, prioritizing 
 - **Documentation:** Built on a single `index.html` for instant accessibility and ease of maintenance.
 - **Styling:** Vanilla CSS using a deep hierarchy of Design Tokens (CSS Variables).
 - **Interactivity:** Lightweight Vanilla JS with specialized modules for search, accessibility, and clipboard management.
-- **Build Pipeline:** Node.js-based minification and content-hashing for optimized asset delivery.
+- **Build Pipeline:** Node.js-based minification, content-hashing, and an automated image optimization pipeline using `sharp`.
 
 ```
 mutabaah-design-system/
 ├── index.html          # Design system documentation
 ├── styles.css          # All styles and design tokens
-├── script.js           # Copy-to-clipboard, sticky nav, theme toggle, icon init
+├── script.js           # Copy-to-clipboard, sticky nav, theme toggle, versioning
 ├── lucide-mini.js      # Self-hosted Lucide icon subset
 ├── build.js            # Production build script (outputs to docs/)
+├── logo.svg            # Source brand asset for favicon generation
+├── og-image.png        # Source social share image (2400×1260px)
 ├── package.json        # Version source of truth + build dependencies
 ├── package-lock.json   # Lockfile (required for CI)
-├── og-image.png        # Social share image (2400×1260px)
-├── favicon-16x16.png
-└── favicon-32x32.png
+└── README.md
 ```
 
 `docs/` is git-ignored — it is built and deployed by CI automatically.
@@ -35,6 +35,9 @@ mutabaah-design-system/
 ## Development
 
 ```bash
+# Install dependencies
+npm install
+
 # Browse locally
 open index.html
 # or serve with
@@ -49,10 +52,22 @@ npm run build
 Every push to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`) which:
 
 1. Installs dependencies via `npm ci`
-2. Runs `npm run build` to produce a minified `docs/` output
+2. Runs `npm run build` to produce a minified and optimized `docs/` output
 3. Deploys `docs/` to GitHub Pages
 
 No manual build or push is required.
+
+## Build Pipeline Features
+
+The `build.js` script handles more than just minification:
+
+- **CSS/JS Minification:** Uses `lightningcss` and `esbuild` for extremely fast bundling and minification.
+- **HTML Minification:** Inlines CSS and minifies HTML structure via `html-minifier-terser`.
+- **Content Hashing:** JavaScript files are content-hashed for aggressive long-term caching.
+- **Image Optimization:** 
+    - **OG Image:** Optimizes `og-image.png` and generates modern **WebP** and **AVIF** formats.
+    - **Favicons:** Automatically generates a comprehensive set of favicons from `logo.svg`, including `apple-touch-icon.png` and PWA icons (`192px`, `512px`).
+    - **SVG Icons:** Deploys raw SVG favicon for high-density displays.
 
 ## Sections
 
@@ -61,16 +76,16 @@ No manual build or push is required.
 | 01 | **Typography** | Inter Tight (display), Inter (body) — full type scale |
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
 | 03 | **Spacing** | Base spacing scale (0.25–5rem), component and layout rhythm, border-radius tokens, elevation scale |
-| 04 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders (task list, dashboard card, profile header, input form), alerts |
-| 05 | **Form Controls** | Checkbox, radio, and toggle — all states (default, checked, checked-disabled, disabled) |
+| 04 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders, alerts |
+| 05 | **Form Controls** | Checkbox, radio, and toggle — all states |
 | 06 | **Avatar** | Sizes, variants, and groups |
-| 07 | **Overlays** | Modal, dialog, and tooltip — structure, variants, and interaction patterns |
+| 07 | **Overlays** | Modal, dialog, and tooltip — patterns and structure |
 | 08 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 09 | **Navigation** | Bottom tab bar (iOS and Android variants) and dashboard cards (hero card, Hijri date, streak) |
+| 09 | **Navigation** | Bottom tab bar (iOS/Android) and dashboard cards |
 | 10 | **Empty States** | Three variants with illustration and copy guidelines |
-| 11 | **Iconography** | Lucide icon library — all icons grouped by category with usage guidance |
+| 11 | **Iconography** | Lucide icon library — all icons grouped by category |
 | 12 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
-| 13 | **Motion & Tone** | Transition durations, easing curves, animation principles, and copy guidelines |
+| 13 | **Motion & Tone** | Transition durations, easing curves, and principles |
 
 ## Design Tokens
 
@@ -121,7 +136,7 @@ All three fonts are loaded from Google Fonts in a single non-render-blocking req
 | Token | Value | Use |
 |-------|-------|-----|
 | `--radius-xs` | `6px` | Small elements (code pills, skeleton bones) |
-| `--radius-sm` | `8px` | Small surfaces |
+| `--radius-sm" | `8px` | Small surfaces |
 | `--radius-md` | `12px` | Buttons, input fields, bottom nav |
 | `--radius-lg` | `16px` | Cards, list containers |
 | `--radius-xl` | `20px` | Large cards |
@@ -136,7 +151,7 @@ Light mode shadows use a green-tinted base colour; dark mode overrides switch to
 |-------|-------|------|-----|
 | `--shadow-1` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Subtle — resting cards |
 | `--shadow-2` | `rgba(28,61,46,0.10)` | `rgba(0,0,0,0.32)` | Raised — bottom sheets |
-| `--shadow-3` | `rgba(28,61,46,0.16)` | `rgba(0,0,0,0.44)` | Elevated — overlapping panels |
+| `--shadow-3" | `rgba(28,61,46,0.16)` | `rgba(0,0,0,0.44)` | Elevated — overlapping panels |
 | `--shadow-fab` | `rgba(28,61,46,0.30)` | `rgba(0,0,0,0.56)` | Floating action button |
 | `--shadow-nav` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Bottom navigation bar |
 
@@ -161,91 +176,15 @@ Icons are initialised on page load via `lucide.createIcons()` in `script.js`.
 
 ### Skeleton Loaders
 
-Skeleton loaders use a GPU-accelerated shimmer via a `::after` pseudo-element sweep rather than a background-position animation. The white highlight overlay works across both light and dark themes without additional token overrides.
-
-Four variants are documented:
-
-| Variant | Classes | Use |
-|---------|---------|-----|
-| Task list | `skeleton-task-item`, `skeleton-check`, `skeleton-task-lines`, `skeleton-tag` | Loading state for the main task feed |
-| Dashboard card | `skeleton-card-inner`, `skeleton-heading`, `skeleton-stat`, `skeleton-line--body` | Loading state for summary/stats cards |
-| Profile header | `skeleton-profile`, `skeleton-avatar`, `skeleton-profile-lines`, `skeleton-profile-body` | Loading state for user profile sections |
-| Input form | `skeleton-input-group`, `skeleton-input-label`, `skeleton-input-box` | Loading state for forms with labelled fields |
-
-All variants use the `.skeleton` base class for the shimmer effect. Wrap bones in `.skeleton-demo-card` to get the card chrome.
-
-```html
-<!-- Task list skeleton -->
-<div class="skeleton-demo-card">
-  <div class="skeleton-task-item">
-    <div class="skeleton skeleton-check"></div>
-    <div class="skeleton-task-lines">
-      <div class="skeleton skeleton-line--title"></div>
-      <div class="skeleton skeleton-line--meta"></div>
-    </div>
-    <div class="skeleton skeleton-tag"></div>
-  </div>
-</div>
-
-<!-- Profile header skeleton -->
-<div class="skeleton-demo-card">
-  <div class="skeleton-profile">
-    <div class="skeleton skeleton-avatar"></div>
-    <div class="skeleton-profile-lines">
-      <div class="skeleton skeleton-profile-name"></div>
-      <div class="skeleton skeleton-profile-sub"></div>
-    </div>
-  </div>
-  <div class="skeleton-profile-body">
-    <div class="skeleton skeleton-line--body"></div>
-    <div class="skeleton skeleton-line--body skeleton-line--short"></div>
-  </div>
-</div>
-
-<!-- Input form skeleton -->
-<div class="skeleton-demo-card">
-  <div class="skeleton-input-group">
-    <div class="skeleton skeleton-input-label"></div>
-    <div class="skeleton skeleton-input-box"></div>
-  </div>
-</div>
-```
+Skeleton loaders use a GPU-accelerated shimmer via a `::after` pseudo-element sweep. Four variants are documented: Task list, Dashboard card, Profile header, and Input form.
 
 ### Alerts
 
 Four semantic variants — info, success, warning, error — using existing category color tokens.
 
-```html
-<div class="alert alert-info" role="alert">…</div>
-<div class="alert alert-success" role="alert">…</div>
-<div class="alert alert-warning" role="alert">…</div>
-<div class="alert alert-error" role="alert">…</div>
-```
-
-| Variant | Background token | Border / text token |
-|---------|-----------------|---------------------|
-| Info | `--cat-quran-bg` | `--cat-quran` |
-| Success | `--cat-worship-bg` | `--success` |
-| Warning | `--gold-bg` | `--gold` / `--gold-dark` |
-| Error | `#FEF2F2` (`#2A1818` dark) | `--error` |
-
 ### Bottom Navigation Bar
 
-The navigation section documents two platform-specific variants side by side.
-
-**iOS · Human Interface Guidelines**
-- Frosted glass background — `backdrop-filter: saturate(180%) blur(20px)`
-- Top hairline separator — `0.5px solid rgba(0,0,0,0.12)`
-- Active state: tinted icon + label in `--primary`, no indicator pill
-- Home indicator bar at bottom representing the safe area inset
-
-**Android · Material 3**
-- Opaque `--surface` background with `--shadow-nav` elevation
-- Active indicator: `64×32dp` pill (`--cat-worship-bg`) behind the icon only
-- Label always visible, `700` weight when active
-- Gesture navigation bar at bottom
-
-Both variants use `role="tablist"` / `role="tab"` with `aria-selected` for semantics, and `currentColor` on all SVG strokes so dark mode is handled by the CSS color cascade.
+Documents two platform-specific variants: iOS (Human Interface Guidelines) with frosted glass, and Android (Material 3) with indicator pills.
 
 ## Versioning
 
@@ -254,44 +193,26 @@ Version and build date are single-sourced:
 - **Version** is set once in `package.json`
 - **Date** is derived from the build timestamp automatically
 
-Running `npm run build` propagates both into `script.js` (for the dev server) and into the minified HTML output. To release a new version, update `package.json` and push — CI handles the rest.
+Running `npm run build` propagates both into `script.js` and into the minified HTML output.
 
 ## Dark Mode
 
-The design system ships with a full dark mode. A moon/sun toggle in the sticky nav switches themes. The preference is persisted in `localStorage` and respects the OS `prefers-color-scheme` setting on first visit.
-
-All dark mode tokens are defined in `[data-theme="dark"]` in `styles.css`.
+The design system ships with a full dark mode. A moon/sun toggle in the sticky nav switches themes. The preference is persisted in `localStorage` and respects the OS `prefers-color-scheme` setting.
 
 ## Accessibility
 
-| Practice | Detail |
-|----------|--------|
-| **WCAG 2.1 AA** | Core color palette is audited for contrast; primary actions and text tokens meet the 4.5:1 ratio for readability. |
-| **Focus Trap** | Focus is strictly trapped within active Modals and the Megamenu to prevent keyboard users from tabbing into background content |
-| Keyboard Nav | Megamenu and Search results support full arrow-key navigation (`Up`/`Down`/`Left`/`Right`) for rapid selection |
-| Focus ring | Unified `outline: 2px solid var(--primary); outline-offset: 2px` across all interactive elements including select and textarea, using `:focus-visible` to avoid showing rings on mouse clicks |
-| Disabled opacity | Consistent `opacity: 0.45` across buttons, chips, inputs, selects, textareas, and form controls |
-| Aria live region | `#copy-announcement` announces clipboard copy results and search actions to screen readers |
-| Motion replay buttons | Each replay button carries a descriptive `aria-label` (e.g. `"Replay enter animation"`) |
-| Skip link | Visible-on-focus skip link to `#main-content` |
-| Semantic roles | `role="tablist"` / `role="tab"` / `aria-selected` on bottom navigation; `role="alert"` on alert components |
-| Rem-based spacing | All spacing, padding, gap, and font-size values use `rem` so the layout scales with the user's browser font size setting |
+- **WCAG 2.1 AA** compliant contrast for core palette.
+- **Focus Trap** within active Modals and Megamenu.
+- **Keyboard Navigation** for all interactive components.
+- **Aria live regions** for clipboard and search feedback.
+- **Rem-based spacing** for consistent scaling.
 
 ## Interactive Features
 
-| Interactive Features | Notes |
-|---------|-------|
-| Component Search | Real-time filtering of sections and components via the sticky nav (Desktop) or Megamenu (Mobile) |
-| Megamenu | Sections panel in the sticky nav — keyboard and click accessible, closes on Escape or outside click, highlights the active section |
-| Copy hex / CSS variable | Click any colour swatch in the Colors section |
-| Copy token | Click any radius, shadow, or duration token |
-| Copy icon name | Click any icon card in the Iconography section |
-| Copy component code | Hover over any component example and click the code icon |
-| Dark mode toggle | Moon/sun button in the sticky nav; persists across visits |
-| Sticky nav highlighting | Active section highlighted as you scroll |
-
-
-Clipboard writes use the `navigator.clipboard` API exclusively.
+- **Component Search:** Real-time filtering of sections and components.
+- **Megamenu:** Desktop/Mobile sections panel with keyboard support.
+- **One-click Copy:** Copy Hex, CSS variables, Token values, Icon names, and Component code.
+- **Dark Mode Toggle:** Persistent theme switching.
 
 ## Responsive Breakpoints
 
@@ -308,8 +229,9 @@ Clipboard writes use the `navigator.clipboard` API exclusively.
 |------|---------|
 | `index.html` | Structure, content, and meta tags |
 | `styles.css` | All styles and CSS custom property tokens |
-| `script.js` | Interactive behaviour — clipboard, nav, theme toggle, version |
-| `build.js` | Production build script |
+| `script.js` | Interactive behaviour and versioning |
+| `build.js` | Production build script & optimization pipeline |
+| `logo.svg` | Source for brand icons (generated by `build.js`) |
 | `package.json` | Version source of truth |
 
-To update design tokens, edit the `:root` block in `styles.css`. To add sections or components, edit `index.html` and add corresponding styles to `styles.css`. To replace the social share image, swap `og-image.png` (keep at 2400×1260px).
+To update design tokens, edit the `:root` block in `styles.css`. To replace the social share image, swap `og-image.png`. To update the brand icon, edit `logo.svg`.
