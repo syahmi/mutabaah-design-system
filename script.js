@@ -42,11 +42,19 @@ themeToggleBtn.addEventListener('click', () => {
 // ── Version ──
 const VERSION = '1.6.4';
 const DATE = 'April 2026';
-document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
-document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });
 
-// ── Lucide icons ──
-if (window.lucide) lucide.createIcons();
+function initVersionAndIcons() {
+  document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
+  document.querySelectorAll('[data-date]').forEach(el => { el.textContent = DATE; });
+  if (window.lucide) lucide.createIcons();
+}
+
+if (window.requestIdleCallback) {
+  requestIdleCallback(() => initVersionAndIcons());
+} else {
+  setTimeout(initVersionAndIcons, 200);
+}
+
 
 // ── Megamenu ──
 const megamenuToggle = document.getElementById('megamenu-toggle');
@@ -199,6 +207,14 @@ function buildSearchIndex() {
 }
 
 // ── Search Logic ──
+let searchIndexBuilt = false;
+function ensureSearchIndexBuilt() {
+  if (!searchIndexBuilt) {
+    buildSearchIndex();
+    searchIndexBuilt = true;
+  }
+}
+
 function getSearchScore(item, query) {
   const label = item.label.toLowerCase();
   const type = item.type.toLowerCase();
@@ -249,7 +265,9 @@ function getSearchScore(item, query) {
 function setupSearch(inputEl, resultsEl) {
   if (!inputEl || !resultsEl) return;
 
+  inputEl.addEventListener('focus', ensureSearchIndexBuilt);
   inputEl.addEventListener('input', () => {
+    ensureSearchIndexBuilt();
     const query = inputEl.value.toLowerCase().trim();
     if (!query) {
       resultsEl.classList.remove('open');
@@ -753,8 +771,8 @@ if (explorerGrid && gapControls && padControls) {
   setupControls(padControls, 'padding');
 }
 
-// ── Initialize Search Index ──
-buildSearchIndex();
+// ── Initialize ──
+// Search Index is built lazily on focus
 
 // ── Service Worker Registration ──
 if ('serviceWorker' in navigator) {
