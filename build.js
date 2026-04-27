@@ -57,6 +57,17 @@ async function build() {
     console.log(`${hashedName.padEnd(24)}${fmt(src.length, code.length)}`);
   }
 
+  // ── Service Worker ──────────────────────────────────────────────────────
+  let swCode = fs.readFileSync('sw.js', 'utf8');
+  swCode = swCode.replace(/CACHE_NAME = '[^']*'/, `CACHE_NAME = 'mutabaah-design-system-v${VERSION}'`);
+  fs.writeFileSync('sw.js', swCode); // sync source
+  const { code: minifiedSW } = await esbuild.transform(swCode, {
+    minify: true,
+    legalComments: 'none'
+  });
+  fs.writeFileSync(path.join(DIST, 'sw.js'), minifiedSW);
+  console.log(`sw.js         ${fmt(swCode.length, minifiedSW.length)}`);
+
   // ── HTML ─────────────────────────────────────────────────────────────────
   let html = fs.readFileSync('index.html', 'utf8')
     .replace(/data-version="short">[^<]+</, `data-version="short">${VERSION}<`)
