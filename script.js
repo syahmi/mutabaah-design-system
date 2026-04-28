@@ -40,7 +40,7 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // ── Version ──
-const VERSION = '1.7.0';
+const VERSION = '1.7.1';
 const DATE = 'April 2026';
 
 function initVersionAndIcons() {
