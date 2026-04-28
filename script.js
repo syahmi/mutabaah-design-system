@@ -452,7 +452,10 @@ function closePalette() {
   document.body.style.overflow = '';
 }
 
+let currentPaletteMatches = [];
+
 function renderPaletteResults(matches) {
+  currentPaletteMatches = matches;
   paletteResults.innerHTML = '';
   if (matches.length === 0) {
     paletteResults.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
@@ -463,6 +466,7 @@ function renderPaletteResults(matches) {
     const item = match.item || match; // Handle both scored matches and raw items
     const el = document.createElement('div');
     el.className = 'palette-item';
+    el.dataset.index = index;
     if (index === 0) el.classList.add('selected');
     
     let icon = '';
@@ -488,7 +492,18 @@ function handleSelect(item) {
   if (item.action) {
     item.action();
   } else if (item.id) {
-    window.location.hash = item.id;
+    const target = document.getElementById(item.id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      // Update hash without jumping (if supported) or just set it
+      if (history.pushState) {
+        history.pushState(null, null, `#${item.id}`);
+      } else {
+        window.location.hash = item.id;
+      }
+    } else {
+      window.location.hash = item.id;
+    }
   }
   closePalette();
 }
@@ -528,9 +543,8 @@ paletteInput.addEventListener('keydown', e => {
     items[prevIndex].scrollIntoView({ block: 'nearest' });
   } else if (e.key === 'Enter' && selectedIndex !== -1) {
     e.preventDefault();
-    // Re-find the item from searchIndex or scoredMatches based on label/id
-    const label = selected.querySelector('.palette-item-label').textContent;
-    const item = searchIndex.find(i => i.label === label);
+    const match = currentPaletteMatches[selectedIndex];
+    const item = match.item || match;
     if (item) handleSelect(item);
   } else if (e.key === 'Escape') {
     closePalette();
