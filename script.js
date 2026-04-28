@@ -203,6 +203,26 @@ function buildSearchIndex() {
     }
   });
 
+  // 4. Commands
+  index.push({
+    id: 'cmd-theme',
+    label: 'Toggle Dark Mode',
+    type: 'Command',
+    category: 'System',
+    action: () => {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+  });
+  index.push({
+    id: 'cmd-top',
+    label: 'Scroll to Top',
+    type: 'Command',
+    category: 'System',
+    action: () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
   searchIndex = index;
 }
 
@@ -406,6 +426,126 @@ document.addEventListener('click', e => {
   if (mInput && mResults && !mInput.contains(e.target) && !mResults.contains(e.target)) {
     mResults.classList.remove('open');
     mResults.setAttribute('aria-hidden', 'true');
+  }
+});
+
+// ── Command Palette Logic ──
+const paletteOverlay = document.getElementById('command-palette');
+const paletteInput = document.getElementById('palette-input');
+const paletteResults = document.getElementById('palette-results');
+
+function openPalette() {
+  ensureSearchIndexBuilt();
+  paletteOverlay.setAttribute('aria-hidden', 'false');
+  paletteOverlay.removeAttribute('inert');
+  paletteOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  paletteInput.value = '';
+  renderPaletteResults(searchIndex.filter(item => item.type === 'Command').slice(0, 5));
+  requestAnimationFrame(() => paletteInput.focus());
+}
+
+function closePalette() {
+  paletteOverlay.setAttribute('aria-hidden', 'true');
+  paletteOverlay.setAttribute('inert', '');
+  paletteOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderPaletteResults(matches) {
+  paletteResults.innerHTML = '';
+  if (matches.length === 0) {
+    paletteResults.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
+    return;
+  }
+
+  matches.forEach((match, index) => {
+    const item = match.item || match; // Handle both scored matches and raw items
+    const el = document.createElement('div');
+    el.className = 'palette-item';
+    if (index === 0) el.classList.add('selected');
+    
+    let icon = '';
+    if (item.type === 'Command') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
+    else if (item.type === 'Section') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>';
+    else if (item.type === 'Icon') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>';
+    else icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>';
+
+    el.innerHTML = `
+      <div class="palette-item-icon">${icon}</div>
+      <div class="palette-item-content">
+        <div class="palette-item-label">${item.label}</div>
+        <div class="palette-item-category">${item.category} • ${item.type}</div>
+      </div>
+    `;
+
+    el.addEventListener('click', () => handleSelect(item));
+    paletteResults.appendChild(el);
+  });
+}
+
+function handleSelect(item) {
+  if (item.action) {
+    item.action();
+  } else if (item.id) {
+    window.location.hash = item.id;
+  }
+  closePalette();
+}
+
+paletteInput.addEventListener('input', () => {
+  const query = paletteInput.value.trim();
+  if (!query) {
+    renderPaletteResults(searchIndex.filter(item => item.type === 'Command').slice(0, 5));
+    return;
+  }
+
+  const scoredMatches = searchIndex
+    .map(item => ({ item, score: getSearchScore(item, query) }))
+    .filter(m => m.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+
+  renderPaletteResults(scoredMatches);
+});
+
+paletteInput.addEventListener('keydown', e => {
+  const items = Array.from(paletteResults.querySelectorAll('.palette-item'));
+  const selected = paletteResults.querySelector('.palette-item.selected');
+  const selectedIndex = items.indexOf(selected);
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    const nextIndex = (selectedIndex + 1) % items.length;
+    items.forEach(el => el.classList.remove('selected'));
+    items[nextIndex].classList.add('selected');
+    items[nextIndex].scrollIntoView({ block: 'nearest' });
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    const prevIndex = (selectedIndex - 1 + items.length) % items.length;
+    items.forEach(el => el.classList.remove('selected'));
+    items[prevIndex].classList.add('selected');
+    items[prevIndex].scrollIntoView({ block: 'nearest' });
+  } else if (e.key === 'Enter' && selectedIndex !== -1) {
+    e.preventDefault();
+    // Re-find the item from searchIndex or scoredMatches based on label/id
+    const label = selected.querySelector('.palette-item-label').textContent;
+    const item = searchIndex.find(i => i.label === label);
+    if (item) handleSelect(item);
+  } else if (e.key === 'Escape') {
+    closePalette();
+  }
+});
+
+paletteOverlay.addEventListener('click', e => {
+  if (e.target === paletteOverlay) closePalette();
+});
+
+// Global shortcut Cmd+K / Ctrl+K
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    paletteOverlay.classList.contains('open') ? closePalette() : openPalette();
   }
 });
 
