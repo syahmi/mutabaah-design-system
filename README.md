@@ -61,6 +61,7 @@ No manual build or push is required.
 
 The `build.js` script handles more than just minification:
 
+- **Command Palette Integration:** Builds a comprehensive index of sections, components, icons, and system commands for the global `⌘K` palette.
 - **CSS/JS Minification:** Uses `lightningcss` and `esbuild` for extremely fast bundling and minification.
 - **HTML Minification:** Inlines CSS and minifies HTML structure via `html-minifier-terser`.
 - **Content Hashing:** JavaScript files are content-hashed for aggressive long-term caching.
@@ -86,6 +87,7 @@ The `build.js` script handles more than just minification:
 | 11 | **Iconography** | Lucide icon library — all icons grouped by category |
 | 12 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
 | 13 | **Motion & Tone** | Transition durations, easing curves, and principles |
+| 14 | **Command Palette** | Global `⌘K` search with system commands and categorised results |
 
 ## Design Tokens
 
@@ -209,6 +211,7 @@ The design system ships with a full dark mode. A moon/sun toggle in the sticky n
 
 ## Interactive Features
 
+- **Command Palette:** Global `⌘K` search with actionable commands and categorized results.
 - **Component Search:** Real-time filtering of sections and components.
 - **Megamenu:** Desktop/Mobile sections panel with keyboard support.
 - **One-click Copy:** Copy Hex, CSS variables, Token values, Icon names, and Component code.
