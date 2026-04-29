@@ -192,12 +192,22 @@ Documents two platform-specific variants: iOS (Human Interface Guidelines) with 
 
 ## Versioning
 
-Version and build date are single-sourced:
+Version and build date are single-sourced from `package.json`.
 
-- **Version** is set once in `package.json`
-- **Date** is derived from the build timestamp automatically
+To bump the version across all files:
 
-Running `npm run build` propagates both into `script.js` and into the minified HTML output.
+```bash
+npm version patch   # e.g., 1.7.1 → 1.7.2
+# or
+npm version minor   # e.g., 1.7.1 → 1.8.0
+```
+
+This command automatically:
+1. Bumps the version in `package.json`.
+2. Runs `sync-version.js` to propagate the version to `script.js`, `sw.js`, and `index.html`.
+3. Stages these changes and creates a git commit and tag.
+
+The production build (`npm run build`) also injects the current version and build date into the minified output.
 
 ## Dark Mode
 
