@@ -250,6 +250,3 @@ The design system ships with a full dark mode. A moon/sun toggle in the sticky n
 | `package.json` | Version source of truth |
 
 To update design tokens, edit the `:root` block in `styles.css`. To replace the social share image, swap `og-image.png`. To update the brand icon, edit `logo.svg`.
-| Version source of truth |
-
-To update design tokens, edit the `:root` block in `styles.css`. To replace the social share image, swap `og-image.png`. To update the brand icon, edit `logo.svg`.
