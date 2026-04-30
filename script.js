@@ -203,7 +203,23 @@ function buildSearchIndex() {
     }
   });
 
-  // 4. Commands
+  // 4. Design Tokens
+  document.querySelectorAll('[data-token]').forEach(el => {
+    const token = el.dataset.token;
+    const label = token.replace('--', '').replace(/-/g, ' ');
+    // Try to find a human-readable label nearby (usually in a .spacing-row-label or .elevation-use)
+    const parent = el.closest('.spacing-row') || el.closest('.elevation-item') || el.closest('tr');
+    const contextualLabel = parent?.querySelector('.spacing-row-label, .elevation-use, .col-name')?.textContent.trim();
+    
+    index.push({
+      id: el.closest('section')?.id || 'spacing',
+      label: contextualLabel ? `${contextualLabel} (${token})` : token,
+      type: 'Token',
+      category: 'Design Tokens'
+    });
+  });
+
+  // 5. Commands
   index.push({
     id: 'cmd-theme',
     label: 'Toggle Dark Mode',
@@ -235,6 +251,43 @@ function ensureSearchIndexBuilt() {
   }
 }
 
+/**
+ * Highlights matches within a text string by wrapping them in a span.
+ */
+function highlightText(text, query) {
+  if (!query) return text;
+  const q = query.toLowerCase();
+  const index = text.toLowerCase().indexOf(q);
+  if (index === -1) {
+    // Basic fuzzy highlight: split by query characters
+    let result = '';
+    let lastIdx = 0;
+    const qChars = q.split('');
+    let matchFound = false;
+    
+    // Only attempt fuzzy highlight if query is short or we want to be aggressive
+    if (q.length > 1) {
+      let tempResult = '';
+      let j = 0;
+      for (let i = 0; i < text.length && j < qChars.length; i++) {
+        if (text[i].toLowerCase() === qChars[j]) {
+          tempResult += `<span class="nav-search-highlight">${text[i]}</span>`;
+          j++;
+          matchFound = true;
+        } else {
+          tempResult += text[i];
+        }
+      }
+      if (j === qChars.length) return tempResult + text.slice(tempResult.replace(/<[^>]*>/g, '').length);
+    }
+    return text;
+  }
+  
+  return text.slice(0, index) + 
+         `<span class="nav-search-highlight">${text.slice(index, index + q.length)}</span>` + 
+         text.slice(index + q.length);
+}
+
 function getSearchScore(item, query) {
   const label = item.label.toLowerCase();
   const type = item.type.toLowerCase();
@@ -248,16 +301,17 @@ function getSearchScore(item, query) {
   if (label.startsWith(q)) return 800;
   
   // 3. Word starts with query (e.g. "Form Controls" matched by "Controls")
-  if (label.split(' ').some(word => word.startsWith(q))) return 600;
+  const words = label.split(/[\s-]+/);
+  if (words.some(word => word.startsWith(q))) return 600;
 
   // 4. Contains query
   if (label.includes(q)) return 400;
 
   // 5. Type or Category match
-  if (type.startsWith(q) || cat.startsWith(q)) return 200;
+  if (type.startsWith(q)) return 300;
+  if (cat.startsWith(q)) return 200;
 
   // 6. Fuzzy character sequence match (Lowest priority)
-  // Checks if characters of query appear in order in the label
   let score = 0;
   let labelIdx = 0;
   let queryIdx = 0;
@@ -269,7 +323,7 @@ function getSearchScore(item, query) {
       matches++;
       queryIdx++;
       consecutive++;
-      score += 10 + (consecutive * 2); // Bonus for consecutive matches
+      score += 10 + (consecutive * 2); 
     } else {
       consecutive = 0;
     }
@@ -300,70 +354,89 @@ function setupSearch(inputEl, resultsEl) {
       .map(item => ({ item, score: getSearchScore(item, query) }))
       .filter(m => m.score > 0)
       .sort((a, b) => b.score - a.score) // Sort by highest score
-      .slice(0, 8);
+      .slice(0, 12);
 
-    renderSearchResults(scoredMatches.map(m => m.item), resultsEl, inputEl);
+    renderSearchResults(scoredMatches, resultsEl, inputEl, query);
   });
 
-  function renderSearchResults(matches, container, input) {
+  function renderSearchResults(matches, container, input, query) {
     container.innerHTML = '';
     if (matches.length === 0) {
       container.innerHTML = '<div class="nav-search-no-results">No matches found</div>';
     } else {
-      matches.forEach(item => {
-        const resultItem = document.createElement('a');
-        resultItem.href = `#${item.id}`;
-        resultItem.className = 'nav-search-item';
-        if (item.type === 'Icon') resultItem.classList.add('nav-search-item--icon');
-        
-        const contentWrapper = document.createElement('div');
-        contentWrapper.className = 'nav-search-item-content';
+      // Group results by type
+      const groups = {};
+      matches.forEach(match => {
+        const type = match.item.type;
+        if (!groups[type]) groups[type] = [];
+        groups[type].push(match);
+      });
 
-        if (item.type === 'Icon') {
-          const iconPreview = document.createElement('div');
-          iconPreview.className = 'nav-search-item-preview';
-          // Find the source icon in the DOM to clone it
-          const sourceCard = Array.from(document.querySelectorAll('.icon-card')).find(c => 
-            c.querySelector('.icon-card-name')?.textContent.trim() === item.label
-          );
-          if (sourceCard) {
-            const svg = sourceCard.querySelector('svg');
-            if (svg) iconPreview.appendChild(svg.cloneNode(true));
-          }
-          resultItem.appendChild(iconPreview);
-        }
-        
-        const labelWrapper = document.createElement('div');
-        labelWrapper.className = 'nav-search-item-label-wrap';
-        
-        const labelText = document.createElement('span');
-        labelText.className = 'nav-search-item-label';
-        labelText.textContent = item.label;
-        
-        const typeBadge = document.createElement('span');
-        typeBadge.className = `nav-search-badge nav-search-badge--${item.type.toLowerCase()}`;
-        typeBadge.textContent = item.type;
-        
-        labelWrapper.appendChild(labelText);
-        labelWrapper.appendChild(typeBadge);
-        
-        const categoryText = document.createElement('div');
-        categoryText.className = 'nav-search-item-category';
-        categoryText.textContent = item.category;
-        
-        contentWrapper.appendChild(labelWrapper);
-        contentWrapper.appendChild(categoryText);
-        resultItem.appendChild(contentWrapper);
+      // Render groups in specific order
+      ['Section', 'Component', 'Token', 'Icon', 'Command'].forEach(type => {
+        if (!groups[type]) return;
 
-        resultItem.addEventListener('click', () => {
-          container.classList.remove('open');
-          container.setAttribute('aria-hidden', 'true');
-          input.value = '';
-          if (megamenuPanel && megamenuPanel.classList.contains('open')) {
-            closeMegamenu();
+        const header = document.createElement('div');
+        header.className = 'nav-search-group-header';
+        header.textContent = type + 's';
+        container.appendChild(header);
+
+        groups[type].forEach(match => {
+          const item = match.item;
+          const resultItem = document.createElement('a');
+          resultItem.href = `#${item.id}`;
+          resultItem.className = 'nav-search-item';
+          if (item.type === 'Icon') resultItem.classList.add('nav-search-item--icon');
+          
+          const contentWrapper = document.createElement('div');
+          contentWrapper.className = 'nav-search-item-content';
+
+          if (item.type === 'Icon') {
+            const iconPreview = document.createElement('div');
+            iconPreview.className = 'nav-search-item-preview';
+            // Find the source icon in the DOM to clone it
+            const sourceCard = Array.from(document.querySelectorAll('.icon-card')).find(c => 
+              c.querySelector('.icon-card-name')?.textContent.trim() === item.label
+            );
+            if (sourceCard) {
+              const svg = sourceCard.querySelector('svg');
+              if (svg) iconPreview.appendChild(svg.cloneNode(true));
+            }
+            resultItem.appendChild(iconPreview);
           }
+          
+          const labelWrapper = document.createElement('div');
+          labelWrapper.className = 'nav-search-item-label-wrap';
+          
+          const labelText = document.createElement('span');
+          labelText.className = 'nav-search-item-label';
+          labelText.innerHTML = highlightText(item.label, query);
+          
+          const typeBadge = document.createElement('span');
+          typeBadge.className = `nav-search-badge nav-search-badge--${item.type.toLowerCase()}`;
+          typeBadge.textContent = item.type;
+          
+          labelWrapper.appendChild(labelText);
+          labelWrapper.appendChild(typeBadge);
+          
+          const categoryText = document.createElement('div');
+          categoryText.className = 'nav-search-item-category';
+          categoryText.innerHTML = highlightText(item.category, query);
+          
+          contentWrapper.appendChild(labelWrapper);
+          contentWrapper.appendChild(categoryText);
+          resultItem.appendChild(contentWrapper);
+
+          resultItem.addEventListener('click', () => {
+            container.classList.remove('open');
+            container.setAttribute('aria-hidden', 'true');
+            input.value = '';
+            if (megamenuPanel && megamenuPanel.classList.contains('open')) {
+              closeMegamenu();
+            }
+          });
+          container.appendChild(resultItem);
         });
-        container.appendChild(resultItem);
       });
     }
     container.classList.add('open');
@@ -441,7 +514,9 @@ function openPalette() {
   paletteOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   paletteInput.value = '';
-  renderPaletteResults(searchIndex.filter(item => item.type === 'Command').slice(0, 5));
+  // Show all commands by default
+  const defaultCommands = searchIndex.filter(item => item.type === 'Command').map(item => ({ item, score: 100 }));
+  renderPaletteResults(defaultCommands, '');
   requestAnimationFrame(() => paletteInput.focus());
 }
 
@@ -454,7 +529,7 @@ function closePalette() {
 
 let currentPaletteMatches = [];
 
-function renderPaletteResults(matches) {
+function renderPaletteResults(matches, query) {
   currentPaletteMatches = matches;
   paletteResults.innerHTML = '';
   if (matches.length === 0) {
@@ -462,29 +537,48 @@ function renderPaletteResults(matches) {
     return;
   }
 
-  matches.forEach((match, index) => {
-    const item = match.item || match; // Handle both scored matches and raw items
-    const el = document.createElement('div');
-    el.className = 'palette-item';
-    el.dataset.index = index;
-    if (index === 0) el.classList.add('selected');
-    
-    let icon = '';
-    if (item.type === 'Command') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
-    else if (item.type === 'Section') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>';
-    else if (item.type === 'Icon') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>';
-    else icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>';
+  // Group results by type
+  const groups = {};
+  matches.forEach(match => {
+    const type = match.item.type;
+    if (!groups[type]) groups[type] = [];
+    groups[type].push(match);
+  });
 
-    el.innerHTML = `
-      <div class="palette-item-icon">${icon}</div>
-      <div class="palette-item-content">
-        <div class="palette-item-label">${item.label}</div>
-        <div class="palette-item-category">${item.category} • ${item.type}</div>
-      </div>
-    `;
+  let globalIndex = 0;
+  ['Command', 'Section', 'Component', 'Token', 'Icon'].forEach(type => {
+    if (!groups[type]) return;
 
-    el.addEventListener('click', () => handleSelect(item));
-    paletteResults.appendChild(el);
+    const header = document.createElement('div');
+    header.className = 'nav-search-group-header';
+    header.textContent = type + 's';
+    paletteResults.appendChild(header);
+
+    groups[type].forEach(match => {
+      const item = match.item;
+      const el = document.createElement('div');
+      el.className = 'palette-item';
+      el.dataset.index = globalIndex;
+      if (globalIndex === 0) el.classList.add('selected');
+      
+      let icon = '';
+      if (item.type === 'Command') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
+      else if (item.type === 'Section') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>';
+      else if (item.type === 'Icon') icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>';
+      else icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>';
+
+      el.innerHTML = `
+        <div class="palette-item-icon">${icon}</div>
+        <div class="palette-item-content">
+          <div class="palette-item-label">${highlightText(item.label, query)}</div>
+          <div class="palette-item-category">${highlightText(item.category, query)} • ${item.type}</div>
+        </div>
+      `;
+
+      el.addEventListener('click', () => handleSelect(item));
+      paletteResults.appendChild(el);
+      globalIndex++;
+    });
   });
 }
 
@@ -511,7 +605,8 @@ function handleSelect(item) {
 paletteInput.addEventListener('input', () => {
   const query = paletteInput.value.trim();
   if (!query) {
-    renderPaletteResults(searchIndex.filter(item => item.type === 'Command').slice(0, 5));
+    const defaultCommands = searchIndex.filter(item => item.type === 'Command').map(item => ({ item, score: 100 }));
+    renderPaletteResults(defaultCommands, '');
     return;
   }
 
@@ -519,9 +614,9 @@ paletteInput.addEventListener('input', () => {
     .map(item => ({ item, score: getSearchScore(item, query) }))
     .filter(m => m.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 10);
+    .slice(0, 15);
 
-  renderPaletteResults(scoredMatches);
+  renderPaletteResults(scoredMatches, query);
 });
 
 paletteInput.addEventListener('keydown', e => {

@@ -311,7 +311,29 @@ section:last-child { border-bottom: none; }
 .nav-search-badge--section { background: var(--cat-worship-bg); color: var(--cat-worship); }
 .nav-search-badge--component { background: var(--cat-quran-bg); color: var(--cat-quran); }
 .nav-search-badge--icon { background: var(--gold-bg); color: var(--gold-dark); }
+.nav-search-badge--token { background: var(--surface-alt); color: var(--text-2); border: 1px solid var(--border); }
 .nav-search-no-results { padding: 0.75rem; font-size: 0.75rem; color: var(--text-3); text-align: center; }
+
+.nav-search-highlight {
+  color: var(--primary);
+  background: var(--cat-worship-bg);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.nav-search-group-header {
+  padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--border-light);
+}
 
 @media (max-width: 640px) {
   .nav-search { display: none; }
