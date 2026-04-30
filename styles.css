@@ -916,8 +916,13 @@ section:last-child { border-bottom: none; }
 /* Shared bottom-nav shell */
 .bottom-nav { display: flex; flex-direction: column; border-radius: var(--radius-md) var(--radius-md) 0 0; overflow: hidden; }
 .nav-tabs-row { display: flex; width: 100%; }
-.nav-tab { flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
-.nav-tab-text { line-height: 1; }
+.nav-tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer;
+  user-select: none; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--duration-fast), opacity var(--duration-fast);
+}
+.nav-tab:active { transform: scale(0.94); }
+.nav-tab-text { line-height: 1; transition: color var(--duration-fast), font-weight var(--duration-fast); }
 
 /* ── iOS Tab Bar ── */
 .bottom-nav--ios {
@@ -931,7 +936,8 @@ section:last-child { border-bottom: none; }
   border-top-color: rgba(255,255,255,0.1);
 }
 .bottom-nav--ios .nav-tab { gap: 0.1875rem; padding: 0.625rem 0.375rem 0.125rem; color: var(--text-3); }
-.bottom-nav--ios .nav-tab[aria-selected="true"] { color: var(--primary); }
+.bottom-nav--ios .nav-tab:hover { opacity: 0.7; }
+.bottom-nav--ios .nav-tab[aria-selected="true"] { color: var(--primary); opacity: 1; }
 .bottom-nav--ios .nav-tab-text { font-size: 0.625rem; font-weight: 400; color: inherit; }
 .bottom-nav--ios .nav-tab[aria-selected="true"] .nav-tab-text { font-weight: 500; }
 .ios-home-indicator {
@@ -942,13 +948,14 @@ section:last-child { border-bottom: none; }
 /* ── Android Material 3 Navigation Bar ── */
 .bottom-nav--android { background: var(--surface); box-shadow: var(--shadow-nav); }
 .bottom-nav--android .nav-tab { gap: 0.25rem; padding: 0.75rem 0.25rem 0.375rem; color: var(--text-2); }
-.bottom-nav--android .nav-tab[aria-selected="true"] { color: var(--primary); }
+.bottom-nav--android .nav-tab:hover .m3-indicator { background: var(--surface-alt); }
+.bottom-nav--android .nav-tab[aria-selected="true"] { color: var(--text-1); }
 .m3-indicator {
   width: 64px; height: 32px; border-radius: var(--radius-pill);
   display: flex; align-items: center; justify-content: center;
-  transition: background var(--duration-fast);
+  transition: background var(--duration-fast), transform var(--duration-fast), color var(--duration-fast);
 }
-.bottom-nav--android .nav-tab[aria-selected="true"] .m3-indicator { background: var(--cat-worship-bg); }
+.bottom-nav--android .nav-tab[aria-selected="true"] .m3-indicator { background: var(--cat-worship-bg); color: var(--primary); }
 .bottom-nav--android .nav-tab-text { font-size: 0.75rem; font-weight: 400; color: inherit; }
 .bottom-nav--android .nav-tab[aria-selected="true"] .nav-tab-text { font-weight: 700; }
 .android-gesture-bar {

@@ -41,7 +41,7 @@ themeToggleBtn.addEventListener('click', () => {
 
 // ── Version ──
 const VERSION = '1.7.2';
-const DATE = 'April 2026';
+const DATE = 'May 2026';
 
 function initVersionAndIcons() {
   document.querySelectorAll('[data-version]').forEach(el => { el.textContent = el.dataset.version === 'full' ? `Design System v${VERSION} · ${DATE}` : VERSION; });
@@ -1019,6 +1019,22 @@ if (explorerGrid && gapControls && padControls) {
   setupControls(gapControls, 'gap');
   setupControls(padControls, 'padding');
 }
+
+// ── Interactive Navigation Bars ──
+document.querySelectorAll('.bottom-nav').forEach(nav => {
+  nav.addEventListener('click', e => {
+    const tab = e.target.closest('.nav-tab');
+    if (!tab) return;
+    
+    // De-select siblings
+    nav.querySelectorAll('.nav-tab').forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+    });
+    
+    // Select clicked
+    tab.setAttribute('aria-selected', 'true');
+  });
+});
 
 // ── Initialize ──
 // Search Index is built lazily on focus
