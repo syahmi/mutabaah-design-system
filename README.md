@@ -63,7 +63,8 @@ No manual build or push is required.
 
 The `build.js` script handles more than just minification:
 
-- **Command Palette Integration:** Builds a comprehensive index of sections, components, icons, and system commands for the global `⌘K` palette.
+- **Command Palette Integration:** Builds a comprehensive index of sections, components, design tokens, icons, and system commands for the global `⌘K` palette.
+- **Improved Search Engine:** Features fuzzy character matching, result grouping by type, and visual text highlighting for better discoverability.
 - **CSS/JS Minification:** Uses `lightningcss` and `esbuild` for extremely fast bundling and minification.
 - **HTML Minification:** Inlines CSS and minifies HTML structure via `html-minifier-terser`.
 - **Content Hashing:** JavaScript files are content-hashed for aggressive long-term caching.
@@ -89,7 +90,7 @@ The `build.js` script handles more than just minification:
 | 11 | **Iconography** | Lucide icon library — all icons grouped by category |
 | 12 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
 | 13 | **Motion & Tone** | Transition durations, easing curves, and principles |
-| 14 | **Command Palette** | Global `⌘K` search with system commands and categorised results |
+| 14 | **Command Palette** | Global `⌘K` search with fuzzy matching, categorization, and system commands |
 
 ## Design Tokens
 
@@ -188,7 +189,7 @@ Four semantic variants — info, success, warning, error — using existing cate
 
 ### Bottom Navigation Bar
 
-Documents two platform-specific variants: iOS (Human Interface Guidelines) with frosted glass, and Android (Material 3) with indicator pills.
+Documents two platform-specific variants: iOS (Human Interface Guidelines) with frosted glass, and Android (Material 3) with indicator pills. Both are interactive within the documentation, supporting hover, active (pressed), and selected states.
 
 ## Versioning
 
@@ -223,11 +224,13 @@ The design system ships with a full dark mode. A moon/sun toggle in the sticky n
 
 ## Interactive Features
 
-- **Command Palette:** Global `⌘K` search with actionable commands and categorized results.
-- **Component Search:** Real-time filtering of sections and components.
-- **Megamenu:** Desktop/Mobile sections panel with keyboard support.
-- **One-click Copy:** Copy Hex, CSS variables, Token values, Icon names, and Component code.
-- **Dark Mode Toggle:** Persistent theme switching.
+- **Command Palette:** Global `⌘K` search with actionable commands, categorized results (Sections, Components, Tokens, Icons), and fuzzy matching.
+- **Improved Search:** Real-time filtering with text highlighting and grouped results by type.
+- **Interactive Navigation:** Both iOS and Android bottom navigation bars support live state toggling (hover, selected, pressed).
+- **Megamenu:** Desktop/Mobile sections panel with keyboard support and active section tracking.
+- **One-click Copy:** Copy Hex codes, CSS variables, Design Token values, Icon names, and clean Component code snippets.
+- **Dark Mode Toggle:** Persistent theme switching with system preference detection.
+
 
 ## Responsive Breakpoints
 
