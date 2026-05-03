@@ -61,10 +61,8 @@ No manual build or push is required.
 
 ## Build Pipeline Features
 
-The `build.js` script handles more than just minification:
+The `build.js` script handles optimization and production readiness:
 
-- **Command Palette Integration:** Builds a comprehensive index of sections, components, design tokens, icons, and system commands for the global `⌘K` palette.
-- **Improved Search Engine:** Features fuzzy character matching, result grouping by type, and visual text highlighting for better discoverability.
 - **CSS/JS Minification:** Uses `lightningcss` and `esbuild` for extremely fast bundling and minification.
 - **HTML Minification:** Inlines CSS and minifies HTML structure via `html-minifier-terser`.
 - **Content Hashing:** JavaScript files are content-hashed for aggressive long-term caching.
@@ -77,19 +75,19 @@ The `build.js` script handles more than just minification:
 
 | # | Section | What it covers |
 |---|---------|----------------|
-| 01 | **Typography** | Inter Tight (display), Inter (body) — full type scale |
+| 01 | **Typography** | Google Sans Flex (docs), Inter Tight (display), Inter (body) — full type scale |
 | 02 | **Colors** | Core palette, category colors, and dark mode tokens |
 | 03 | **Spacing** | Base spacing scale (0.25–5rem), component and layout rhythm, border-radius tokens, elevation scale |
-| 04 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders, alerts |
-| 05 | **Form Controls** | Checkbox, radio, and toggle — all states |
-| 06 | **Avatar** | Sizes, variants, and groups |
-| 07 | **Overlays** | Modal, dialog, and tooltip — patterns and structure |
-| 08 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
-| 09 | **Navigation** | Bottom tab bar (iOS/Android) and dashboard cards |
-| 10 | **Empty States** | Three variants with illustration and copy guidelines |
-| 11 | **Iconography** | Lucide icon library — all icons grouped by category |
-| 12 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
-| 13 | **Motion & Tone** | Transition durations, easing curves, and principles |
+| 04 | **Iconography** | Lucide icon library — all icons grouped by category |
+| 05 | **Components** | Buttons, chips, tags, input fields, progress rings, bar charts, streak badges, skeleton loaders, alerts |
+| 06 | **Form Controls** | Checkbox, radio, and toggle — all states |
+| 07 | **Tasks** | Task item states (pending, done), metadata, and interaction notes |
+| 08 | **Navigation** | Bottom tab bar (iOS/Android) and dashboard cards |
+| 09 | **Empty States** | Three variants with illustration and copy guidelines |
+| 10 | **Motion & Tone** | Transition durations, easing curves, and principles |
+| 11 | **Avatar** | Sizes, variants, and groups |
+| 12 | **Overlays** | Modal, dialog, and tooltip — patterns and structure |
+| 13 | **Breadcrumb & Pagination** | Wayfinding breadcrumbs and pagination controls |
 | 14 | **Command Palette** | Global `⌘K` search with fuzzy matching, categorization, and system commands |
 
 ## Design Tokens
@@ -141,7 +139,7 @@ All three fonts are loaded from Google Fonts in a single non-render-blocking req
 | Token | Value | Use |
 |-------|-------|-----|
 | `--radius-xs` | `6px` | Small elements (code pills, skeleton bones) |
-| `--radius-sm" | `8px` | Small surfaces |
+| `--radius-sm` | `8px` | Small surfaces |
 | `--radius-md` | `12px` | Buttons, input fields, bottom nav |
 | `--radius-lg` | `16px` | Cards, list containers |
 | `--radius-xl` | `20px` | Large cards |
@@ -156,7 +154,7 @@ Light mode shadows use a green-tinted base colour; dark mode overrides switch to
 |-------|-------|------|-----|
 | `--shadow-1` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Subtle — resting cards |
 | `--shadow-2` | `rgba(28,61,46,0.10)` | `rgba(0,0,0,0.32)` | Raised — bottom sheets |
-| `--shadow-3" | `rgba(28,61,46,0.16)` | `rgba(0,0,0,0.44)` | Elevated — overlapping panels |
+| `--shadow-3` | `rgba(28,61,46,0.16)` | `rgba(0,0,0,0.44)` | Elevated — overlapping panels |
 | `--shadow-fab` | `rgba(28,61,46,0.30)` | `rgba(0,0,0,0.56)` | Floating action button |
 | `--shadow-nav` | `rgba(28,61,46,0.06)` | `rgba(0,0,0,0.20)` | Bottom navigation bar |
 
@@ -198,9 +196,9 @@ Version and build date are single-sourced from `package.json`.
 To bump the version across all files:
 
 ```bash
-npm version patch   # e.g., 1.7.1 → 1.7.2
+npm version patch   # e.g., 1.7.2 → 1.7.3
 # or
-npm version minor   # e.g., 1.7.1 → 1.8.0
+npm version minor   # e.g., 1.7.2 → 1.8.0
 ```
 
 This command automatically:
@@ -221,11 +219,12 @@ The design system ships with a full dark mode. A moon/sun toggle in the sticky n
 - **Keyboard Navigation** for all interactive components.
 - **Aria live regions** for clipboard and search feedback.
 - **Rem-based spacing** for consistent scaling.
+- **Skip link** for keyboard-only users.
 
 ## Interactive Features
 
 - **Command Palette:** Global `⌘K` search with actionable commands, categorized results (Sections, Components, Tokens, Icons), and fuzzy matching.
-- **Improved Search:** Real-time filtering with text highlighting and grouped results by type.
+- **Improved Search Engine:** Real-time filtering with fuzzy character matching, result grouping by type, and visual text highlighting for better discoverability.
 - **Interactive Navigation:** Both iOS and Android bottom navigation bars support live state toggling (hover, selected, pressed).
 - **Megamenu:** Desktop/Mobile sections panel with keyboard support and active section tracking.
 - **One-click Copy:** Copy Hex codes, CSS variables, Design Token values, Icon names, and clean Component code snippets.
