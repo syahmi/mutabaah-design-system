@@ -42,8 +42,8 @@ npm install
 
 # Browse locally
 open index.html
-# or serve with
-npm run dev   # python3 -m http.server 8080
+# or serve with live-reloading (port 8080)
+npm run dev
 
 # Production build → docs/
 npm run build
