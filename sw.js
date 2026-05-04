@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mutabaah-design-system-v1.7.2';
+const CACHE_NAME = 'mutabaah-design-system-v1.7.3';
 const ASSETS = [
   './',
   './index.html',
