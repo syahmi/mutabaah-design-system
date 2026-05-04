@@ -4,10 +4,11 @@
   "description": "Design system for Mutabaah Amal",
   "scripts": {
     "build": "node build.js",
-    "dev": "python3 -m http.server 8080",
+    "dev": "browser-sync start --server --files \"*.html, *.css, *.js, *.svg\" --port 8080 --no-notify",
     "version": "node sync-version.js && git add script.js sw.js index.html"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.4",
     "esbuild": "^0.28.0",
     "html-minifier-terser": "^7.2.0",
     "lightningcss": "^1.32.0",
