@@ -20,23 +20,23 @@ function trapFocus(element, e) {
 }
 
 // ── Theme toggle ──
+import { toggleTheme } from './theme.js';
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeToggleLabel = document.getElementById('theme-toggle-label');
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
+function updateThemeUI(theme) {
   const isDark = theme === 'dark';
   themeToggleLabel.textContent = isDark ? 'Light' : 'Dark';
   themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
   themeToggleBtn.setAttribute('aria-pressed', isDark);
 }
 
-// Sync label with whatever the inline script set on <html>
-applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+// Initial UI sync
+updateThemeUI(document.documentElement.getAttribute('data-theme') || 'light');
 
 themeToggleBtn.addEventListener('click', () => {
-  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  const next = toggleTheme();
+  updateThemeUI(next);
 });
 
 // ── Version ──
