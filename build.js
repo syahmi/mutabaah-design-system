@@ -39,23 +39,32 @@ async function build() {
 
   // ── JS ───────────────────────────────────────────────────────────────────
   const jsHashes = {};
-  for (const file of ['script.js', 'lucide-mini.js']) {
-    let src = fs.readFileSync(file, 'utf8');
-    if (file === 'script.js') {
-      src = src.replace(/const VERSION = '[^']*'/, `const VERSION = '${VERSION}'`);
-      src = src.replace(/const DATE = '[^']*'/, `const DATE = '${BUILD_DATE}'`);
-      fs.writeFileSync(file, src); // keep source in sync for dev server
-    }
-    const { code } = await esbuild.transform(src, {
-      minify: true,
-      legalComments: 'none'
-    });
-    const base = path.basename(file, '.js');
-    const hashedName = `${base}.${contentHash(code)}.js`;
-    jsHashes[file] = hashedName;
-    fs.writeFileSync(path.join(DIST, hashedName), code);
-    console.log(`${hashedName.padEnd(24)}${fmt(src.length, code.length)}`);
-  }
+  
+  // 1. Bundle script.js (includes theme.js)
+  const scriptResult = await esbuild.build({
+    entryPoints: ['script.js'],
+    bundle: true,
+    minify: true,
+    write: false,
+    format: 'esm',
+    legalComments: 'none'
+  });
+  const scriptCode = scriptResult.outputFiles[0].text;
+  const scriptHashedName = `script.${contentHash(scriptCode)}.js`;
+  jsHashes['script.js'] = scriptHashedName;
+  fs.writeFileSync(path.join(DIST, scriptHashedName), scriptCode);
+  console.log(`${scriptHashedName.padEnd(24)}${fmt(fs.readFileSync('script.js', 'utf8').length, scriptCode.length)}`);
+
+  // 2. Transform lucide-mini.js
+  let lucideSrc = fs.readFileSync('lucide-mini.js', 'utf8');
+  const { code: lucideCode } = await esbuild.transform(lucideSrc, {
+    minify: true,
+    legalComments: 'none'
+  });
+  const lucideHashedName = `lucide-mini.${contentHash(lucideCode)}.js`;
+  jsHashes['lucide-mini.js'] = lucideHashedName;
+  fs.writeFileSync(path.join(DIST, lucideHashedName), lucideCode);
+  console.log(`${lucideHashedName.padEnd(24)}${fmt(lucideSrc.length, lucideCode.length)}`);
 
   // ── Service Worker ──────────────────────────────────────────────────────
   let swCode = fs.readFileSync('sw.js', 'utf8');
