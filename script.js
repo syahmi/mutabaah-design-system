@@ -20,7 +20,7 @@ function trapFocus(element, e) {
 }
 
 // ── Theme toggle ──
-import { toggleTheme } from './theme.js';
+import { toggleTheme, applyTheme } from './theme.js';
 const themeToggleBtn = document.getElementById('theme-toggle');
 const themeToggleLabel = document.getElementById('theme-toggle-label');
 
