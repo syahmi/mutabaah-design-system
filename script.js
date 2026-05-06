@@ -484,8 +484,17 @@ function setupSearch(inputEl, resultsEl) {
 }
 
 // Initialize both search bars
-setupSearch(document.getElementById('nav-search-input'), document.getElementById('nav-search-results'));
-setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
+if (window.requestIdleCallback) {
+  requestIdleCallback(() => {
+    setupSearch(document.getElementById('nav-search-input'), document.getElementById('nav-search-results'));
+    setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
+  });
+} else {
+  setTimeout(() => {
+    setupSearch(document.getElementById('nav-search-input'), document.getElementById('nav-search-results'));
+    setupSearch(document.getElementById('mobile-search-input'), document.getElementById('mobile-search-results'));
+  }, 200);
+}
 
 // Close search results on outside click
 document.addEventListener('click', e => {
