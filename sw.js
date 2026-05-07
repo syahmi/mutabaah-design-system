@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'mutabaah-ds';
-const CACHE_NAME = `${CACHE_PREFIX}-v1`; // Increment version on breaking structural changes
+const CACHE_NAME = "${CACHE_PREFIX}-v1"; // Increment version on breaking structural changes
 const ASSETS = [
   './',
   './index.html',

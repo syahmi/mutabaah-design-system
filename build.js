@@ -85,8 +85,8 @@ async function build() {
     // Inline CSS to eliminate the render-blocking external stylesheet request.
     .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`)
     // Use content-hashed filenames for JS so assets can be cached indefinitely.
-    .replace(/src="lucide-mini\.js"/, `src="${jsHashes['lucide-mini.js']}"`)
-    .replace(/src="script\.js"/, `src="${jsHashes['script.js']}"`);
+    .replace(/src="lucide-mini\.js"/g, `src="${jsHashes['lucide-mini.js']}"`)
+    .replace(/src="script\.js"/g, `src="${jsHashes['script.js']}"`);
   const minified = await minHTML(html, {
     collapseWhitespace: true,
     removeComments: true,

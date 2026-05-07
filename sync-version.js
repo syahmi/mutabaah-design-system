@@ -15,9 +15,7 @@ script = script.replace(/const DATE = '[^']*'/, `const DATE = '${DATE}'`);
 fs.writeFileSync('script.js', script);
 
 // 2. Update sw.js
-let sw = fs.readFileSync('sw.js', 'utf8');
-sw = sw.replace(/CACHE_NAME = 'mutabaah-design-system-v[^']*'/, `CACHE_NAME = 'mutabaah-design-system-v${VERSION}'`);
-fs.writeFileSync('sw.js', sw);
+// No longer needed, sw.js manages its own versioning now.
 
 // 3. Update index.html
 let html = fs.readFileSync('index.html', 'utf8');
