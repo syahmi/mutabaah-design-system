@@ -67,9 +67,7 @@ async function build() {
   console.log(`${lucideHashedName.padEnd(24)}${fmt(lucideSrc.length, lucideCode.length)}`);
 
   // ── Service Worker ──────────────────────────────────────────────────────
-  let swCode = fs.readFileSync('sw.js', 'utf8');
-  swCode = swCode.replace(/CACHE_NAME = '[^']*'/, `CACHE_NAME = 'mutabaah-design-system-v${VERSION}'`);
-  fs.writeFileSync('sw.js', swCode); // sync source
+  const swCode = fs.readFileSync('sw.js', 'utf8');
   const { code: minifiedSW } = await esbuild.transform(swCode, {
     minify: true,
     legalComments: 'none'
