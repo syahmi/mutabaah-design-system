@@ -86,7 +86,11 @@ async function build() {
     .replace(/<link rel="stylesheet" href="styles\.css"\s*\/>/, `<style>${styles}</style>`)
     // Use content-hashed filenames for JS so assets can be cached indefinitely.
     .replace(/src="lucide-mini\.js"/g, `src="${jsHashes['lucide-mini.js']}"`)
-    .replace(/src="script\.js"/g, `src="${jsHashes['script.js']}"`);
+    .replace(/src="script\.js"/g, `src="${jsHashes['script.js']}"`)
+    .replace(/href="favicon-32x32\.png"/g, `href="${jsHashes['favicon-32x32.png']}"`)
+    .replace(/href="favicon-16x16\.png"/g, `href="${jsHashes['favicon-16x16.png']}"`)
+    .replace(/href="apple-touch-icon\.png"/g, `href="${jsHashes['apple-touch-icon.png']}"`)
+    .replace(/og-image\.png/g, jsHashes['og-image.png']);
   const minified = await minHTML(html, {
     collapseWhitespace: true,
     removeComments: true,
@@ -109,9 +113,17 @@ async function build() {
   const ogWebp = await sharp(ogImg).webp({ quality: 80 }).toBuffer();
   const ogAvif = await sharp(ogImg).avif({ quality: 65 }).toBuffer();
 
-  fs.writeFileSync(path.join(DIST, 'og-image.png'), ogPng);
-  fs.writeFileSync(path.join(DIST, 'og-image.webp'), ogWebp);
-  fs.writeFileSync(path.join(DIST, 'og-image.avif'), ogAvif);
+  const ogPngHashed = `og-image.${contentHash(ogPng)}.png`;
+  const ogWebpHashed = `og-image.${contentHash(ogWebp)}.webp`;
+  const ogAvifHashed = `og-image.${contentHash(ogAvif)}.avif`;
+
+  fs.writeFileSync(path.join(DIST, ogPngHashed), ogPng);
+  fs.writeFileSync(path.join(DIST, ogWebpHashed), ogWebp);
+  fs.writeFileSync(path.join(DIST, ogAvifHashed), ogAvif);
+
+  jsHashes['og-image.png'] = ogPngHashed;
+  jsHashes['og-image.webp'] = ogWebpHashed;
+  jsHashes['og-image.avif'] = ogAvifHashed;
   
   console.log(`og-image.png  ${fmt(ogImg.length, ogPng.length)}`);
   console.log(`og-image.webp ${fmt(ogImg.length, ogWebp.length)}`);
@@ -130,8 +142,10 @@ async function build() {
     else name = `icon-${size}.png`;
 
     const buf = await sharp(logoSvg).resize(size, size).png().toBuffer();
-    fs.writeFileSync(path.join(DIST, name), buf);
-    console.log(`${name.padEnd(20)} generated from logo.svg`);
+    const hashedName = `${name.replace(/\.png$/, '')}.${contentHash(buf)}.png`;
+    fs.writeFileSync(path.join(DIST, hashedName), buf);
+    jsHashes[name] = hashedName;
+    console.log(`${hashedName.padEnd(20)} generated from logo.svg`);
   }
 
   console.log('\nBuild complete → docs/');
