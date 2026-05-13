@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.js",
     "dev": "browser-sync start --server --files \"*.html, *.css, *.js, *.svg\" --port 8080 --no-notify",
-    "version": "node sync-version.js && git add src/script.js sw.js index.html",
+    "version": "node sync-version.js && git add script.js sw.js index.html",
     "test": "node --test test.js"
   },
   "devDependencies": {

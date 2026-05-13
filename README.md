@@ -65,7 +65,7 @@ The `build.js` script handles optimization for production readiness:
 
 We welcome contributions! To ensure consistency, please adhere to the following:
 
-1. **Design Tokens:** Edit CSS variables in the `:root` block of `src/styles.css`.
+1. **Design Tokens:** Edit CSS variables in the `:root` block of `styles.css`.
 2. **Components:** Group styles logically. Consider creating a `/src/components` directory for modular styles.
 3. **Documentation:** Keep `index.html` updated with new component states or token changes.
 4. **Versioning:** Use `npm version [patch|minor|major]` to trigger `sync-version.js` and keep project files in sync.

@@ -9,10 +9,10 @@ const DATE = new Date().toLocaleDateString('en-US', { month: 'long', year: 'nume
 console.log(`Syncing version ${VERSION}...`);
 
 // 1. Update script.js
-let script = fs.readFileSync('src/script.js', 'utf8');
+let script = fs.readFileSync('script.js', 'utf8');
 script = script.replace(/const VERSION = '[^']*'/, `const VERSION = '${VERSION}'`);
 script = script.replace(/const DATE = '[^']*'/, `const DATE = '${DATE}'`);
-fs.writeFileSync('src/script.js', script);
+fs.writeFileSync('script.js', script);
 
 // 2. Update sw.js
 let sw = fs.readFileSync('sw.js', 'utf8');

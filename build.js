@@ -25,9 +25,9 @@ async function build() {
   fs.mkdirSync(DIST);
 
   // ── CSS ──────────────────────────────────────────────────────────────────
-  const css = fs.readFileSync('src/styles.css');
+  const css = fs.readFileSync('styles.css');
   const { code: cssCode } = lightningcss.transform({
-    filename: 'src/styles.css',
+    filename: 'styles.css',
     code: css,
     minify: true,
     sourceMap: false
@@ -42,7 +42,7 @@ async function build() {
   
   // 1. Bundle script.js (includes theme.js)
   const scriptResult = await esbuild.build({
-    entryPoints: ['src/script.js'],
+    entryPoints: ['script.js'],
     bundle: true,
     minify: true,
     write: false,
@@ -53,10 +53,10 @@ async function build() {
   const scriptHashedName = `script.${contentHash(scriptCode)}.js`;
   jsHashes['script.js'] = scriptHashedName;
   fs.writeFileSync(path.join(DIST, scriptHashedName), scriptCode);
-  console.log(`${scriptHashedName.padEnd(24)}${fmt(fs.readFileSync('src/script.js', 'utf8').length, scriptCode.length)}`);
+  console.log(`${scriptHashedName.padEnd(24)}${fmt(fs.readFileSync('script.js', 'utf8').length, scriptCode.length)}`);
 
   // 2. Transform lucide-mini.js
-  let lucideSrc = fs.readFileSync('src/lucide-mini.js', 'utf8');
+  let lucideSrc = fs.readFileSync('lucide-mini.js', 'utf8');
   const { code: lucideCode } = await esbuild.transform(lucideSrc, {
     minify: true,
     legalComments: 'none'
