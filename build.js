@@ -47,7 +47,9 @@ async function build() {
     minify: true,
     write: false,
     format: 'esm',
-    legalComments: 'none'
+    legalComments: 'none',
+    treeShaking: true,
+    target: ['es2020'],
   });
   const scriptCode = scriptResult.outputFiles[0].text;
   const scriptHashedName = `script.${contentHash(scriptCode)}.js`;
@@ -57,10 +59,13 @@ async function build() {
 
   // 2. Transform lucide-mini.js
   let lucideSrc = fs.readFileSync('lucide-mini.js', 'utf8');
-  const { code: lucideCode } = await esbuild.transform(lucideSrc, {
+  const lucideResult = await esbuild.transform(lucideSrc, {
     minify: true,
-    legalComments: 'none'
+    legalComments: 'none',
+    treeShaking: true,
+    target: ['es2020'],
   });
+  const lucideCode = lucideResult.code;
   const lucideHashedName = `lucide-mini.${contentHash(lucideCode)}.js`;
   jsHashes['lucide-mini.js'] = lucideHashedName;
   fs.writeFileSync(path.join(DIST, lucideHashedName), lucideCode);
