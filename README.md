@@ -2,74 +2,74 @@
 
 **Grounded in calm, reverent minimalism with Islamic warmth.**
 
-A comprehensive design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. This project documents all visual tokens, interactive components, and specialized patterns that define the product experience.
+A comprehensive design system for **Mutabaah Amal**, an Islamic habit and amal tracking app. This project serves as a single source of truth for all visual tokens, interactive components, and specialized patterns defining the product experience.
 
 ![Design System — Mutabaah Amal](og-image.png)
 
 ## Overview
 
-The design system is built with zero dependencies for the runtime, prioritizing performance, accessibility, and high-fidelity motion.
+The design system is engineered for maximum performance, accessibility, and high-fidelity motion with zero runtime dependencies.
 
-### Core Architecture
-- **Documentation:** Built on a single `index.html` for instant accessibility and ease of maintenance.
-- **Styling:** Vanilla CSS using a deep hierarchy of Design Tokens (CSS Variables).
-- **Interactivity:** Lightweight Vanilla JS with specialized modules for search, accessibility, and clipboard management.
-- **Build Pipeline:** Node.js-based minification, content-hashing, and an automated image optimization pipeline using `sharp`.
+### Technical Architecture
+- **Documentation:** A single `index.html` structure ensures fast loading and simple navigation.
+- **Styling:** Robust CSS architecture utilizing a comprehensive Design Token set (CSS Custom Properties).
+- **Interactivity:** Lightweight Vanilla JavaScript modules for enhanced UI features.
+- **Build & Optimization:** Node.js-based pipeline featuring asset minification, image processing, and automated versioning.
 
 ```
 mutabaah-design-system/
-├── src/                # Source code (CSS/JS)
 ├── index.html          # Documentation markup
+├── styles.css          # Design system styles
+├── script.js           # Interactive components & UI logic
 ├── build.js            # Production build script
 ├── sync-version.js     # Version synchronization utility
-├── package.json        # Project manifest
-└── README.md
+└── package.json        # Project metadata
 ```
 
-## Development
+## Getting Started
 
 ### Prerequisites
 - Node.js (Latest LTS recommended)
 - `npm`
 
 ### Quick Start
-```bash
-# 1. Install dependencies
-npm install
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Launch development server**:
+   ```bash
+   npm run dev
+   ```
+   *Access at `http://localhost:8080` with automatic live-reloading.*
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
 
-# 2. Run development server (live-reloading on port 8080)
-npm run dev
+## Workflow & Deployment
 
-# 3. Build for production (outputs to docs/)
-npm run build
-```
+### Build Pipeline
+Our production pipeline ensures optimal delivery:
+- **Minification**: Utilizes `lightningcss` for CSS and `esbuild` for JavaScript.
+- **Versioning**: Content-hashing ensures efficient browser caching.
+- **Asset Processing**: Automatically optimizes high-fidelity images (`og-image.png`) and generates favicon/PWA icon sets from `logo.svg` via `sharp` and `svgo`.
 
-## Deployment
+### Automated Deployment
+Deployment is handled by GitHub Actions. Every push to the `main` branch triggers:
+1. Environment setup and dependency installation (`npm ci`).
+2. Production build execution (`npm run build`).
+3. Automatic deployment of the `docs/` output to GitHub Pages.
 
-The project is automatically deployed via GitHub Actions. Every push to `main` triggers:
-1. `npm ci` to install dependencies.
-2. `npm run build` to generate the production-ready `docs/` folder.
-3. Deployment of `docs/` to GitHub Pages.
+## Contribution Guidelines
 
-## Build Pipeline
+We maintain consistency through these standard procedures:
 
-The `build.js` script handles optimization for production readiness:
-- **Minification:** Uses `lightningcss` (CSS) and `esbuild` (JS).
-- **Content Hashing:** JavaScript files are hashed for efficient browser caching.
-- **Image Optimization:** 
-    - Automatically generates modern WebP/AVIF formats from `og-image.png`.
-    - Creates a full set of favicon/PWA icons from `logo.svg`.
-- **Inlining:** Minifies and inlines critical assets where appropriate.
-
-## Contributing
-
-We welcome contributions! To ensure consistency, please adhere to the following:
-
-1. **Design Tokens:** Edit CSS variables in the `:root` block of `styles.css`.
-2. **Components:** Group styles logically. Consider creating a `/src/components` directory for modular styles.
-3. **Documentation:** Keep `index.html` updated with new component states or token changes.
-4. **Versioning:** Use `npm version [patch|minor|major]` to trigger `sync-version.js` and keep project files in sync.
+1. **Design Tokens**: Modify CSS variables exclusively in the `:root` block within `styles.css`.
+2. **Components**: For new components, please follow the naming conventions of existing elements and ensure documentation examples are provided in `index.html`.
+3. **Versioning**: Use the standard NPM versioning flow (`npm version [patch|minor|major]`). This automatically triggers `sync-version.js` to update all relevant project files.
+4. **Verification**: Always run `npm test` before committing to ensure the build and version synchronization scripts are functioning correctly.
 
 ## License
 
-[Add your license here, e.g., MIT]
+MIT
